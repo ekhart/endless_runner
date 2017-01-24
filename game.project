@@ -29,3 +29,6 @@ max_particle_count = 2048
 [library]
 include_dirs = def-runner
 
+[tracking]
+app_id = 4CA636526DC6D1D8
+
