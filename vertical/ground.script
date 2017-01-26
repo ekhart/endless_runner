@@ -18,6 +18,12 @@ function update(self, dt)
 		end
 		pos.y = pos.y - self.speed
 		go.set_position(pos, p)
+		
+		-- degub print example
+		-- http://www.defold.com/manuals/debugging/#_visual_profiler
+		local position = vmath.vector3(200, 200 + i*15, 0)
+		local message = {text = p .. ".pos.y: " .. pos.y, position = position}
+		msg.post("@render:", "draw_text", message)
 	end
 end
 
