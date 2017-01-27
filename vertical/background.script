@@ -1,20 +1,14 @@
 local pieces = { "background", "background1", "background2" }
 
--- todo: make it taken from level.atlas png
-local ground_height = 512
--- todo: make it taken from game.project
-local screen_height = 720
-
+local screen_height
+local ground_height
 
 function init(self)
-	self.speed = 6
+	-- self.ground_height != ground_height
+	ground_height = go.get(pieces[1] .. "#sprite", "size.y")
+	screen_height = sys.get_config("display.height")
 	
-	local path = pieces[1] .. "#sprite"
-	pprint(pieces[1])
-	pprint(path)
-	print(go.get(path, "size.y"))
-	-- print(go.get("background/" .. pieces[1] .. "#sprite", "size.y"))
-	-- ground_height = go.get("#" .. pieces[1], size.y)
+	self.speed = 6
 end
 
 function update(self, dt)
