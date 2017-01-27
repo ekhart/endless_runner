@@ -8,6 +8,13 @@ local screen_height = 720
 
 function init(self)
 	self.speed = 6
+	
+	local path = pieces[1] .. "#sprite"
+	pprint(pieces[1])
+	pprint(path)
+	print(go.get(path, "size.y"))
+	-- print(go.get("background/" .. pieces[1] .. "#sprite", "size.y"))
+	-- ground_height = go.get("#" .. pieces[1], size.y)
 end
 
 function update(self, dt)
