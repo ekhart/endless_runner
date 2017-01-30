@@ -1,9 +1,37 @@
 name: "default"
+instances {
+  id: "car"
+  prototype: "/vertical/car.go"
+  position {
+    x: 256.0
+    y: 200.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.25
+    y: 0.25
+    z: 0.25
+  }
+}
 collection_instances {
   id: "background"
   collection: "/vertical/background/background.collection"
   position {
     x: 384.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
   }
   scale3 {
     x: 1.0
@@ -11,3 +39,4 @@ collection_instances {
     z: 1.0
   }
 }
+scale_along_z: 0
