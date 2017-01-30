@@ -3,12 +3,22 @@ local pieces = { "background", "background1", "background2" }
 local screen_height
 local ground_height
 
+go.property("speed", 6)
+
 function init(self)
 	-- self.ground_height != ground_height
 	ground_height = go.get(pieces[1] .. "#sprite", "size.y")
 	screen_height = sys.get_config("display.height")
 	
 	self.speed = 6
+end
+
+function print_debug(i, p, pos)
+	-- degub print example
+	-- http://www.defold.com/manuals/debugging/#_visual_profiler
+	local position = vmath.vector3(200, 200 + i*15, 0)
+	local message = {text = p .. ".pos.y: " .. pos.y, position = position}
+	msg.post("@render:", "draw_text", message)
 end
 
 function update(self, dt)
@@ -20,11 +30,7 @@ function update(self, dt)
 		pos.y = pos.y - self.speed
 		go.set_position(pos, p)
 		
-		-- degub print example
-		-- http://www.defold.com/manuals/debugging/#_visual_profiler
-		local position = vmath.vector3(200, 200 + i*15, 0)
-		local message = {text = p .. ".pos.y: " .. pos.y, position = position}
-		msg.post("@render:", "draw_text", message)
+		-- print_debug(i, p, pos)
 	end
 end
 
