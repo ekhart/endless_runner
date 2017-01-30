@@ -1,8 +1,10 @@
-
+go.property("move", 244)
 
 function init(self)
     -- needed to handle input
     msg.post(".", "acquire_input_focus")
+    
+    self.move = go.get("#", "move")
 end
 
 function update(self, dt)
@@ -27,6 +29,6 @@ local function move_horizontal(action_id, action, move_id, pos_change)
 end
 
 function on_input(self, action_id, action)
-	move_horizontal(action_id, action, "right", 244)
-	move_horizontal(action_id, action, "left", -244)
+	move_horizontal(action_id, action, "right", self.move)
+	move_horizontal(action_id, action, "left", -self.move)
 end
