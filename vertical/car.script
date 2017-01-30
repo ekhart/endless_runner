@@ -1,3 +1,5 @@
+
+
 function init(self)
     -- needed to handle input
     msg.post(".", "acquire_input_focus")
@@ -13,20 +15,18 @@ function on_message(self, message_id, message, sender)
     -- Remove this function if not needed
 end
 
-function on_input(self, action_id, action)
-	if action_id == hash("right") then
+local function move_horizontal(action_id, action, move_id, pos_change)
+	if action_id == hash(move_id) then
 		if action.pressed then
 			local pos = go.get_position("car")
 			pprint(pos)
-			pos.x = pos.x + 244
-			go.set_position(pos, "car")
-		end
-	elseif action_id == hash("left") then
-		if action.pressed then
-			local pos = go.get_position("car")
-			pprint(pos)
-			pos.x = pos.x - 244
+			pos.x = pos.x + pos_change
 			go.set_position(pos, "car")
 		end
 	end
+end
+
+function on_input(self, action_id, action)
+	move_horizontal(action_id, action, "right", 244)
+	move_horizontal(action_id, action, "left", -244)
 end
