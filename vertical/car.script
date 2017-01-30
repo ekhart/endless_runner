@@ -1,10 +1,6 @@
 function init(self)
-    
-end
-
-function final(self)
-    -- Add finalization code here
-    -- Remove this function if not needed
+    -- needed to handle input
+    msg.post(".", "acquire_input_focus")
 end
 
 function update(self, dt)
@@ -18,11 +14,19 @@ function on_message(self, message_id, message, sender)
 end
 
 function on_input(self, action_id, action)
-    -- Add input-handling code here
-    -- Remove this function if not needed
-end
-
-function on_reload(self)
-    -- Add reload-handling code here
-    -- Remove this function if not needed
+	if action_id == hash("right") then
+		if action.pressed then
+			local pos = go.get_position("car")
+			pprint(pos)
+			pos.x = pos.x + 244
+			go.set_position(pos, "car")
+		end
+	elseif action_id == hash("left") then
+		if action.pressed then
+			local pos = go.get_position("car")
+			pprint(pos)
+			pos.x = pos.x - 244
+			go.set_position(pos, "car")
+		end
+	end
 end

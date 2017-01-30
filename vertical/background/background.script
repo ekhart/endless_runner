@@ -10,7 +10,7 @@ function init(self)
 	ground_height = go.get(pieces[1] .. "#sprite", "size.y")
 	screen_height = sys.get_config("display.height")
 	
-	self.speed = 6
+	self.speed = go.get("#", "speed")
 end
 
 function print_debug(i, p, pos)
