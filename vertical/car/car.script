@@ -1,3 +1,22 @@
+local beginX
+local beginY
+local endX
+local endY
+
+local startTime = 0
+
+local xDistance
+local yDistance
+
+go.property("minSwipeDistance", 40)
+go.property("minSwipeTime", 0.6)
+
+local bDoingTouch
+local totalSwipeDistanceLeft
+local totalSwipeDistanceRight
+local totalSwipeDistanceUp
+local totalSwipeDistanceDown
+
 go.property("move", 244)
 
 function init(self)
@@ -5,6 +24,10 @@ function init(self)
     msg.post(".", "acquire_input_focus")
     
     self.move = go.get("#", "move")
+end
+
+function final(self)
+    msg.post(".", "release_input_focus")
 end
 
 function update(self, dt)
@@ -17,18 +40,69 @@ function on_message(self, message_id, message, sender)
     -- Remove this function if not needed
 end
 
+local function move_car(pos_change)
+	local pos = go.get_position("car")
+	pos.x = pos.x + pos_change
+	go.set_position(pos, "car")
+end
+
 local function move_horizontal(action_id, action, move_id, pos_change)
-	if action_id == hash(move_id) then
-		if action.pressed then
-			local pos = go.get_position("car")
-			pprint(pos)
-			pos.x = pos.x + pos_change
-			go.set_position(pos, "car")
-		end
+	if action_id == hash(move_id) and action.pressed then
+		move_car(pos_change)
 	end
+end
+
+function checkSwipeDirection(self)
+  if bDoingTouch == true then
+    xDistance =  math.abs(endX - beginX) -- math.abs will return the absolute, or non-negative value, of a given value.
+    yDistance =  math.abs(endY - beginY)
+    if xDistance > yDistance then
+      if beginX > endX then
+        totalSwipeDistanceLeft = beginX - endX
+        if totalSwipeDistanceLeft > self.minSwipeDistance then
+          -- print("Swiped Left")
+          move_car(-self.move)
+        end
+      else
+        totalSwipeDistanceRight = endX - beginX
+        if totalSwipeDistanceRight > self.minSwipeDistance then
+          -- print("Swiped Right")
+          move_car(self.move)
+        end
+      end
+    else
+     if beginY > endY then
+        totalSwipeDistanceUp = beginY - endY
+        if totalSwipeDistanceUp > self.minSwipeDistance then
+          -- print("Swiped Down")
+        end
+       else
+        totalSwipeDistanceDown = endY - beginY
+        if totalSwipeDistanceDown > self.minSwipeDistance then
+          -- print("Swiped Up")
+        end
+       end
+    end
+  end
 end
 
 function on_input(self, action_id, action)
 	move_horizontal(action_id, action, "right", self.move)
 	move_horizontal(action_id, action, "left", -self.move)
+
+	if action_id == hash("touch") then
+    if action.pressed then
+      bDoingTouch = true
+      beginX = action.x
+      beginY = action.y
+      startTime = os.clock()
+    elseif action.released  then
+      endX = action.x
+      endY = action.y
+      if os.clock() - startTime < self.minSwipeTime then
+      	checkSwipeDirection(self);
+      end
+      bDoingTouch = false
+    end
+  end
 end
