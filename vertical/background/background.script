@@ -13,7 +13,7 @@ function init(self)
 	self.speed = go.get("#", "speed")
 end
 
-function print_debug(i, p, pos)
+local function print_debug(i, p, pos)
 	-- degub print example
 	-- http://www.defold.com/manuals/debugging/#_visual_profiler
 	local position = vmath.vector3(200, 200 + i*15, 0)
