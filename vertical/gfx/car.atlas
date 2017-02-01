@@ -1,6 +1,9 @@
 images {
   image: "/vertical/gfx/mustang_C.png"
 }
+images {
+  image: "/vertical/gfx/mustang_player_1.png"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0
