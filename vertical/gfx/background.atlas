@@ -1,8 +1,5 @@
 images {
-  image: "/vertical/gfx/tunnel_road.jpg"
-}
-images {
-  image: "/vertical/gfx/road_A.png"
+  image: "/vertical/gfx/background/road_A.png"
 }
 margin: 0
 extrude_borders: 0
