@@ -2,14 +2,14 @@
 title = Runner
 
 [bootstrap]
-main_collection = /main/main.collectionc
+main_collection = /vertical/main.collectionc
 
 [input]
 game_binding = /input/game.input_bindingc
 
 [display]
-width = 1280
-height = 720
+width = 1080
+height = 1920
 
 [physics]
 scale = 0.02
