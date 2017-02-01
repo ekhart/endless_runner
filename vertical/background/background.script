@@ -1,13 +1,11 @@
-local pieces = { "background", "background1", "background2" }
-
+local pieces = { "background", "background1", "background2", "background3", "background4", "background5" }
 local screen_height
-local ground_height
 
 go.property("speed", 6)
 
+
 function init(self)
 	-- self.ground_height != ground_height
-	ground_height = go.get(pieces[1] .. "#sprite", "size.y")
 	screen_height = sys.get_config("display.height")
 	
 	self.speed = go.get("#", "speed")
@@ -24,6 +22,8 @@ end
 function update(self, dt)
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
+		local ground_height = go.get(p .. "#sprite", "size.y")
+		
 		if pos.y <= -ground_height then
 			pos.y = screen_height + ground_height
 		end
