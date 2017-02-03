@@ -31,15 +31,15 @@ collection_instances {
   id: "background"
   collection: "/vertical/background/background.collection"
   position {
-    x: -1500.0
-    y: 0.0
+    x: 0.0
+    y: 300.0
     z: 0.0
   }
   rotation {
     x: 0.0
     y: 0.0
-    z: -0.5
-    w: 0.8660254
+    z: -0.50484556
+    w: 0.86320966
   }
   scale3 {
     x: 1.0

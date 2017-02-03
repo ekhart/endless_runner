@@ -1,5 +1,8 @@
 local pieces = { "background", "background1", "background2", "background3", "background4", "background5" }
+
 local screen_height
+local screen_width
+local aspect
 
 go.property("speed", 6)
 
@@ -7,7 +10,9 @@ go.property("speed", 6)
 function init(self)
 	-- self.ground_height != ground_height
 	screen_height = sys.get_config("display.height")
-	
+	screen_width = sys.get_config("display.width")
+	aspect = screen_height / screen_width
+
 	self.speed = go.get("#", "speed")
 end
 
@@ -20,17 +25,20 @@ local function print_debug(i, p, pos)
 end
 
 function update(self, dt)
-	for i, p in ipairs(pieces) do 
+	for i, p in ipairs(pieces) do
 		local pos = go.get_position(p)
 		local ground_height = go.get(p .. "#sprite", "size.y")
+
+		-- if pos.y <= -ground_height then
+		-- 	pos.y = screen_height + ground_height
+		-- end
+
+		pos.x = pos.x - self.speed
+		pos.y = pos.y - self.speed * aspect
 		
-		if pos.y <= -ground_height then
-			pos.y = screen_height + ground_height
-		end
-		pos.y = pos.y - self.speed
 		go.set_position(pos, p)
-		
-		-- print_debug(i, p, pos)
+
+		print_debug(i, p, pos)
 	end
 end
 
