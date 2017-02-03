@@ -10,8 +10,8 @@ instances {
   rotation {
     x: 0.0
     y: 0.0
-    z: -0.50484556
-    w: 0.86320966
+    z: -0.25340173
+    w: 0.96736115
   }
   component_properties {
     id: "script"
@@ -38,8 +38,8 @@ collection_instances {
   rotation {
     x: 0.0
     y: 0.0
-    z: -0.50484556
-    w: 0.86320966
+    z: -0.25340173
+    w: 0.96736115
   }
   scale3 {
     x: 1.0
