@@ -3,15 +3,15 @@ instances {
   id: "car"
   prototype: "/vertical/car/car.go"
   position {
-    x: 244.0
-    y: 200.0
+    x: 644.0
+    y: 244.0
     z: 1.0
   }
   rotation {
     x: 0.0
     y: 0.0
-    z: 0.0
-    w: 1.0
+    z: -0.50484556
+    w: 0.86320966
   }
   component_properties {
     id: "script"
@@ -32,7 +32,7 @@ collection_instances {
   collection: "/vertical/background/background.collection"
   position {
     x: 0.0
-    y: 300.0
+    y: 180.0
     z: 0.0
   }
   rotation {

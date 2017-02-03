@@ -19,11 +19,20 @@ go.property("minSwipeTime", 0.6)
 go.property("move", 244)
 
 
-function init(self)
-    -- needed to handle input
-    msg.post(".", "acquire_input_focus")
+local screen_height
+local screen_width
+local aspect
 
-    self.move = go.get("#", "move")
+
+function init(self)
+  screen_height = sys.get_config("display.height")
+  screen_width = sys.get_config("display.width")
+  aspect = screen_height / screen_width
+
+  -- needed to handle input
+  msg.post(".", "acquire_input_focus")
+
+  self.move = go.get("#", "move")
 end
 
 function final(self)
@@ -43,8 +52,11 @@ end
 local function move_car(pos_diff)
 	local car = "car"
 	local pos = go.get_position(car)
+
 	pos.x = pos.x + pos_diff
-	go.set_position(pos, car)
+	pos.y = pos.y - pos_diff * aspect
+
+  go.set_position(pos, car)
 end
 
 local function move_horizontal(action_id, action, move_id, pos_diff)
