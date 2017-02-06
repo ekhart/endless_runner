@@ -3,9 +3,15 @@ instances {
   id: "car"
   prototype: "/vertical/car/car.go"
   position {
-    x: 244.0
+    x: 620.0
     y: 200.0
     z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
   }
   component_properties {
     id: "script"
@@ -21,11 +27,39 @@ instances {
     z: 0.25
   }
 }
+instances {
+  id: "enemy"
+  prototype: "/vertical/enemy/enemy.go"
+  position {
+    x: 440.0
+    y: 2000.0
+    z: 0.5
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.25
+    y: 0.25
+    z: 1.0
+  }
+}
 collection_instances {
   id: "background"
   collection: "/vertical/ground/ground.collection"
   position {
     x: 384.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
   }
   scale3 {
     x: 1.0
@@ -33,12 +67,35 @@ collection_instances {
     z: 1.0
   }
 }
+scale_along_z: 0
 embedded_instances {
   id: "controller"
-  data: "components {\n  id: \"script\"\n  component: \"/vertical/controller.script\"\n  position {\n    x: 0.0\n    y: 0.0\n    z: 0.0\n  }\n  rotation {\n    x: 0.0\n    y: 0.0\n    z: 0.0\n    w: 1.0\n  }\n}\n"
+  data: "components {\n"
+  "  id: \"script\"\n"
+  "  component: \"/vertical/controller.script\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
   position {
     x: 574.0
     y: 2000.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
   }
   scale3 {
     x: 1.0

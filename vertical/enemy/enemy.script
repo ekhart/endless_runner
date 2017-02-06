@@ -1,4 +1,4 @@
-go.property("move", 6)
+go.property("move", 12)
 
 
 function init(self)
@@ -10,10 +10,10 @@ function final(self)
 end
 
 function update(self, dt)
-	local enemy = "enemy"
+	local enemy = "."
   local pos = go.get_position(enemy)
 
-  pos.y = pos.y + self.move
+  pos.y = pos.y - self.move
 
   go.set_position(pos, enemy)
 end

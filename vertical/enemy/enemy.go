@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/vertical/car/car.script"
+  component: "/vertical/enemy/enemy.script"
   position {
     x: 0.0
     y: 0.0
