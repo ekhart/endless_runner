@@ -69,6 +69,7 @@ local function checkSwipeDirection(self)
         if totalSwipeDistanceRight > self.minSwipeDistance then
           -- print("Swiped Right")
           move_car(self.move)
+          
         end
       end
     else

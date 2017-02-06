@@ -1,4 +1,4 @@
-local pieces = { "background", "background1", "background2", "background3", "background4", "background5" }
+local pieces = { "background", "background1", "background2", "background3" }
 local screen_height
 
 go.property("speed", 6)
