@@ -1,0 +1,12 @@
+images {
+  image: "/vertical/gfx/enemies/mustang_A.png"
+}
+images {
+  image: "/vertical/gfx/enemies/mustang_B.png"
+}
+images {
+  image: "/vertical/gfx/enemies/mustang_C.png"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0
