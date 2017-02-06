@@ -1,0 +1,24 @@
+go.property("move", 6)
+
+
+function init(self)
+    self.move = go.get("#", "move")
+end
+
+function final(self)
+
+end
+
+function update(self, dt)
+	local enemy = "enemy"
+  local pos = go.get_position(enemy)
+
+  pos.y = pos.y + self.move
+
+  go.set_position(pos, enemy)
+end
+
+function on_message(self, message_id, message, sender)
+    -- Add message-handling code here
+    -- Remove this function if not needed
+end
