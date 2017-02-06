@@ -36,8 +36,37 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-    -- Add message-handling code here
-    -- Remove this function if not needed
+  if message_id == hash("contact_point_response") then
+    -- check if we received a contact point message
+
+    if message.group == hash("enemy") then
+      local id = go.get_id("car")
+      go.delete(id)
+
+      -- Die and restart
+      -- particlefx.play("#deathfx")
+      -- play_animation(self, hash("die_right"))
+      -- msg.post("#", "disable")
+      -- msg.post("hud", "set_lives", { lives = self.lives })
+      -- go.animate(".", "euler.z", go.PLAYBACK_ONCE_FORWARD, 160, go.EASING_LINEAR, 0.7)
+      -- go.animate(".", "position.y", go.PLAYBACK_ONCE_FORWARD, go.get_position().y - 200, go.EASING_INSINE, 0.5, 0.2,
+        -- function()
+        --   if self.lives > 1 then  
+        --         msg.post("controller#script", "reset")
+        --       end
+        --   self.lives = self.lives - 1
+        --   if self.lives == 0 then
+        --     msg.post("hud", "show_game_over")
+        --     msg.post("#", "disable")
+        --   else
+        --     msg.post("#", "reset")
+        --   end
+        -- end)
+        
+    elseif message.group == hash("geometry") then
+      -- handle_geometry_contact(self, message.normal, message.distance)
+    end
+  end
 end
 
 local function move_car(pos_diff)

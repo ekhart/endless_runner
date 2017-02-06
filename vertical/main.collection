@@ -47,6 +47,26 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "enemy1"
+  prototype: "/vertical/enemy/enemy.go"
+  position {
+    x: 640.0
+    y: 3000.0
+    z: 0.5
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.25
+    y: 0.25
+    z: 1.0
+  }
+}
 collection_instances {
   id: "background"
   collection: "/vertical/ground/ground.collection"
