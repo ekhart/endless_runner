@@ -1,0 +1,21 @@
+images {
+  image: "/vertical/gfx/ground/road_A.png"
+}
+images {
+  image: "/vertical/gfx/ground/road_B.jpg"
+}
+images {
+  image: "/vertical/gfx/ground/road_bus_01.jpg"
+}
+images {
+  image: "/vertical/gfx/ground/road_clean_A.jpg"
+}
+images {
+  image: "/vertical/gfx/ground/road_clean_B.jpg"
+}
+images {
+  image: "/vertical/gfx/ground/road_cracks_A.jpg"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

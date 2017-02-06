@@ -23,7 +23,7 @@ instances {
 }
 collection_instances {
   id: "background"
-  collection: "/vertical/background/background.collection"
+  collection: "/vertical/ground/ground.collection"
   position {
     x: 384.0
   }
