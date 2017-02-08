@@ -1,0 +1,31 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("#levelproxy", "load")
+
+	-- print("load level")
+end
+
+function final(self)
+	-- print("final")
+
+	msg.post(".", "release_input_focus")
+end
+
+function on_message(self, message_id, message, sender)
+	-- print("message_id = " .. message_id)
+	-- pprint("sender = " .. sender)
+
+	if message_id == hash("reload_level") then
+		-- print("unload")
+
+		msg.post("#levelproxy", "disable")
+		msg.post("#levelproxy", "final")
+		msg.post("#levelproxy", "unload")	
+	elseif message_id == hash("proxy_loaded") then
+		msg.post(sender, "enable")
+	elseif message_id == hash("proxy_unloaded") then
+		-- print("load")
+
+		msg.post("#levelproxy", "load")	
+	end
+end

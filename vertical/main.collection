@@ -1,128 +1,5 @@
-name: "default"
-instances {
-  id: "car"
-  prototype: "/vertical/car/car.go"
-  position {
-    x: 620.0
-    y: 200.0
-    z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  component_properties {
-    id: "script"
-    properties {
-      id: "move"
-      value: "220.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-  }
-  scale3 {
-    x: 0.25
-    y: 0.25
-    z: 0.25
-  }
-}
-instances {
-  id: "enemy"
-  prototype: "/vertical/enemy/enemy.go"
-  position {
-    x: 440.0
-    y: 2000.0
-    z: 0.5
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 0.25
-    y: 0.25
-    z: 1.0
-  }
-}
-instances {
-  id: "enemy1"
-  prototype: "/vertical/enemy/enemy.go"
-  position {
-    x: 640.0
-    y: 3000.0
-    z: 0.5
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 0.25
-    y: 0.25
-    z: 1.0
-  }
-}
-collection_instances {
-  id: "background"
-  collection: "/vertical/ground/ground.collection"
-  position {
-    x: 384.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
+name: "main"
 scale_along_z: 0
-embedded_instances {
-  id: "controller"
-  data: "components {\n"
-  "  id: \"script\"\n"
-  "  component: \"/vertical/controller.script\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: 574.0
-    y: 2000.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
 embedded_instances {
   id: "hud"
   data: "components {\n"
@@ -142,7 +19,59 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 540.0
+    x: 810.0
+    y: 3840.0
+    z: 0.5
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "loader"
+  data: "components {\n"
+  "  id: \"script\"\n"
+  "  component: \"/vertical/loader.script\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"levelproxy\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/vertical/level.collection\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 945.0
     y: 3840.0
     z: 0.5
   }

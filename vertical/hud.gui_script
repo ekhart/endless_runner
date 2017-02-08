@@ -2,6 +2,10 @@ function init(self)
     msg.post(".", "acquire_input_focus")
 end
 
+function final(self)
+	msg.post(".", "release_input_focus")
+end
+
 function on_message(self, message_id, message, sender)
 
 end
@@ -22,6 +26,7 @@ function on_input(self, action_id, action)
 		-- Get the nodes and see if we have pressed any.
 		if gui.pick_node(restart, x, y) then
 			print("THE GAME WILL RESTART...")
+			msg.post("main:/loader", "reload_level")
 
 		-- elseif gui.pick_node(resumenode, x, y) then
 		--         -- Resume the game...
