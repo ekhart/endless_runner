@@ -9,15 +9,27 @@ function final(self)
 
 end
 
+local function set_position(pos)
+	local enemy = "."
+  	local positon = go.get_position(enemy)
+  	positon = pos
+  	go.set_position(positon, enemy)
+end
+
 function update(self, dt)
 	local enemy = "."
-  local pos = go.get_position(enemy)
+  	local pos = go.get_position(enemy)
 
-  pos.y = pos.y - self.move
+  	pos.y = pos.y - self.move
 
-  go.set_position(pos, enemy)
+  	go.set_position(pos, enemy)
 end
 
 function on_message(self, message_id, message, sender)
-  
+  if message_id == hash("set_x") then
+  	local enemy = "."
+  	local pos = go.get_position(enemy)
+	pos.x = message.x
+  	go.set_position(pos, enemy)
+  end
 end

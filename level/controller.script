@@ -1,8 +1,7 @@
 go.property("speed", 6)
 
 local grid = 460
-local platform_heights = { 100, 200, 350 }
-local coins = 3
+local enemy_x = { 240, 440, 640, 840 }
 
 function init(self)
 	msg.post("ground/controller#script", "set_speed", { speed = self.speed })
@@ -20,7 +19,7 @@ function update(self, dt)
 
 		-- Maybe spawn a platform at random height
 		if math.random() > 0.2 then
-			local h = platform_heights[math.random(#platform_heights)]
+			local h = enemy_x[math.random(#enemy_x)]
 			local f = "#platform_factory"
 			local coins = coins
 			if math.random() > 0.5 then
