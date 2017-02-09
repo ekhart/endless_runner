@@ -21,10 +21,10 @@ function update(self, dt)
 
 		-- Maybe spawn a platform at random height
 		if math.random() > 0.2 then
-			local x = platform_heights[math.random(#platform_heights)]
 			local enemy_factory = "#enemy_factory"
-			
-			local enemy = factory.create(enemy_factory, vmath.vector3(x, 2000, 0), nil, {}, 0.6)
+			local x = platform_heights[math.random(#platform_heights)]
+			local pos = vmath.vector3(x, 2000, 0)
+			local enemy = factory.create(enemy_factory, pos, nil, {}, 0.6)
 			msg.post(enemy, "set_x", { x = x })
 			table.insert(self.spawns, p)
 		end
