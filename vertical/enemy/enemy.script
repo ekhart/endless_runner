@@ -10,10 +10,10 @@ function final(self)
 
 end
 
-local function set_position(pos)
-  	local positon = go.get_position(this)
-  	positon = pos
-  	go.set_position(positon, this)
+local function set_position(posi)
+  	local pos = go.get_position(this)
+  	pos = posi
+  	go.set_position(pos, this)
 end
 
 local function set_scale()
@@ -33,6 +33,16 @@ function on_message(self, message_id, message, sender)
   	local pos = go.get_position(this)
 	pos.x = message.x
   	go.set_position(pos, this)
+  	
+  	if not message.is_left_road then
+  		-- print("self.move = " .. self.move)
+  		self.move = self.move - 3
+  		-- print("self.move = " .. self.move)
+  		local rot = go.get_rotation(this)
+  		-- pprint(rota)
+  		rot = vmath.quat()
+  		go.set_rotation(rot, this)
+  	end
   	
   	set_scale()
   end

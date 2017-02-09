@@ -1,7 +1,7 @@
 go.property("speed", 6)
 
 local grid = 460
-local platform_heights = { 200, 440, 640, 880 }
+local roads = { 200, 440, 640, 880 }
 
 function init(self)
 	-- msg.post("ground/controller#script", "set_speed", { speed = self.speed })
@@ -22,10 +22,13 @@ function update(self, dt)
 		-- Maybe spawn a platform at random height
 		if math.random() > 0.2 then
 			local enemy_factory = "#enemy_factory"
-			local x = platform_heights[math.random(#platform_heights)]
+			local x = roads[math.random(#roads)]
 			local pos = vmath.vector3(x, 2000, 0)
 			local enemy = factory.create(enemy_factory, pos, nil, {}, 0.6)
-			msg.post(enemy, "set_x", { x = x })
+			print("x = " .. x)
+			local is_left_road = x == 200 or x == 440
+			print("is_left_road = " .. tostring(is_left_road))
+			msg.post(enemy, "set_x", { x = x, is_left_road = is_left_road })
 			table.insert(self.spawns, p)
 		end
 	end
