@@ -1,5 +1,6 @@
 go.property("move", 12)
 
+local this = "."
 
 function init(self)
     self.move = go.get("#", "move")
@@ -10,26 +11,29 @@ function final(self)
 end
 
 local function set_position(pos)
-	local enemy = "."
-  	local positon = go.get_position(enemy)
+  	local positon = go.get_position(this)
   	positon = pos
-  	go.set_position(positon, enemy)
+  	go.set_position(positon, this)
 end
 
+local function set_scale()
+    local scale = go.get_scale(this)
+    scale = vmath.vector3(0.25, 0.25, 1.0)
+    go.set_scale(scale, this)
+end
+    
 function update(self, dt)
-	local enemy = "."
-  	local pos = go.get_position(enemy)
-
+  	local pos = go.get_position(this)
   	pos.y = pos.y - self.move
-
-  	go.set_position(pos, enemy)
+  	go.set_position(pos, this)
 end
 
 function on_message(self, message_id, message, sender)
   if message_id == hash("set_x") then
-  	local enemy = "."
-  	local pos = go.get_position(enemy)
+  	local pos = go.get_position(this)
 	pos.x = message.x
-  	go.set_position(pos, enemy)
+  	go.set_position(pos, this)
+  	
+  	set_scale()
   end
 end
