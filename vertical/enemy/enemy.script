@@ -1,59 +1,53 @@
 go.property("move", 12)
+go.property("move_slow", 9)
+go.property("size", 0.25)
 
 local this = "."
 
+local function construct(self)
+  self.move = go.get("#", "move")
+  self.move_slow = go.get("#", "move_slow")
+  self.size = go.get("#", "size")
+end
+
 function init(self)
-    self.move = go.get("#", "move")
+  construct(self)
 end
 
 function final(self)
 
 end
 
-local function set_position(posi)
-  	local pos = go.get_position(this)
-  	pos = posi
-  	go.set_position(pos, this)
+local function set_current_pos(change)
+	local pos = go.get_position(this)
+	change(pos)
+	go.set_position(pos, this)
 end
 
-local function set_scale()
+local function set_scale(self)
     local scale = go.get_scale(this)
-    scale = vmath.vector3(0.25, 0.25, 1.0)
+    scale = vmath.vector3(self.size, self.size, 1.0)
     go.set_scale(scale, this)
 end
     
 function update(self, dt)
-  	local pos = go.get_position(this)
-  	pos.y = pos.y - self.move
-  	go.set_position(pos, this)
+  	set_current_pos(function (pos)
+  		pos.y = pos.y - self.move
+  	end)
 end
 
 function on_message(self, message_id, message, sender)
   if message_id == hash("set_x") then
-  	local pos = go.get_position(this)
-	pos.x = message.x
-  	go.set_position(pos, this)
-  	
+  	construct(self)
+
+  	set_current_pos(function (pos)
+  		pos.x = message.x
+  	end)
+
   	if not message.is_left_road then
-  		-- print("self.move = " .. self.move)
-  		self.move = self.move - 3
-  		-- print("self.move = " .. self.move)
-  		
-  		local go_position = go.get_position(this)
-  		-- pprint("go_position = " .. go_position)
-  		
-  		local sprite = "#sprite"
-  		local sprite_rotation = go.get_rotation(this)
-  		pprint("before sprite.rot = " .. sprite_rotation)
-  		
-  		sprite_rotation = vmath.quat(0, 0, 0, 1)
-  		
-  		pprint("after sprite.rot = " .. sprite_rotation)
-  		-- pprint("go_position = " .. go_position)
-  		
-  		go.set_rotation(sprite_rotation, this)
+  		self.move = self.move_slow
   	end
   	
-  	set_scale()
+  	set_scale(self)
   end
 end
