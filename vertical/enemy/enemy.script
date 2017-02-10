@@ -22,26 +22,22 @@ function init(self)
   construct(self)
 end
 
-function final(self)
-
-end
-
 local function set_current_pos(change)
 	local pos = go.get_position(this)
 	change(pos)
 	go.set_position(pos, this)
+end
+ 
+function update(self, dt)
+  	set_current_pos(function (pos)
+  		pos.y = pos.y - self.move
+  	end)
 end
 
 local function set_scale(self)
     local scale = go.get_scale(this)
     scale = vmath.vector3(self.size, self.size, 1.0)
     go.set_scale(scale, this)
-end
-    
-function update(self, dt)
-  	set_current_pos(function (pos)
-  		pos.y = pos.y - self.move
-  	end)
 end
 
 function on_message(self, message_id, message, sender)
