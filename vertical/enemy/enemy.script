@@ -41,7 +41,7 @@ local function set_scale(self)
 end
 
 function on_message(self, message_id, message, sender)
-  if message_id == hash("set_x") then
+  if message_id == hash("construct") then
   	construct(self)
 
   	set_current_pos(function (pos)
