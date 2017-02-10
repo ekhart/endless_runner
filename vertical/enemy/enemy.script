@@ -38,10 +38,20 @@ function on_message(self, message_id, message, sender)
   		-- print("self.move = " .. self.move)
   		self.move = self.move - 3
   		-- print("self.move = " .. self.move)
-  		local rot = go.get_rotation(this)
-  		-- pprint(rota)
-  		rot = vmath.quat()
-  		go.set_rotation(rot, this)
+  		
+  		local go_position = go.get_position(this)
+  		-- pprint("go_position = " .. go_position)
+  		
+  		local sprite = "#sprite"
+  		local sprite_rotation = go.get_rotation(this)
+  		pprint("before sprite.rot = " .. sprite_rotation)
+  		
+  		sprite_rotation = vmath.quat(0, 0, 0, 1)
+  		
+  		pprint("after sprite.rot = " .. sprite_rotation)
+  		-- pprint("go_position = " .. go_position)
+  		
+  		go.set_rotation(sprite_rotation, this)
   	end
   	
   	set_scale()
