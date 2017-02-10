@@ -3,11 +3,19 @@ go.property("move_slow", 9)
 go.property("size", 0.25)
 
 local this = "."
+local animations = { "mustang_B", "mustang_C" }
+
+local function set_animation()
+	local random_index = math.random(#animations)
+	local animation = animations[random_index] 
+	msg.post("#sprite", "play_animation", {id = hash(animation)})
+end
 
 local function construct(self)
   self.move = go.get("#", "move")
   self.move_slow = go.get("#", "move_slow")
   self.size = go.get("#", "size")
+  set_animation()
 end
 
 function init(self)

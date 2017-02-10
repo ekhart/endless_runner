@@ -64,7 +64,7 @@ embedded_components {
   id: "sprite"
   type: "sprite"
   data: "tile_set: \"/vertical/gfx/enemies/enemies.atlas\"\n"
-  "default_animation: \"mustang_B\"\n"
+  "default_animation: \"mustang_C\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""
