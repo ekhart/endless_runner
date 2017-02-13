@@ -7,7 +7,8 @@ go.property("speed", 6)
 function init(self)
 	-- self.ground_height != ground_height
 	screen_height = sys.get_config("display.height")
-	
+	time_from_start = 0.0
+
 	self.speed = go.get("#", "speed")
 end
 
@@ -20,6 +21,10 @@ local function print_debug(i, p, pos)
 end
 
 function update(self, dt)
+	time_from_start = time_from_start + dt
+	print("time_from_start = " .. time_from_start)
+	self.speed = self.speed + time_from_start / 100
+
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
 		local ground_height = go.get(p .. "#sprite", "size.y")
