@@ -5,6 +5,9 @@ go.property("road2", 640)
 go.property("road1", 880)
 go.property("enemy_spawn_y", 2000)
 
+go.property("speed_up_size", 1)
+go.property("speed_up_every_second", 1.0)
+
 local function get(property)
 	return go.get("#", property)
 end
@@ -16,12 +19,35 @@ function init(self)
 	-- msg.post("ground/controller#script", "set_speed", { speed = self.speed })
 	self.gridw = 0
 	self.spawns = {}
+
+	time_from_start = 0.0
+	speed_up_accumulator = 0.0
+	speed_up_size = go.get("#", "speed_up_size")
+	speed_up_every_second = go.get("#", "speed_up_every_second")
 	
 	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
 	enemy_spawn_y = get("enemy_spawn_y")
 end
 
+local function print_time(dt)
+	local position = vmath.vector3(100, 100, 0)
+	local text = string.format( "%.2f", time_from_start)
+	local message = { text = text, position = position }
+	-- print("text = " .. text)
+	msg.post("@render:", "draw_text", message)
+end
+
 function update(self, dt)
+	time_from_start = time_from_start + dt
+	speed_up_accumulator = speed_up_accumulator + dt
+	
+	print_time(dt)
+
+	if speed_up_accumulator > speed_up_every_second then
+		speed_up_accumulator = 0
+		msg.post("ground/controller#script", "add_speed", { speed = speed })
+	end
+
 	self.gridw = self.gridw + self.speed
 		
 	if self.gridw >= grid then

@@ -2,18 +2,10 @@ local pieces = { "background", "background1", "background2", "background3" }
 local screen_height
 
 go.property("speed", 6)
-go.property("speed_up_size", 1)
-go.property("speed_up_every_second", 1.0)
-
 
 function init(self)
 	-- self.ground_height != ground_height
-	screen_height = sys.get_config("display.height")
-	time_from_start = 0.0
-	speed_up_accumulator = 0.0
-	speed_up_size = go.get("#", "speed_up_size")
-	speed_up_every_second = go.get("#", "speed_up_every_second")
-	
+	screen_height = sys.get_config("display.height")	
 	self.speed = go.get("#", "speed")
 end
 
@@ -25,25 +17,7 @@ local function print_debug(i, p, pos)
 	msg.post("@render:", "draw_text", message)
 end
 
-local function print_time(dt)
-	local position = vmath.vector3(100, 100, 0)
-	local text = string.format( "%.2f", time_from_start)
-	local message = { text = text, position = position }
-	-- print("text = " .. text)
-	msg.post("@render:", "draw_text", message)
-end
-
 function update(self, dt)
-	time_from_start = time_from_start + dt
-	speed_up_accumulator = speed_up_accumulator + dt
-	
-	print_time(dt)
-
-	if speed_up_accumulator > speed_up_every_second then
-		speed_up_accumulator = 0
-		self.speed = self.speed + speed_up_size
-	end
-
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
 		local ground_height = go.get(p .. "#sprite", "size.y")
@@ -53,7 +27,6 @@ function update(self, dt)
 		end
 		pos.y = pos.y - self.speed
 		go.set_position(pos, p)
-		
 		-- print_debug(i, p, pos)
 	end
 end
@@ -61,5 +34,7 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("set_speed") then
 		self.speed = message.speed
+	elseif message_id == hash("add_speed") then
+		self.speed = self.speed + speed_up_size
 	end
 end
