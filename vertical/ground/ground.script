@@ -25,10 +25,20 @@ local function print_debug(i, p, pos)
 	msg.post("@render:", "draw_text", message)
 end
 
+local function print_time(dt)
+	local position = vmath.vector3(100, 100, 0)
+	local text = string.format( "%.2f", time_from_start)
+	local message = { text = text, position = position }
+	-- print("text = " .. text)
+	msg.post("@render:", "draw_text", message)
+end
+
 function update(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
-	-- print("time_from_start = " .. time_from_start)
+	
+	print_time(dt)
+
 	if speed_up_accumulator > speed_up_every_second then
 		speed_up_accumulator = 0
 		self.speed = self.speed + speed_up_size
