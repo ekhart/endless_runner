@@ -29,7 +29,7 @@ function update(self, dt)
 		
 		if math.random() > 0.2 then
 			local x = roads[math.random(#roads)]
-			local is_left_road = x == get("road1") or get("road2")
+			local is_left_road = x == get("road4") or x == get("road3")
 			local enemy_factory = enemy_factories[is_left_road and 2 or 1]
 			local pos = vmath.vector3(x, enemy_spawn_y, 1)
 			local enemy = factory.create(enemy_factory, pos, nil, {}, 0.6)
