@@ -53,5 +53,8 @@ function on_message(self, message_id, message, sender)
   	end
   	
   	set_scale(self)
+
+  elseif message_id == hash("add_speed") then
+    self.move = self.move + message.speed
   end
 end

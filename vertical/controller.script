@@ -16,15 +16,15 @@ local grid = 460
 local enemy_factories = { "#enemy_factory", "#enemy_slow_factory" }
 
 function init(self)
-	-- msg.post("ground/controller#script", "set_speed", { speed = self.speed })
 	self.gridw = 0
-	self.spawns = {}
+	self.enemies = {}
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
 	speed_up_size = go.get("#", "speed_up_size")
 	speed_up_every_second = go.get("#", "speed_up_every_second")
 	
+	speed = get("speed")
 	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
 	enemy_spawn_y = get("enemy_spawn_y")
 end
@@ -37,7 +37,7 @@ local function print_time(dt)
 	msg.post("@render:", "draw_text", message)
 end
 
-function update(self, dt)
+local function update_time(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
 	
@@ -45,11 +45,20 @@ function update(self, dt)
 
 	if speed_up_accumulator > speed_up_every_second then
 		speed_up_accumulator = 0
-		msg.post("ground/controller#script", "add_speed", { speed = speed })
-	end
-
-	self.gridw = self.gridw + self.speed
 		
+		msg.post("ground/controller#script", "add_speed", { speed = speed })
+
+		-- print("for")
+		for i, enemy in ipairs(self.enemies) do
+			-- print(i, enemy)
+			msg.post(enemy, "add_speed", { speed = speed })
+		end
+	end
+end
+
+local function spawn_enemy(self, dt)
+	self.gridw = self.gridw + self.speed
+
 	if self.gridw >= grid then
 		self.gridw = 0
 		
@@ -60,8 +69,15 @@ function update(self, dt)
 			local pos = vmath.vector3(x, enemy_spawn_y, 1)
 			local enemy = factory.create(enemy_factory, pos, nil, {}, 0.6)
 			
+			-- print("construct")
+			-- pprint(enemy)
 			msg.post(enemy, "construct", { x = x, is_left_road = is_left_road })
-			table.insert(self.spawns, p)
+			table.insert(self.enemies, enemy)
 		end
 	end
+end
+
+function update(self, dt)
+	update_time(self, dt)
+	spawn_enemy(self, dt)
 end
