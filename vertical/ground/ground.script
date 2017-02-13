@@ -2,13 +2,18 @@ local pieces = { "background", "background1", "background2", "background3" }
 local screen_height
 
 go.property("speed", 6)
+go.property("speed_up_size", 1)
+go.property("speed_up_every_second", 1.0)
 
 
 function init(self)
 	-- self.ground_height != ground_height
 	screen_height = sys.get_config("display.height")
 	time_from_start = 0.0
-
+	speed_up_accumulator = 0.0
+	speed_up_size = go.get("#", "speed_up_size")
+	speed_up_every_second = go.get("#", "speed_up_every_second")
+	
 	self.speed = go.get("#", "speed")
 end
 
@@ -22,8 +27,12 @@ end
 
 function update(self, dt)
 	time_from_start = time_from_start + dt
-	print("time_from_start = " .. time_from_start)
-	self.speed = self.speed + time_from_start / 100
+	speed_up_accumulator = speed_up_accumulator + dt
+	-- print("time_from_start = " .. time_from_start)
+	if speed_up_accumulator > speed_up_every_second then
+		speed_up_accumulator = 0
+		self.speed = self.speed + speed_up_size
+	end
 
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
