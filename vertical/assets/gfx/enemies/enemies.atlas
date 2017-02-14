@@ -1,0 +1,9 @@
+images {
+  image: "/vertical/assets/gfx/enemies/mustang_A.png"
+}
+images {
+  image: "/vertical/assets/gfx/enemies/mustang_B.png"
+}
+images {
+  image: "/vertical/assets/gfx/enemies/mustang_C.png"
+}

@@ -1,6 +1,6 @@
 components {
   id: "script"
-  component: "/vertical/car/car.script"
+  component: "/vertical/game_objects/player/player.script"
   position {
     x: 0.0
     y: 0.0
@@ -63,7 +63,7 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/vertical/animations/player/player.atlas\"\n"
+  data: "tile_set: \"/vertical/assets/animations/player/player.atlas\"\n"
   "default_animation: \"ride\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"

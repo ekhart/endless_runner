@@ -2,7 +2,7 @@
 title = Desperate
 
 [bootstrap]
-main_collection = /vertical/main.collectionc
+main_collection = /vertical/main/main.collectionc
 
 [input]
 game_binding = /input/game.input_bindingc
@@ -10,6 +10,7 @@ game_binding = /input/game.input_bindingc
 [display]
 width = 1080
 height = 1920
+fullscreen = 1
 
 [physics]
 scale = 0.02

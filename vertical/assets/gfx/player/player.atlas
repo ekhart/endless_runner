@@ -1,0 +1,6 @@
+images {
+  image: "/vertical/assets/gfx/player/mustang_C.png"
+}
+images {
+  image: "/vertical/assets/gfx/player/mustang_player_1.png"
+}
