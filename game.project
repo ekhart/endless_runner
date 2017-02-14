@@ -10,7 +10,7 @@ game_binding = /input/game.input_bindingc
 [display]
 width = 1080
 height = 1920
-fullscreen = 1
+fullscreen = 0
 
 [physics]
 scale = 0.02
@@ -35,10 +35,10 @@ app_id = 4CA636526DC6D1D8
 
 [android]
 package = pl.ekhart.desperate
-app_icon_36x36 = /vertical/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
-app_icon_48x48 = /vertical/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
-app_icon_72x72 = /vertical/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
-app_icon_96x96 = /vertical/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
-app_icon_144x144 = /vertical/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
-app_icon_192x192 = /vertical/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
+app_icon_36x36 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
+app_icon_48x48 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
+app_icon_72x72 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
+app_icon_96x96 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
+app_icon_144x144 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
+app_icon_192x192 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
 
