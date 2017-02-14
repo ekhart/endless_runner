@@ -63,8 +63,8 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/vertical/gfx/player/car.atlas\"\n"
-  "default_animation: \"mustang_player_1\"\n"
+  data: "tile_set: \"/vertical/animations/player/player.atlas\"\n"
+  "default_animation: \"ride\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""
