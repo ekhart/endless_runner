@@ -29,9 +29,9 @@ local function set_current_pos(change)
 end
  
 function update(self, dt)
-  	set_current_pos(function (pos)
-  		pos.y = pos.y - self.move
-  	end)
+	set_current_pos(function (pos)
+		pos.y = pos.y - self.move
+	end)
 end
 
 local function set_scale(self)
@@ -53,7 +53,6 @@ function on_message(self, message_id, message, sender)
   	end
   	
   	set_scale(self)
-
   elseif message_id == hash("add_speed") then
     self.move = self.move + message.speed
   end
