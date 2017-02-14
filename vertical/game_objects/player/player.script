@@ -35,6 +35,10 @@ function update(self, dt)
     -- Remove this function if not needed
 end
 
+local function play_animation(animation)
+  msg.post("#sprite", "play_animation", { id = hash(animation) })
+end
+
 function on_message(self, message_id, message, sender)
   if message_id == hash("contact_point_response") then
     -- check if we received a contact point message
@@ -67,6 +71,10 @@ function on_message(self, message_id, message, sender)
       -- handle_geometry_contact(self, message.normal, message.distance)
     end
   end
+
+  if message_id == hash("animation_done") then
+    play_animation("ride")
+  end
 end
 
 local function move_car(pos_diff)
@@ -78,7 +86,8 @@ end
 
 local function move_horizontal(action_id, action, move_id, pos_diff)
 	if action_id == hash(move_id) and action.pressed then
-		move_car(pos_diff)
+    play_animation("turn_" .. move_id)
+    move_car(pos_diff)
 	end
 end
 
