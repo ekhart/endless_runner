@@ -31,11 +31,11 @@ function final(self)
 end
 
 function update(self, dt)
-    -- Add update code here
-    -- Remove this function if not needed
+  -- pprint("player position = " .. go.get_position("car"))
 end
 
 local function play_animation(animation)
+  -- go.set("#sprite", "image")
   msg.post("#sprite", "play_animation", { id = hash(animation) })
 end
 

@@ -21,8 +21,8 @@ function init(self)
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
-	speed_up_size = go.get("#", "speed_up_size")
-	speed_up_every_second = go.get("#", "speed_up_every_second")
+	speed_up_size = get("speed_up_size")
+	speed_up_every_second = get("speed_up_every_second")
 	
 	speed = get("speed")
 	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
