@@ -1,10 +1,13 @@
-go.property("speed", 6)
 go.property("road4", 200)
 go.property("road3", 440)
 go.property("road2", 640)
 go.property("road1", 880)
+
+go.property("spawn_density", 460)
+go.property("spawn_probability", 0.2)
 go.property("enemy_spawn_y", 2000)
 
+go.property("speed", 6)
 go.property("speed_up_size", 1)
 go.property("speed_up_every_second", 1.0)
 
@@ -12,7 +15,6 @@ local function get(property)
 	return go.get("#", property)
 end
 
-local grid = 460
 local enemy_factories = { "#enemy_factory", "#enemy_slow_factory" }
 
 function init(self)
@@ -21,6 +23,8 @@ function init(self)
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
+	spawn_density = get("spawn_density")
+	spawn_probability = get("spawn_probability")
 	speed_up_size = get("speed_up_size")
 	speed_up_every_second = get("speed_up_every_second")
 	
@@ -59,10 +63,10 @@ end
 local function spawn_enemy(self, dt)
 	self.gridw = self.gridw + self.speed
 
-	if self.gridw >= grid then
+	if self.gridw >= spawn_density then
 		self.gridw = 0
 		
-		if math.random() > 0.2 then
+		if math.random() > spawn_probability then
 			local x = roads[math.random(#roads)]
 			local is_left_road = x == get("road4") or x == get("road3")
 			local enemy_factory = enemy_factories[is_left_road and 2 or 1]
