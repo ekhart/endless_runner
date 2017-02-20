@@ -1,13 +1,25 @@
+-- todo: msg.post("." - post self
+-- todo: message_id == hash(x) => is_action(x)
+
 function init(self)
-    msg.post(".", "acquire_input_focus")
+	msg.post(".", "acquire_input_focus")
 end
 
 function final(self)
 	msg.post(".", "release_input_focus")
 end
 
-function on_message(self, message_id, message, sender)
+local function set_time(message)
+	-- print("hud.set_time = " .. message.time)
+	local text = string.format( "%.2f", message.time)
+	gui.set_text(gui.get_node("time"), text)
+end
 
+function on_message(self, message_id, message, sender)
+	-- print("hud.on_message")
+	if message_id == hash("set_time") then
+		set_time(message)
+	end
 end
 
 function on_input(self, action_id, action)

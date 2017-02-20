@@ -1,3 +1,5 @@
+-- todo: DRY keys "road4"
+
 go.property("road4", 200)
 go.property("road3", 440)
 go.property("road2", 640)
@@ -45,16 +47,16 @@ local function update_time(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
 	
-	print_time(dt)
+	-- print_time(dt)
+	-- print("controller.set_time")
+	msg.post("main:/hud#gui", "set_time", { time = time_from_start })
 
 	if speed_up_accumulator > speed_up_every_second then
 		speed_up_accumulator = 0
 		
 		msg.post("ground/controller#script", "add_speed", { speed = speed })
 
-		-- print("for")
 		for i, enemy in ipairs(self.enemies) do
-			-- print(i, enemy)
 			msg.post(enemy, "add_speed", { speed = speed })
 		end
 	end
