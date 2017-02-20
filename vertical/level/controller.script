@@ -1,4 +1,6 @@
--- todo: DRY keys "road4"
+-- todo: 
+-- DRY keys "road4"
+-- DRY msg.post("main:/hud#gui",
 
 go.property("road4", 200)
 go.property("road3", 440)
@@ -12,6 +14,8 @@ go.property("enemy_spawn_y", 2000)
 go.property("speed", 6)
 go.property("speed_up_size", 1)
 go.property("speed_up_every_second", 1.0)
+
+local points = 0
 
 local function get(property)
 	return go.get("#", property)
@@ -86,4 +90,11 @@ end
 function update(self, dt)
 	update_time(self, dt)
 	spawn_enemy(self, dt)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("add_point") then
+		points = points + 1
+		msg.post("main:/hud#gui", "set_points", { points = points })
+	end
 end

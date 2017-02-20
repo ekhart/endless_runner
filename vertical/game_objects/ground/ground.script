@@ -24,6 +24,8 @@ function update(self, dt)
 		
 		if pos.y <= -ground_height then
 			pos.y = screen_height + ground_height
+
+			msg.post("level:/controller#script", "add_point")
 		end
 		pos.y = pos.y - self.speed
 		go.set_position(pos, p)

@@ -9,16 +9,25 @@ function final(self)
 	msg.post(".", "release_input_focus")
 end
 
+local function set_node_text(node, text)
+	gui.set_text(gui.get_node(node), text)
+end
+
 local function set_time(message)
 	-- print("hud.set_time = " .. message.time)
-	local text = string.format( "%.2f", message.time)
-	gui.set_text(gui.get_node("time"), text)
+	set_node_text("time", string.format( "%.2f", message.time))
+end
+
+local function set_points(message)
+	set_node_text("points", message.points)
 end
 
 function on_message(self, message_id, message, sender)
 	-- print("hud.on_message")
 	if message_id == hash("set_time") then
 		set_time(message)
+	elseif message_id == hash("set_points") then
+		set_points(message)
 	end
 end
 
