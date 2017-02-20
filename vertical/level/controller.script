@@ -1,6 +1,5 @@
 -- todo: 
 -- DRY keys "road4"
--- DRY msg.post("main:/hud#gui",
 
 go.property("road4", 200)
 go.property("road3", 440)
@@ -47,13 +46,17 @@ local function print_time(dt)
 	msg.post("@render:", "draw_text", message)
 end
 
+local function post_gui(message_id, message)
+	msg.post("main:/hud#gui", message_id, message)
+end
+
 local function update_time(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
 	
 	-- print_time(dt)
 	-- print("controller.set_time")
-	msg.post("main:/hud#gui", "set_time", { time = time_from_start })
+	post_gui("set_time", { time = time_from_start })
 
 	if speed_up_accumulator > speed_up_every_second then
 		speed_up_accumulator = 0
@@ -95,6 +98,6 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("add_point") then
 		points = points + 1
-		msg.post("main:/hud#gui", "set_points", { points = points })
+		post_gui("set_points", { points = points })
 	end
 end
