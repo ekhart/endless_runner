@@ -3,13 +3,14 @@ local function post_levelproxy(message)
 end
 
 function init(self)
+	print("loader.init")
 	msg.post(".", "acquire_input_focus")
 	post_levelproxy("load")
-	-- print("load level")
+	-- post_levelproxy("init")
 end
 
 function final(self)
-	-- print("final")
+	print("loader.final")
 	msg.post(".", "release_input_focus")
 end
 

@@ -36,7 +36,16 @@ function init(self)
 	speed = get("speed")
 	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
 	enemy_spawn_y = get("enemy_spawn_y")
+
+	print("controller.init")
+	msg.post(".", "acquire_input_focus")
 end
+
+function final(self)
+	print("controller.final")
+	msg.post(".", "release_input_focus")
+end
+
 
 local function print_time(dt)
 	local position = vmath.vector3(100, 100, 0)
@@ -47,7 +56,7 @@ local function print_time(dt)
 end
 
 local function post_gui(message_id, message)
-	msg.post("main:/hud#gui", message_id, message)
+	msg.post("level:/hud#gui", message_id, message)
 end
 
 local function update_time(self, dt)

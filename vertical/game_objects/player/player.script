@@ -20,14 +20,16 @@ go.property("move", 244)
 
 
 function init(self)
-    -- needed to handle input
-    msg.post(".", "acquire_input_focus")
+  print("player.init")
+  -- needed to handle input
+  msg.post(".", "acquire_input_focus")
 
-    self.move = go.get("#", "move")
+  self.move = go.get("#", "move")
 end
 
 function final(self)
-    msg.post(".", "release_input_focus")
+  print("player.final")
+  msg.post(".", "release_input_focus")
 end
 
 function update(self, dt)
@@ -40,6 +42,7 @@ local function play_animation(animation)
 end
 
 function on_message(self, message_id, message, sender)
+  print("player.on_message " .. message_id)
   if message_id == hash("contact_point_response") then
     -- check if we received a contact point message
 
@@ -141,6 +144,7 @@ local function on_touch_input(self, action_id, action)
 end
 
 function on_input(self, action_id, action)
+  print("player.on_input " .. hash(action_id))
 	move_horizontal(action_id, action, "right", self.move)
 	move_horizontal(action_id, action, "left", -self.move)
 	on_touch_input(self, action_id, action)
