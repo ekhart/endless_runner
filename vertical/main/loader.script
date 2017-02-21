@@ -1,12 +1,18 @@
-local function post_levelproxy(message)
-	msg.post("#levelproxy", message)
+local function load_level()
+	msg.post("#level", "load")
+end
+
+local function unload_proxy(proxy_name)
+	local proxy = "#" .. proxy_name
+	msg.post(proxy, "disable")
+	msg.post(proxy, "final")
+	msg.post(proxy, "unload")
 end
 
 function init(self)
 	print("loader.init")
 	msg.post(".", "acquire_input_focus")
-	-- post_levelproxy("load")
-	-- post_levelproxy("init")
+	msg.post("#hud", "load")
 end
 
 function final(self)
@@ -18,15 +24,13 @@ function on_message(self, message_id, message, sender)
 	-- print("message_id = " .. message_id)
 	-- pprint("sender = " .. sender)
 	if message_id == hash("start_game") then
-		post_levelproxy("load")
+		load_level()
+		unload_proxy("hud")
 	elseif message_id == hash("reload_level") then
-		-- print("unload")
-		post_levelproxy("disable")
-		post_levelproxy("final")
-		post_levelproxy("unload")
+		unload_proxy("level")
 	elseif message_id == hash("proxy_loaded") then
 		msg.post(sender, "enable")
 	elseif message_id == hash("proxy_unloaded") then
-		post_levelproxy("load")
+		load_level()
 	end
 end
