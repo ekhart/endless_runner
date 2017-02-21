@@ -5,7 +5,7 @@ end
 function init(self)
 	print("loader.init")
 	msg.post(".", "acquire_input_focus")
-	post_levelproxy("load")
+	-- post_levelproxy("load")
 	-- post_levelproxy("init")
 end
 
@@ -17,7 +17,9 @@ end
 function on_message(self, message_id, message, sender)
 	-- print("message_id = " .. message_id)
 	-- pprint("sender = " .. sender)
-	if message_id == hash("reload_level") then
+	if message_id == hash("start_game") then
+		post_levelproxy("load")
+	elseif message_id == hash("reload_level") then
 		-- print("unload")
 		post_levelproxy("disable")
 		post_levelproxy("final")
@@ -25,7 +27,6 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("proxy_loaded") then
 		msg.post(sender, "enable")
 	elseif message_id == hash("proxy_unloaded") then
-		-- print("load")
 		post_levelproxy("load")
 	end
 end
