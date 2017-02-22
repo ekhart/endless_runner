@@ -1,5 +1,5 @@
-go.property("move", 12)
-go.property("move_slow", 9)
+go.property("left_roads_speed", 40)
+go.property("right_roads_speed", 24)
 go.property("size", 0.25)
 
 local this = "."
@@ -11,15 +11,28 @@ local function set_animation()
 	msg.post("#sprite", "play_animation", {id = hash(animation)})
 end
 
-local function construct(self)
-  self.move = go.get("#", "move")
-  self.move_slow = go.get("#", "move_slow")
+local function construct_base(self)
+  -- print("construct(self)")
+  self.left_roads_speed = go.get("#", "left_roads_speed")
+  self.right_roads_speed = go.get("#", "right_roads_speed")
+  self.is_left_road = true
+  self.speed = self.left_roads_speed
   self.size = go.get("#", "size")
   set_animation()
 end
 
+local function construct(self, message)
+  -- print("construct(self, message)")
+  construct_base(self)
+  if not message.is_left_road then
+    self.is_left_road = false
+    self.speed = self.right_roads_speed
+  end
+end
+
 function init(self)
-  construct(self)
+  -- print("init(self)")
+  construct_base(self)
 end
 
 local function set_current_pos(change)
@@ -30,30 +43,32 @@ end
  
 function update(self, dt)
 	set_current_pos(function (pos)
-		pos.y = pos.y - self.move
+		pos.y = pos.y - self.speed
 	end)
 end
 
 local function set_scale(self)
-    local scale = go.get_scale(this)
-    scale = vmath.vector3(self.size, self.size, 1.0)
-    go.set_scale(scale, this)
+  local scale = go.get_scale(this)
+  scale = vmath.vector3(self.size, self.size, 1.0)
+  go.set_scale(scale, this)
 end
 
 function on_message(self, message_id, message, sender)
   if message_id == hash("construct") then
-  	construct(self)
+  	construct(self, message)
 
   	set_current_pos(function (pos)
   		pos.x = message.x
   	end)
-
-  	if not message.is_left_road then
-  		self.move = self.move_slow
-  	end
   	
   	set_scale(self)
   elseif message_id == hash("add_speed") then
-    self.move = self.move + message.speed
+    local road_speed = self.left_roads_speed
+
+    if not self.is_left_road then
+      self.speed = self.right_roads_speed
+    end
+
+    self.speed = road_speed + 2*message.speed
   end
 end
