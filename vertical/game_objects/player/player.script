@@ -11,16 +11,17 @@ local totalSwipeDistanceUp
 local totalSwipeDistanceDown
 
 local startTime = 0
+local roads
 
 go.property("minSwipeDistance", 40)
 go.property("minSwipeTime", 0.6)
-go.property("move", 244)
 
 
 function init(self)
   print("player.init")
   msg.post(".", "acquire_input_focus")
-  self.move = go.get("#", "move")
+  self.move = 1
+  self.current_road = 3
 end
 
 function final(self)
@@ -68,20 +69,26 @@ function on_message(self, message_id, message, sender)
     elseif message.group == hash("geometry") then
       -- handle_geometry_contact(self, message.normal, message.distance)
     end
+  elseif message_id == hash("set_roads") then
+    roads = message.roads
   end
 end
 
-local function move_car(pos_diff)
-	local to = go.get_position("player").x + pos_diff
-  go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, to, go.EASING_OUTBACK, 1, 0, function(self, url, property)
-      play_animation("ride")
-  end)
+local function move_car(self, pos_diff)
+  local change = self.current_road + pos_diff
+  if not (change < 1 or change > 4) then
+    self.current_road = change
+  	local to = roads[change]
+    go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, to, go.EASING_OUTBACK, 1, 0, function(self, url, property)
+        play_animation("ride")
+    end)
+  end
 end
 
-local function move_horizontal(action_id, action, move_id, pos_diff)
+local function move_horizontal(self, action_id, action, move_id, pos_diff)
 	if action_id == hash(move_id) and action.pressed then
     play_animation("turn_" .. move_id)
-    move_car(pos_diff)
+    move_car(self, pos_diff)
 	end
 end
 
@@ -142,7 +149,7 @@ function on_input(self, action_id, action)
   if action_id then
     print("player.on_input " .. hash(action_id))
 	end
-  move_horizontal(action_id, action, "right", self.move)
-	move_horizontal(action_id, action, "left", -self.move)
+  move_horizontal(self, action_id, action, "right", self.move)
+	move_horizontal(self, action_id, action, "left", -self.move)
 	on_touch_input(self, action_id, action)
 end

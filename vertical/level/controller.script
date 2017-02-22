@@ -35,6 +35,7 @@ function init(self)
 	
 	speed = get("speed")
 	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
+	msg.post("player#script", "set_roads", { roads = roads })
 	enemy_spawn_y = get("enemy_spawn_y")
 
 	print("controller.init")
