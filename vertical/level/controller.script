@@ -70,10 +70,10 @@ local function update_time(self, dt)
 	if speed_up_accumulator > speed_up_every_second then
 		speed_up_accumulator = 0
 		
-		msg.post("ground/controller#script", "add_speed", { speed = speed })
+		msg.post("ground/controller#script", "add_speed", { speed = speed_up_size })
 
 		for i, enemy in ipairs(self.enemies) do
-			msg.post(enemy, "add_speed", { speed = speed })
+			msg.post(enemy, "add_speed", { speed = speed_up_size })
 		end
 	end
 end

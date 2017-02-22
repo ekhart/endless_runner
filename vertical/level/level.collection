@@ -1,6 +1,6 @@
 name: "level"
 instances {
-  id: "car"
+  id: "player"
   prototype: "/vertical/game_objects/player/player.go"
   position {
     x: 620.0
@@ -63,6 +63,16 @@ embedded_instances {
   "    y: 0.0\n"
   "    z: 0.0\n"
   "    w: 1.0\n"
+  "  }\n"
+  "  properties {\n"
+  "    id: \"speed_up_size\"\n"
+  "    value: \"0.08\"\n"
+  "    type: PROPERTY_TYPE_NUMBER\n"
+  "  }\n"
+  "  properties {\n"
+  "    id: \"speed_up_every_second\"\n"
+  "    value: \"0.08\"\n"
+  "    type: PROPERTY_TYPE_NUMBER\n"
   "  }\n"
   "}\n"
   "embedded_components {\n"

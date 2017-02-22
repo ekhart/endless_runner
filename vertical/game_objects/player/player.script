@@ -2,17 +2,15 @@ local beginX
 local beginY
 local endX
 local endY
-
 local xDistance
 local yDistance
-
-local startTime = 0
-
 local bDoingTouch
 local totalSwipeDistanceLeft
 local totalSwipeDistanceRight
 local totalSwipeDistanceUp
 local totalSwipeDistanceDown
+
+local startTime = 0
 
 go.property("minSwipeDistance", 40)
 go.property("minSwipeTime", 0.6)
@@ -21,9 +19,7 @@ go.property("move", 244)
 
 function init(self)
   print("player.init")
-  -- needed to handle input
   msg.post(".", "acquire_input_focus")
-
   self.move = go.get("#", "move")
 end
 
@@ -33,11 +29,10 @@ function final(self)
 end
 
 function update(self, dt)
-  -- pprint("player position = " .. go.get_position("car"))
+  -- pprint("player position = " .. go.get_position("player"))
 end
 
 local function play_animation(animation)
-  -- go.set("#sprite", "image")
   msg.post("#sprite", "play_animation", { id = hash(animation) })
 end
 
@@ -47,7 +42,7 @@ function on_message(self, message_id, message, sender)
     -- check if we received a contact point message
 
     if message.group == hash("enemy") then
-      local id = go.get_id("car")
+      local id = go.get_id("player")
       go.delete(id)
 
       -- Die and restart
@@ -77,7 +72,7 @@ function on_message(self, message_id, message, sender)
 end
 
 local function move_car(pos_diff)
-	local to = go.get_position("car").x + pos_diff
+	local to = go.get_position("player").x + pos_diff
   go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, to, go.EASING_OUTBACK, 1, 0, function(self, url, property)
       play_animation("ride")
   end)
