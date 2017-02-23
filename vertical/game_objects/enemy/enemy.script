@@ -1,5 +1,5 @@
-go.property("left_roads_speed", 40)
-go.property("right_roads_speed", 24)
+go.property("left_roads_speed", 32)
+go.property("right_roads_speed", 18)
 go.property("size", 0.25)
 
 local this = "."

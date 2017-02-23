@@ -14,6 +14,46 @@ animations {
 animations {
   id: "turn_right"
   images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0016.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0017.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0018.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0019.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0020.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0021.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0022.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0023.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0024.png"
+  }
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0025.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 30
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+animations {
+  id: "turn_left"
+  images {
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0001.png"
+  }
+  images {
     image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0002.png"
   }
   images {
@@ -55,39 +95,8 @@ animations {
   images {
     image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0015.png"
   }
-  playback: PLAYBACK_ONCE_FORWARD
-  fps: 30
-  flip_horizontal: 0
-  flip_vertical: 0
-}
-animations {
-  id: "turn_left"
   images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0017.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0018.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0019.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0020.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0021.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0022.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0023.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0024.png"
-  }
-  images {
-    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0025.png"
+    image: "/vertical/assets/animations/player/mustang_animation_Final Color Output0016.png"
   }
   playback: PLAYBACK_ONCE_FORWARD
   fps: 30
