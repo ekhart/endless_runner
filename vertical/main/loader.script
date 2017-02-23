@@ -1,3 +1,5 @@
+-- todo: move acquire_input_focus, release_input_focus to module
+
 local function load_level()
 	msg.post("#level", "load")
 end
@@ -21,8 +23,10 @@ function final(self)
 end
 
 function on_message(self, message_id, message, sender)
+	-- print("loader.on_message")
 	-- print("message_id = " .. message_id)
-	-- pprint("sender = " .. sender)
+	-- print("sender = ")
+	-- pprint(sender)
 	if message_id == hash("start_game") then
 		load_level()
 		unload_proxy("hud")
@@ -31,6 +35,11 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("proxy_loaded") then
 		msg.post(sender, "enable")
 	elseif message_id == hash("proxy_unloaded") then
-		load_level()
+		-- print(sender.socket) --> 786443 (internal numeric value)
+		-- print(sender.path) --> hash: [/hearttree/tree]
+		-- print(sender.fragment) --> hash: [script]
+		if sender.fragment == hash("level") then
+			load_level()
+		end
 	end
 end
