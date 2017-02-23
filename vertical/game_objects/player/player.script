@@ -101,14 +101,13 @@ local function checkSwipeDirection(self)
         totalSwipeDistanceLeft = beginX - endX
         if totalSwipeDistanceLeft > self.minSwipeDistance then
           -- print("Swiped Left")
-          move_car(-self.move)
+          move_car(self, -self.move)
         end
       else
         totalSwipeDistanceRight = endX - beginX
         if totalSwipeDistanceRight > self.minSwipeDistance then
           -- print("Swiped Right")
-          move_car(self.move)
-          
+          move_car(self, self.move)
         end
       end
     else
