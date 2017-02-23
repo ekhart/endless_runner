@@ -1,6 +1,6 @@
 go.property("left_roads_speed", 32)
 go.property("right_roads_speed", 18)
-go.property("size", 0.25)
+go.property("size", 0.3)
 
 local this = "."
 local animations = { "mustang_B", "mustang_C" }
