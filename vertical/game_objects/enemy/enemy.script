@@ -24,6 +24,11 @@ end
 local function construct(self, message)
   -- print("construct(self, message)")
   construct_base(self)
+
+  self.left_roads_speed = self.left_roads_speed + message.speed_up_size_accumulator
+  self.right_roads_speed = self.right_roads_speed + message.speed_up_size_accumulator
+  self.speed = self.left_roads_speed
+
   if not message.is_left_road then
     self.is_left_road = false
     self.speed = self.right_roads_speed
@@ -64,13 +69,13 @@ function on_message(self, message_id, message, sender)
   	
   	set_scale(self)
   elseif message_id == hash("add_speed") then
+    print("self.speed before = " .. self.speed)
     -- print("self.speed before = " .. self.speed)
-    local road_speed = self.left_roads_speed
-    if not self.is_left_road then
-      road_speed = self.right_roads_speed
-    end
-
-    self.speed = road_speed + 2*message.speed
+    -- local road_speed = self.left_roads_speed
+    -- if not self.is_left_road then
+    --   road_speed = self.right_roads_speed
+    -- end
+    self.speed = self.speed + message.speed
     -- print("self.speed after = " .. self.speed)
   elseif message_id == hash("try_delete") then
     set_current_pos(function(pos)

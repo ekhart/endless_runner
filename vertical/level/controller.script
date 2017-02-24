@@ -15,6 +15,7 @@ go.property("speed_up_size", 1)
 go.property("speed_up_every_second", 1.0)
 
 local points = 0
+local speed_up_size_accumulator = 0
 
 local function get(property)
 	return go.get("#", property)
@@ -63,6 +64,7 @@ end
 local function update_time(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
+
 	
 	-- print_time(dt)
 	-- print("controller.set_time")
@@ -70,6 +72,7 @@ local function update_time(self, dt)
 
 	if speed_up_accumulator > speed_up_every_second then
 		speed_up_accumulator = 0
+		speed_up_size_accumulator = speed_up_size_accumulator + speed_up_size
 		
 		-- msg.post("ground/controller#script", "add_speed", { speed = speed_up_size })
 
@@ -96,7 +99,7 @@ local function spawn_enemies(self, dt)
 			-- print("construct")
 			-- pprint(enemy)
 			-- todo: refact send { x = x, is_left_road = is_left_road } in factory.create
-			msg.post(enemy, "construct", { x = x, is_left_road = is_left_road })
+			msg.post(enemy, "construct", { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator })
 			table.insert(self.enemies, enemy)
 		end
 	end
