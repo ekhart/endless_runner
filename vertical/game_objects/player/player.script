@@ -15,6 +15,7 @@ local roads
 
 go.property("minSwipeDistance", 40)
 go.property("minSwipeTime", 0.6)
+go.property("change_road_duration", 0.5)
 
 
 function init(self)
@@ -22,6 +23,7 @@ function init(self)
   msg.post(".", "acquire_input_focus")
   self.move = 1
   self.current_road = 3
+  change_road_duration = go.get("#", "change_road_duration")
 end
 
 function final(self)
@@ -43,8 +45,7 @@ function on_message(self, message_id, message, sender)
     -- check if we received a contact point message
 
     if message.group == hash("enemy") then
-      local id = go.get_id("player")
-      go.delete(id)
+      go.delete()
 
       -- Die and restart
       -- particlefx.play("#deathfx")
@@ -79,7 +80,9 @@ local function move_car(self, pos_diff)
   if not (change < 1 or change > 4) then
     self.current_road = change
   	local to = roads[change]
-    go.animate(".", "position.x", go.PLAYBACK_ONCE_FORWARD, to, go.EASING_OUTBACK, 1, 0, function(self, url, property)
+    local playback = go.PLAYBACK_ONCE_FORWARD
+    local easing = go.EASING_OUTBACK
+    go.animate(".", "position.x", playback, to, easing, change_road_duration, 0, function(self, url, property)
         play_animation("ride")
     end)
   end
