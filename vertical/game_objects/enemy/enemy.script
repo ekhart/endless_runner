@@ -1,5 +1,5 @@
 go.property("left_roads_speed", 32)
-go.property("right_roads_speed", 18)
+go.property("right_roads_speed", 15)
 go.property("size", 0.3)
 
 local this = "."
@@ -9,6 +9,18 @@ local function set_animation()
 	local random_index = math.random(#animations)
 	local animation = animations[random_index] 
 	msg.post("#sprite", "play_animation", {id = hash(animation)})
+end
+
+local function set_current_pos(change)
+  local pos = go.get_position(this)
+  change(pos)
+  go.set_position(pos, this)
+end
+
+local function set_scale(self)
+  local scale = go.get_scale(this)
+  scale = vmath.vector3(self.size, self.size, 1.0)
+  go.set_scale(scale, this)
 end
 
 local function construct_base(self)
@@ -25,6 +37,12 @@ local function construct(self, message)
   -- print("construct(self, message)")
   construct_base(self)
 
+  set_current_pos(function (pos)
+    pos.x = message.x
+  end)
+
+  set_scale(self)
+
   self.left_roads_speed = self.left_roads_speed + message.speed_up_size_accumulator
   self.right_roads_speed = self.right_roads_speed + message.speed_up_size_accumulator
   self.speed = self.left_roads_speed
@@ -39,12 +57,6 @@ function init(self)
   -- print("init(self)")
   construct_base(self)
 end
-
-local function set_current_pos(change)
-	local pos = go.get_position(this)
-	change(pos)
-	go.set_position(pos, this)
-end
  
 function update(self, dt)
   set_current_pos(function (pos)
@@ -55,36 +67,13 @@ function update(self, dt)
 	end)
 end
 
-local function set_scale(self)
-  local scale = go.get_scale(this)
-  scale = vmath.vector3(self.size, self.size, 1.0)
-  go.set_scale(scale, this)
-end
-
 function on_message(self, message_id, message, sender)
   print("enemy.on_message: " .. message_id)
   if message_id == hash("construct") then
   	construct(self, message)
-
-  	set_current_pos(function (pos)
-  		pos.x = message.x
-  	end)
-  	
-  	set_scale(self)
   elseif message_id == hash("add_speed") then
-    print("self.speed before = " .. self.speed)
     -- print("self.speed before = " .. self.speed)
-    -- local road_speed = self.left_roads_speed
-    -- if not self.is_left_road then
-    --   road_speed = self.right_roads_speed
-    -- end
     self.speed = self.speed + message.speed
     -- print("self.speed after = " .. self.speed)
-  elseif message_id == hash("try_delete") then
-    set_current_pos(function(pos)
-      if pos.y < message.y then
-        go.delete()
-      end
-    end)
   end
 end
