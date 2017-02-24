@@ -71,15 +71,16 @@ local function update_time(self, dt)
 	if speed_up_accumulator > speed_up_every_second then
 		speed_up_accumulator = 0
 		
-		msg.post("ground/controller#script", "add_speed", { speed = speed_up_size })
+		-- msg.post("ground/controller#script", "add_speed", { speed = speed_up_size })
 
 		for i, enemy in ipairs(self.enemies) do
+			print("enemy " .. i)
 			msg.post(enemy, "add_speed", { speed = speed_up_size })
 		end
 	end
 end
 
-local function spawn_enemy(self, dt)
+local function spawn_enemies(self, dt)
 	self.gridw = self.gridw + self.speed
 
 	if self.gridw >= spawn_density then
@@ -90,19 +91,38 @@ local function spawn_enemy(self, dt)
 			local is_left_road = x == get("road4") or x == get("road3")
 			local enemy_factory = enemy_factories[is_left_road and 2 or 1]
 			local pos = vmath.vector3(x, enemy_spawn_y, 1)
-			local enemy = factory.create(enemy_factory, pos, nil, {}, 0.6)
+			local enemy = factory.create(enemy_factory, pos, nil, {})
 			
 			-- print("construct")
 			-- pprint(enemy)
+			-- todo: refact send { x = x, is_left_road = is_left_road } in factory.create
 			msg.post(enemy, "construct", { x = x, is_left_road = is_left_road })
 			table.insert(self.enemies, enemy)
 		end
 	end
 end
 
+local function kill_enemies(self)
+	for i, enemy in ipairs(self.enemies) do
+		-- print(enemy) --> 786443 (internal numeric value)
+		-- pprint(enemy)
+		-- -- print(enemy.socket) --> 786443 (internal numeric value)
+		-- -- print(enemy.path) --> hash: [/hearttree/tree]
+		-- -- print(enemy.fragment) --> hash: [script]
+		-- local pos = go.get_position(enemy)	
+		-- -- local pos = enemy.get_position()
+		-- if pos.y < -200 then
+		-- 	-- local id = go.get_id(enemy)
+  --     go.delete(enemy)
+  --   end
+  	msg.post(enemy, "try_delete", { y = -200 })
+	end
+end
+
 function update(self, dt)
 	update_time(self, dt)
-	spawn_enemy(self, dt)
+	spawn_enemies(self, dt)
+	-- kill_enemies(self)
 end
 
 function on_message(self, message_id, message, sender)

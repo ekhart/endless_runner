@@ -54,6 +54,7 @@ local function set_scale(self)
 end
 
 function on_message(self, message_id, message, sender)
+  print("enemy.on_message: " .. message_id)
   if message_id == hash("construct") then
   	construct(self, message)
 
@@ -63,12 +64,19 @@ function on_message(self, message_id, message, sender)
   	
   	set_scale(self)
   elseif message_id == hash("add_speed") then
+    -- print("self.speed before = " .. self.speed)
     local road_speed = self.left_roads_speed
-
     if not self.is_left_road then
-      self.speed = self.right_roads_speed
+      road_speed = self.right_roads_speed
     end
 
     self.speed = road_speed + 2*message.speed
+    -- print("self.speed after = " .. self.speed)
+  elseif message_id == hash("try_delete") then
+    set_current_pos(function(pos)
+      if pos.y < message.y then
+        go.delete()
+      end
+    end)
   end
 end
