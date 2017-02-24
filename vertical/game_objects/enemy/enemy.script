@@ -47,8 +47,11 @@ local function set_current_pos(change)
 end
  
 function update(self, dt)
-	set_current_pos(function (pos)
-		pos.y = pos.y - self.speed
+  set_current_pos(function (pos)
+    if pos.y < -200 then
+      msg.post("level:/controller#script", "delete_spawn", { id = go.get_id() })
+    end
+    pos.y = pos.y - self.speed
 	end)
 end
 

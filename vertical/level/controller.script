@@ -65,7 +65,6 @@ local function update_time(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
 
-	
 	-- print_time(dt)
 	-- print("controller.set_time")
 	post_gui("set_time", { time = time_from_start })
@@ -105,32 +104,21 @@ local function spawn_enemies(self, dt)
 	end
 end
 
-local function kill_enemies(self)
-	for i, enemy in ipairs(self.enemies) do
-		-- print(enemy) --> 786443 (internal numeric value)
-		-- pprint(enemy)
-		-- -- print(enemy.socket) --> 786443 (internal numeric value)
-		-- -- print(enemy.path) --> hash: [/hearttree/tree]
-		-- -- print(enemy.fragment) --> hash: [script]
-		-- local pos = go.get_position(enemy)	
-		-- -- local pos = enemy.get_position()
-		-- if pos.y < -200 then
-		-- 	-- local id = go.get_id(enemy)
-  --     go.delete(enemy)
-  --   end
-  	msg.post(enemy, "try_delete", { y = -200 })
-	end
-end
-
 function update(self, dt)
 	update_time(self, dt)
 	spawn_enemies(self, dt)
-	-- kill_enemies(self)
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("add_point") then
 		points = points + 1
 		post_gui("set_points", { points = points })
-	end
+	elseif message_id == hash("delete_spawn") then
+		for i, enemy in ipairs(self.enemies) do
+			if enemy == message.id then
+				table.remove(self.enemies, i)
+				go.delete(enemy)
+			end
+  	end
+  end  	
 end
