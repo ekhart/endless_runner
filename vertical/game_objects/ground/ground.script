@@ -18,6 +18,9 @@ local function print_debug(i, p, pos)
 end
 
 function update(self, dt)
+  -- local dbg = require "builtins.scripts.mobdebug"
+  -- dbg.start()
+
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
 		local ground_height = go.get(p .. "#sprite", "size.y")

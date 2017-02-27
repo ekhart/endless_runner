@@ -12,16 +12,6 @@ components {
     z: 0.0
     w: 1.0
   }
-  properties {
-    id: "speed"
-    value: "40.0"
-    type: PROPERTY_TYPE_NUMBER
-  }
-  properties {
-    id: "speed_slow"
-    value: "18.0"
-    type: PROPERTY_TYPE_NUMBER
-  }
 }
 embedded_components {
   id: "collisionobject"
@@ -50,8 +40,8 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 150.18515\n"
-  "  data: 364.1992\n"
+  "  data: 45.0\n"
+  "  data: 109.2\n"
   "  data: 10.0\n"
   "}\n"
   "linear_damping: 0.0\n"

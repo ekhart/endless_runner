@@ -24,6 +24,8 @@ end
 local enemy_factories = { "#enemy_factory", "#enemy_slow_factory" }
 
 function init(self)
+	-- msg.post("@system:", "toggle_profile")
+	
 	self.gridw = 0
 	self.enemies = {}
 

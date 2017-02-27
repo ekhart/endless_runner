@@ -3,7 +3,7 @@ instances {
   id: "player"
   prototype: "/vertical/game_objects/player/player.go"
   position {
-    x: 620.0
+    x: 640.0
     y: 200.0
     z: 1.0
   }
