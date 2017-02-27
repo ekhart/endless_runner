@@ -75,7 +75,7 @@ local function update_time(self, dt)
 		speed_up_accumulator = 0
 		speed_up_size_accumulator = speed_up_size_accumulator + speed_up_size
 		
-		-- msg.post("ground/controller#script", "add_speed", { speed = speed_up_size })
+		msg.post("ground/controller#script", "add_speed", { speed = speed_up_size/4 })
 
 		for i, enemy in ipairs(self.enemies) do
 			-- print("enemy " .. i)

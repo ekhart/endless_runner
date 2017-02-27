@@ -30,7 +30,8 @@ function update(self, dt)
 
 			msg.post("level:/controller#script", "add_point")
 		end
-		pos.y = pos.y - self.speed
+    
+		pos.y = math.floor(pos.y - self.speed)
 		go.set_position(pos, p)
 		-- print_debug(i, p, pos)
 	end
