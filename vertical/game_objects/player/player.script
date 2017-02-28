@@ -75,7 +75,9 @@ function on_message(self, message_id, message, sender)
   end
 end
 
-local function move_car(self, pos_diff)
+local function move_car(self, move_id, pos_diff)
+  play_animation("turn_" .. move_id)
+
   local change = self.current_road + pos_diff
   if not (change < 1 or change > 4) then
     self.current_road = change
@@ -90,12 +92,11 @@ end
 
 local function move_horizontal(self, action_id, action, move_id, pos_diff)
 	if action_id == hash(move_id) and action.pressed then
-    play_animation("turn_" .. move_id)
-    move_car(self, pos_diff)
+    move_car(self, move_id, pos_diff)
 	end
 end
 
-local function checkSwipeDirection(self)
+local function checkSwipeDirection(self, move_id)
   if bDoingTouch == true then
     xDistance =  math.abs(endX - beginX) -- math.abs will return the absolute, or non-negative value, of a given value.
     yDistance =  math.abs(endY - beginY)
@@ -104,13 +105,13 @@ local function checkSwipeDirection(self)
         totalSwipeDistanceLeft = beginX - endX
         if totalSwipeDistanceLeft > self.minSwipeDistance then
           -- print("Swiped Left")
-          move_car(self, -self.move)
+          move_car(self, "left", -self.move)
         end
       else
         totalSwipeDistanceRight = endX - beginX
         if totalSwipeDistanceRight > self.minSwipeDistance then
           -- print("Swiped Right")
-          move_car(self, self.move)
+          move_car(self, "right", self.move)
         end
       end
     else
