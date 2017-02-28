@@ -23,11 +23,8 @@ function update(self, dt)
 
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
-		local ground_height = go.get(p .. "#sprite", "size.y")
-		
-		if pos.y <= -ground_height then
-			pos.y = screen_height + ground_height
-
+		if pos.y <= -screen_height then
+			pos.y = 5760
 			msg.post("level:/controller#script", "add_point")
 		end
     
