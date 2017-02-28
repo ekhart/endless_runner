@@ -7,6 +7,8 @@ go.property("road2", 640)
 go.property("road1", 880)
 
 go.property("spawn_density", 460)
+go.property("spawn_density_step", 0.1)
+go.property("spawn_density_max", 50)
 go.property("spawn_probability", 0.2)
 go.property("enemy_spawn_y", 2000)
 
@@ -32,6 +34,8 @@ function init(self)
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
 	spawn_density = get("spawn_density")
+  spawn_density_step = get("spawn_density_step")
+  spawn_density_max = get("spawn_density_max")
 	spawn_probability = get("spawn_probability")
 	speed_up_size = get("speed_up_size")
 	speed_up_every_second = get("speed_up_every_second")
@@ -66,7 +70,7 @@ end
 local function update_time(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
-
+  
 	-- print_time(dt)
 	-- print("controller.set_time")
 	post_gui("set_time", { time = time_from_start })
@@ -82,6 +86,13 @@ local function update_time(self, dt)
 			msg.post(enemy, "add_speed", { speed = speed_up_size })
 		end
 	end
+end
+
+local function update_spawn_density()
+  if spawn_density > spawn_density_max then
+    spawn_density = spawn_density - spawn_density_step
+  end
+  -- print("spawn_density = " .. spawn_density)
 end
 
 local function spawn_enemies(self, dt)
@@ -108,6 +119,7 @@ end
 
 function update(self, dt)
 	update_time(self, dt)
+  update_spawn_density()
 	spawn_enemies(self, dt)
 end
 

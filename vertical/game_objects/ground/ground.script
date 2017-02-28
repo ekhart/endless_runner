@@ -24,7 +24,7 @@ function update(self, dt)
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
 		if pos.y <= -screen_height then
-			pos.y = 5760
+			pos.y = 5760 - self.speed
 			msg.post("level:/controller#script", "add_point")
 		end
     
