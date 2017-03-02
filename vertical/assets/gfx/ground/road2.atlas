@@ -1,0 +1,18 @@
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_cracs_C.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_cracs_D.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_cracs_E.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_cracs_F.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_cracs_G.jpg"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

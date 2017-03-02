@@ -1,0 +1,21 @@
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_clean_A.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_clean_B.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_clean_C.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_clean_D.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_cracs_A.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/ground/road/road_desert_cracs_B.jpg"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

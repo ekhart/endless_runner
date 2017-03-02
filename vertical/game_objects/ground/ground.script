@@ -1,4 +1,4 @@
-local pieces = { "background", "background1", "background2", "background3" }
+local pieces = { "background", "background1", "background2", "background3", "background4",  "background5" }
 local screen_height
 
 go.property("speed", 6)
@@ -24,7 +24,7 @@ function update(self, dt)
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
 		if pos.y <= -screen_height then
-			pos.y = 5760 - self.speed
+			pos.y = 9600 - self.speed
 			msg.post("level:/controller#script", "add_point")
 		end
     
