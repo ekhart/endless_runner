@@ -1,0 +1,12 @@
+images {
+  image: "/vertical/assets/gfx/ground/shadows/tree_shadow_B.png"
+}
+images {
+  image: "/vertical/assets/gfx/ground/shadows/tree_shadow_C.png"
+}
+images {
+  image: "/vertical/assets/gfx/ground/shadows/tree_shadow_A.png"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0
