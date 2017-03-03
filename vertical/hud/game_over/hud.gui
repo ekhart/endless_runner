@@ -1,4 +1,4 @@
-script: ""
+script: "/vertical/hud/game_over/hud.gui_script"
 fonts {
   name: "good_times_bigger"
   font: "/vertical/assets/font/good_times_bigger.font"
@@ -384,9 +384,9 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "EXIT"
+  text: "EXIT GAME"
   font: "good_times_button"
-  id: "exit"
+  id: "exit_game"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
