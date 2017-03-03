@@ -1,0 +1,70 @@
+animations {
+  id: "police_lights"
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0000.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0001.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0002.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0003.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0004.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0005.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0006.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0007.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0008.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0009.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0010.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0011.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0012.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0013.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0014.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0015.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0016.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0017.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0018.png"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/new/police_lights_A_0019.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 30
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

@@ -25,6 +25,23 @@ end
 
 local enemy_factories = { "#enemy_factory", "#enemy_slow_factory" }
 
+local webview_id
+
+function webview_callback(self, webview_id, request_id, type, data)
+    if type == webview.CALLBACK_RESULT_URL_OK then
+        -- the page is now loaded, let's show it
+        print("webview loaded")
+        webview.set_visible(webview_id, 1)
+    elseif type == webview.CALLBACK_RESULT_URL_ERROR then
+        print("Failed to load url: " .. data["url"])
+        print("Error: " .. data["error"])
+    elseif type == webview.CALLBACK_RESULT_EVAL_OK then
+        print("Eval ok. Result: " .. data['result'])
+    elseif type == webview.CALLBACK_RESULT_EVAL_ERROR then
+        print("Eval not ok. Request # " .. request_id)
+    end
+end
+
 function init(self)
 	-- msg.post("@system:", "toggle_profile")
 	
@@ -47,6 +64,10 @@ function init(self)
 
 	print("controller.init")
 	msg.post(".", "acquire_input_focus")
+  
+  if not webview then
+    webview_id = webview.create(webview_callback)
+  end
 end
 
 function final(self)
