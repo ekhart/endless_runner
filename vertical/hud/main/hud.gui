@@ -3,31 +3,43 @@ fonts {
   name: "system_font"
   font: "/builtins/fonts/system_font.font"
 }
+fonts {
+  name: "good_times"
+  font: "/vertical/assets/font/good_times.font"
+}
 textures {
   name: "background"
   texture: "/vertical/assets/gfx/hud/background.atlas"
 }
 background_color {
+  x: 0.0
+  y: 0.0
+  z: 0.0
   w: 1.0
 }
 nodes {
   position {
     x: 540.0
     y: 1670.1484
+    z: 1.0
     w: 1.0
   }
   rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   scale {
-    x: 3.0
-    y: 3.0
+    x: 1.0
+    y: 1.0
     z: 1.0
     w: 1.0
   }
   size {
-    x: 200.0
+    x: 500.0
     y: 100.0
+    z: 0.0
     w: 1.0
   }
   color {
@@ -37,9 +49,13 @@ nodes {
     w: 1.0
   }
   type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
   text: "FREEWAY \'68"
-  font: "system_font"
+  font: "good_times"
   id: "title"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
   outline {
     x: 1.0
     y: 1.0
@@ -52,27 +68,44 @@ nodes {
     z: 1.0
     w: 1.0
   }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
   inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
     x: 540.0
     y: 1568.6987
+    z: 0.0
     w: 1.0
   }
   rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   scale {
-    x: 3.0
-    y: 3.0
+    x: 1.0
+    y: 1.0
     z: 1.0
     w: 1.0
   }
   size {
     x: 200.0
     y: 100.0
+    z: 0.0
     w: 1.0
   }
   color {
@@ -82,9 +115,13 @@ nodes {
     w: 1.0
   }
   type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
   text: "HIGHEST SCORE: "
-  font: "system_font"
+  font: "good_times"
   id: "high_score"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
   outline {
     x: 1.0
     y: 1.0
@@ -97,27 +134,44 @@ nodes {
     z: 1.0
     w: 1.0
   }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
   inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
     x: 540.0
     y: 960.0
+    z: 0.0
     w: 1.0
   }
   rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   scale {
-    x: 3.0
-    y: 3.0
+    x: 1.0
+    y: 1.0
     z: 1.0
     w: 1.0
   }
   size {
     x: 200.0
     y: 100.0
+    z: 0.0
     w: 1.0
   }
   color {
@@ -127,9 +181,13 @@ nodes {
     w: 1.0
   }
   type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
   text: "START GAME"
-  font: "system_font"
+  font: "good_times"
   id: "start_game"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
   outline {
     x: 1.0
     y: 1.0
@@ -142,27 +200,44 @@ nodes {
     z: 1.0
     w: 1.0
   }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
   inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
     x: 540.0
     y: 830.8821
+    z: 0.0
     w: 1.0
   }
   rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   scale {
-    x: 3.0
-    y: 3.0
+    x: 1.0
+    y: 1.0
     z: 1.0
     w: 1.0
   }
   size {
     x: 200.0
     y: 100.0
+    z: 0.0
     w: 1.0
   }
   color {
@@ -172,9 +247,13 @@ nodes {
     w: 1.0
   }
   type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
   text: "EXIT GAME"
-  font: "system_font"
+  font: "good_times"
   id: "exit_game"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
   outline {
     x: 1.0
     y: 1.0
@@ -187,27 +266,44 @@ nodes {
     z: 1.0
     w: 1.0
   }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
   inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
     x: 540.0
     y: 710.9869
+    z: 0.0
     w: 1.0
   }
   rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
     w: 1.0
   }
   scale {
-    x: 3.0
-    y: 3.0
+    x: 1.0
+    y: 1.0
     z: 1.0
     w: 1.0
   }
   size {
     x: 200.0
     y: 100.0
+    z: 0.0
     w: 1.0
   }
   color {
@@ -217,9 +313,13 @@ nodes {
     w: 1.0
   }
   type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
   text: "CREDITS"
-  font: "system_font"
+  font: "good_times"
   id: "credits"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
   outline {
     x: 1.0
     y: 1.0
@@ -232,38 +332,21 @@ nodes {
     z: 1.0
     w: 1.0
   }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
   inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
 }
-nodes {
-  position {
-    x: 540.0
-    y: 1187.5278
-    w: 1.0
-  }
-  rotation {
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 1920.0
-    y: 1080.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  texture: "background/poster_I"
-  id: "background"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
+material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
+max_nodes: 512

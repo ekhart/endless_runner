@@ -75,6 +75,16 @@ function on_message(self, message_id, message, sender)
   end
 end
 
+local function play_animation_ride(self, url, property)
+  play_animation("ride")
+end
+
+local function return_rotation(self, url, property)
+  local playback = go.PLAYBACK_ONCE_FORWARD
+  local easing = go.EASING_OUTBACK
+  go.animate(".", "rotation.z", playback, 0, easing, change_road_duration/2)
+end
+
 local function move_car(self, move_id, pos_diff)
   play_animation("turn_" .. move_id)
 
@@ -84,9 +94,12 @@ local function move_car(self, move_id, pos_diff)
   	local to = roads[change]
     local playback = go.PLAYBACK_ONCE_FORWARD
     local easing = go.EASING_OUTBACK
-    go.animate(".", "position.x", playback, to, easing, change_road_duration, 0, function(self, url, property)
-        play_animation("ride")
-    end)
+    go.animate(".", "position.x", playback, to, easing, change_road_duration, 0, play_animation_ride)
+    
+    -- local dbg = require "builtins.scripts.mobdebug"
+    --dbg.start()
+    
+    -- go.animate(".", "rotation.z", playback, 20, easing, change_road_duration/2, 0, return_rotation)
   end
 end
 
