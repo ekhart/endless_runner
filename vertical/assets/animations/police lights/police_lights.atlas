@@ -1,0 +1,313 @@
+animations {
+  id: "police_lights"
+  images {
+    image: "/vertical/assets/animations/police lights/bike_00.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_01.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_02.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_03.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_04.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_05.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_06.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_07.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_08.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_09.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_10.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_11.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_12.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_13.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_14.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_15.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_16.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_17.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_18.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_19.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_20.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_21.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_22.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_23.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_24.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_25.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_26.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_27.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_28.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_29.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_30.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_31.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_32.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_33.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_34.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_35.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_36.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_37.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_38.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_39.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_40.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_41.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_42.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_43.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_44.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_45.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_46.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_47.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_48.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_49.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_50.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_51.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_52.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_53.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_54.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_55.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_56.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_57.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_58.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_59.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_60.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_61.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_62.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_63.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_64.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_65.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_66.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_67.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_68.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_69.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_70.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_71.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_72.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_73.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_74.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_75.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_76.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_77.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_78.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_79.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_80.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_81.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_82.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_83.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_84.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_85.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_86.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_87.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_88.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_89.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_90.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_91.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_92.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_93.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_94.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_95.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_96.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_97.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_98.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_99.jpg"
+  }
+  images {
+    image: "/vertical/assets/animations/police lights/bike_100.jpg"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 30
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0
