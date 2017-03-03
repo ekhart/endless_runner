@@ -1,0 +1,4 @@
+font: "/vertical/assets/font/good times rg.ttf"
+material: "/builtins/fonts/font-df.material"
+size: 90
+output_format: TYPE_DISTANCE_FIELD

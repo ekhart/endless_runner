@@ -7,6 +7,18 @@ fonts {
   name: "good_times"
   font: "/vertical/assets/font/good_times.font"
 }
+fonts {
+  name: "good_times_bigger"
+  font: "/vertical/assets/font/good_times_bigger.font"
+}
+fonts {
+  name: "good_times_smaller"
+  font: "/vertical/assets/font/good_times_smaller.font"
+}
+fonts {
+  name: "good_times_button"
+  font: "/vertical/assets/font/good_times_button.font"
+}
 textures {
   name: "background"
   texture: "/vertical/assets/gfx/hud/background.atlas"
@@ -51,7 +63,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "FREEWAY \'68"
-  font: "good_times"
+  font: "good_times_bigger"
   id: "title"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -86,7 +98,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 1568.6987
+    y: 1243.8025
     z: 0.0
     w: 1.0
   }
@@ -116,8 +128,8 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "HIGHEST SCORE: "
-  font: "good_times"
+  text: "Highest stealing: 2200 $ "
+  font: "good_times_smaller"
   id: "high_score"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -152,7 +164,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 960.0
+    y: 548.6189
     z: 0.0
     w: 1.0
   }
@@ -183,7 +195,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "START GAME"
-  font: "good_times"
+  font: "good_times_button"
   id: "start_game"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -208,7 +220,7 @@ nodes {
   clipping_visible: true
   clipping_inverted: false
   alpha: 1.0
-  outline_alpha: 1.0
+  outline_alpha: 0.0
   shadow_alpha: 1.0
   template_node_child: false
   text_leading: 1.0
@@ -218,7 +230,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 830.8821
+    y: 244.09659
     z: 0.0
     w: 1.0
   }
@@ -249,7 +261,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "EXIT GAME"
-  font: "good_times"
+  font: "good_times_button"
   id: "exit_game"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -284,7 +296,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 710.9869
+    y: 397.3748
     z: 0.0
     w: 1.0
   }
@@ -315,8 +327,74 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "CREDITS"
-  font: "good_times"
+  font: "good_times_button"
   id: "credits"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
+  inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 540.0
+    y: 1330.9994
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "Longest chase: 68.0 miles"
+  font: "good_times_smaller"
+  id: "longest_chase"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
