@@ -155,5 +155,7 @@ function on_message(self, message_id, message, sender)
 				go.delete(enemy)
 			end
   	end
+  elseif message_id == hash("game_over") then
+		msg.post("main:/loader", "game_over")
   end  	
 end

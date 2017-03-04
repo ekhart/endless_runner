@@ -1,7 +1,11 @@
 -- todo: move acquire_input_focus, release_input_focus to module
 
+local function load_proxy(name)
+  msg.post("#" .. name, "load")
+end
+
 local function load_level()
-	msg.post("#level", "load")
+	load_proxy("level")
 end
 
 local function unload_proxy(proxy_name)
@@ -11,10 +15,13 @@ local function unload_proxy(proxy_name)
 	msg.post(proxy, "unload")
 end
 
+local is_game_over = false
+local is_restart = false
+
 function init(self)
 	print("loader.init")
 	msg.post(".", "acquire_input_focus")
-	msg.post("#hud", "load")
+	load_proxy("start_game")
 end
 
 function final(self)
@@ -24,22 +31,30 @@ end
 
 function on_message(self, message_id, message, sender)
 	-- print("loader.on_message")
-	-- print("message_id = " .. message_id)
-	-- print("sender = ")
-	-- pprint(sender)
-	if message_id == hash("start_game") then
+	print("message_id = " .. message_id)
+	pprint(sender)
+	
+  if message_id == hash("start_game") then
 		load_level()
-		unload_proxy("hud")
+		unload_proxy("start_game")
+  elseif message_id == hash("game_over") then
+		unload_proxy("level")
+    load_proxy("game_over")
+    is_game_over = true
 	elseif message_id == hash("reload_level") then
 		unload_proxy("level")
+    is_restart = true
 	elseif message_id == hash("proxy_loaded") then
 		msg.post(sender, "enable")
 	elseif message_id == hash("proxy_unloaded") then
 		-- print(sender.socket) --> 786443 (internal numeric value)
 		-- print(sender.path) --> hash: [/hearttree/tree]
 		-- print(sender.fragment) --> hash: [script]
-		if sender.fragment == hash("level") then
+		
+    
+    if is_restart and sender.fragment == hash("level") then
 			load_level()
+      is_restart = false
 		end
 	end
 end

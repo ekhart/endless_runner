@@ -46,6 +46,7 @@ function on_message(self, message_id, message, sender)
 
     if message.group == hash("enemy") then
       go.delete()
+      msg.post("controller#script", "game_over")
 
       -- Die and restart
       -- particlefx.play("#deathfx")
