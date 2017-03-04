@@ -21,7 +21,7 @@ local is_restart = false
 function init(self)
 	print("loader.init")
 	msg.post(".", "acquire_input_focus")
-	load_proxy("start_game")
+	load_proxy("main_menu")
 end
 
 function final(self)
@@ -33,16 +33,24 @@ function on_message(self, message_id, message, sender)
 	-- print("loader.on_message")
 	print("message_id = " .. message_id)
 	pprint(sender)
+  
+  -- local dbg = require "builtins.scripts.mobdebug"
+  -- dbg.start()
 	
   if message_id == hash("start_game") then
 		load_level()
-		unload_proxy("start_game")
+		unload_proxy("main_menu")
+  elseif message_id == hash("main_menu") then
+    unload_proxy("game_over")
+    is_main_menu = true
   elseif message_id == hash("game_over") then
 		unload_proxy("level")
     load_proxy("game_over")
-    is_game_over = true
 	elseif message_id == hash("reload_level") then
 		unload_proxy("level")
+    is_restart = true
+  elseif message_id == hash("restart") then
+		unload_proxy("game_over")
     is_restart = true
 	elseif message_id == hash("proxy_loaded") then
 		msg.post(sender, "enable")
@@ -50,11 +58,12 @@ function on_message(self, message_id, message, sender)
 		-- print(sender.socket) --> 786443 (internal numeric value)
 		-- print(sender.path) --> hash: [/hearttree/tree]
 		-- print(sender.fragment) --> hash: [script]
-		
-    
-    if is_restart and sender.fragment == hash("level") then
+    if is_restart then
 			load_level()
       is_restart = false
-		end
+		elseif is_main_menu then
+      load_proxy("main_menu")
+      is_main_menu = false
+    end
 	end
 end

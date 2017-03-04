@@ -25,11 +25,19 @@ function on_input(self, action_id, action)
 
     if gui.pick_node(exit_game, x, y) then
       msg.post("@system:", "exit", {code = 0})
+    elseif gui.pick_node(retry, x, y) then
+      msg.post("main:/loader", "restart")
+    elseif gui.pick_node(main_menu, x, y) then
+      msg.post("main:/loader", "main_menu")
     end
   elseif is_touched then
     for i, point in ipairs(action.touch) do
       if gui.pick_node(exit_game, x, y) then
         msg.post("@system:", "exit", {code = 0})
+      elseif gui.pick_node(retry, x, y) then
+        msg.post("main:/loader", "restart")
+      elseif gui.pick_node(main_menu, x, y) then
+        msg.post("main:/loader", "main_menu")
       end
     end
   end
