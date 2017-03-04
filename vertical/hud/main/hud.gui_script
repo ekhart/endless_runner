@@ -12,37 +12,32 @@ local function is_id(id, to_hash)
   return id == hash(to_hash)
 end
 
-function on_input(self, action_id, action)
-    -- print("hud.on_input actionid: " .. action_id)
-  local is_mouse_pressed = is_id(action_id, "left_button") and action.pressed 
-  local is_touched = is_id(action_id, "touch") and #action.touch > 1
+local function handle_input(action)
+  local x = action.x
+  local y = action.y
+
   local start_game = gui.get_node("start_game")
+  local credits = gui.get_node("credits")
   local exit_game = gui.get_node("exit_game")
-
-  if is_mouse_pressed then
-    local x = action.x
-    local y = action.y
-
-    if gui.pick_node(start_game, x, y) then
-      print("start_game")
-      msg.post("main:/loader", "start_game")
-    elseif gui.pick_node(exit_game, x, y) then
-      msg.post("@system:", "exit", {code = 0})
-    end
-  elseif is_touched then
-    print("touch")
-
-    for i, point in ipairs(action.touch) do
-      if gui.pick_node(restart, point.x, point.y) then
-        print("THE GAME WILL RESTART...")
-      elseif gui.pick_node(exit_game, x, y) then
-        msg.post("@system:", "exit", {code = 0})
-      end
-    end
+  
+  if gui.pick_node(start_game, x, y) then
+    msg.post("main:/loader", "start_game")
+  elseif gui.pick_node(credits, x, y) then
+    msg.post("main:/loader", "credits")
+  elseif gui.pick_node(exit_game, x, y) then
+    msg.post("@system:", "exit", {code = 0})
   end
 end
 
-function on_reload(self)
-    -- Add input-handling code here
-    -- Remove this function if not needed
+function on_input(self, action_id, action)
+  local is_mouse_pressed = is_id(action_id, "left_button") and action.pressed 
+  local is_touched = is_id(action_id, "touch") and #action.touch > 1
+
+  if is_mouse_pressed then
+    handle_input(action)
+  elseif is_touched then
+    for i, point in ipairs(action.touch) do
+      handle_input(action)
+    end
+  end
 end

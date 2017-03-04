@@ -40,6 +40,9 @@ function on_message(self, message_id, message, sender)
   if message_id == hash("start_game") then
 		load_level()
 		unload_proxy("main_menu")
+  elseif message_id == hash("credits") then
+    load_proxy("credits")
+    unload_proxy("main_menu")
   elseif message_id == hash("main_menu") then
     unload_proxy("game_over")
     is_main_menu = true
