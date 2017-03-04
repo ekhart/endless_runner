@@ -46,6 +46,9 @@ function on_message(self, message_id, message, sender)
   elseif message_id == hash("main_menu") then
     unload_proxy("game_over")
     is_main_menu = true
+  elseif message_id == hash("main_menu_from_credits") then
+    unload_proxy("credits")
+    is_main_menu = true
   elseif message_id == hash("game_over") then
 		unload_proxy("level")
     load_proxy("game_over")
