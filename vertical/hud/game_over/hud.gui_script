@@ -41,3 +41,14 @@ function on_input(self, action_id, action)
     end
   end
 end
+
+local function set_node_text(node, text)
+	gui.set_text(gui.get_node(node), text)
+end
+
+function on_message(self, message_id, message, sender)
+  if message_id == hash("set_longest_chase") then
+    text = string.format("Longest chase: %f miles", message.high_score)
+    set_node_text("longest_chase", text)
+  end
+end

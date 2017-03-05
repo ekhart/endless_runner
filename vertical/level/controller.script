@@ -144,6 +144,25 @@ function update(self, dt)
 	spawn_enemies(self, dt)
 end
 
+local function save_highest_score()
+  local my_file = sys.get_save_file("freeway68", "my_file")
+  local my_table = sys.load(my_file)
+
+  if not next(my_table) then
+    table.insert(my_table, points)
+  end
+  
+  if my_table[1] < points then
+    my_table[1] = points
+  end
+  
+  -- post_gui("set_longest_chase", { high_score = my_table[1] })
+  
+  if not sys.save(my_file, my_table) then
+    -- Alert user that the data could not be saved
+  end
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == hash("add_point") then
 		points = points + 1
@@ -156,6 +175,10 @@ function on_message(self, message_id, message, sender)
 			end
   	end
   elseif message_id == hash("game_over") then
-		msg.post("main:/loader", "game_over")
+		local dbg = require "builtins.scripts.mobdebug"  
+    dbg.start()
+    
+    local high_score = save_highest_score()
+    msg.post("main:/loader", "game_over", { high_score = high_score})
   end  	
 end
