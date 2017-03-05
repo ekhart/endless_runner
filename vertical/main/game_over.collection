@@ -1,4 +1,4 @@
-name: "default"
+name: "game_over"
 scale_along_z: 0
 embedded_instances {
   id: "hud"

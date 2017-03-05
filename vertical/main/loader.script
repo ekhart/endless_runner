@@ -17,6 +17,7 @@ end
 
 local is_game_over = false
 local is_restart = false
+local _message
 
 function init(self)
 	print("loader.init")
@@ -51,7 +52,8 @@ function on_message(self, message_id, message, sender)
     is_main_menu = true
   elseif message_id == hash("game_over") then
 		unload_proxy("level")
-    load_proxy("game_over")
+    _message = message
+    is_game_over = true
 	elseif message_id == hash("reload_level") then
 		unload_proxy("level")
     is_restart = true
@@ -60,6 +62,13 @@ function on_message(self, message_id, message, sender)
     is_restart = true
 	elseif message_id == hash("proxy_loaded") then
 		msg.post(sender, "enable")
+
+    if is_game_over then
+      msg.post("game_over:/hud#gui", "set_longest_chase", _message)
+      is_game_over = false
+      _message = nil
+    end
+
 	elseif message_id == hash("proxy_unloaded") then
 		-- print(sender.socket) --> 786443 (internal numeric value)
 		-- print(sender.path) --> hash: [/hearttree/tree]
@@ -70,6 +79,8 @@ function on_message(self, message_id, message, sender)
 		elseif is_main_menu then
       load_proxy("main_menu")
       is_main_menu = false
+    elseif is_game_over then
+      load_proxy("game_over")
     end
 	end
 end

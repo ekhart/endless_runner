@@ -48,7 +48,7 @@ end
 
 function on_message(self, message_id, message, sender)
   if message_id == hash("set_longest_chase") then
-    text = string.format("Longest chase: %f miles", message.high_score)
-    set_node_text("longest_chase", text)
+    text = string.format("Longest chase: %i miles", message.high_score)
+    set_node_text("running", text)
   end
 end
