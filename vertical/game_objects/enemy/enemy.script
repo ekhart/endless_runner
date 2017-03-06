@@ -1,9 +1,9 @@
 go.property("left_roads_speed", 32)
 go.property("right_roads_speed", 15)
-go.property("size", 0.3)
+go.property("size", 1)
 
 local this = "."
-local animations = { "mustang_B", "mustang_C" }
+local animations = { "big_truck_solo_A", "ford_100_A", "ford_100_B", "impala_shadow_A" }
 
 local function set_animation()
 	local random_index = math.random(#animations)
