@@ -17,6 +17,8 @@ go.property("speed_up_size", 1)
 go.property("speed_up_every_second", 1.0)
 
 local points = 0
+local gold = 0
+local gold_value = 100
 local speed_up_size_accumulator = 0
 
 local function get(property)
@@ -66,7 +68,10 @@ function init(self)
 	print("controller.init")
 	msg.post(".", "acquire_input_focus")
   
-  if not webview then
+  local dbg = require "builtins.scripts.mobdebug"  
+  dbg.start()
+  
+  if webview then
     webview_id = webview.create(webview_callback)
   end
 end
@@ -153,7 +158,7 @@ local function spawn_golds(self, dt)
 			local pos = vmath.vector3(x, enemy_spawn_y, 1)
 			local gold = factory.create("#gold_factory", pos, nil, {})
 			msg.post(gold, "construct", { x = x, speed_up_size_accumulator = speed_up_size_accumulator })
-			table.insert(self.enemies, gold)
+			table.insert(self.golds, gold)
 		end
 	end
 end
@@ -171,10 +176,15 @@ local function save_highest_score()
 
   if not next(my_table) then
     table.insert(my_table, time_from_start)
+    table.insert(my_table, gold)
   end
   
   if my_table[1] < time_from_start then
     my_table[1] = time_from_start
+  end
+  
+  if my_table[2] < gold then
+    my_table[2] = gold
   end
   
   if not sys.save(my_file, my_table) then
@@ -182,6 +192,15 @@ local function save_highest_score()
   end
   
   return my_table[1]
+end
+
+local function remove_gold(self, id)
+  for i, gold in ipairs(self.golds) do
+    if gold == id then
+      table.remove(self.golds, i)
+      go.delete(gold)
+    end
+  end
 end
 
 function on_message(self, message_id, message, sender)
@@ -195,18 +214,13 @@ function on_message(self, message_id, message, sender)
 				go.delete(enemy)
 			end
   		end
-  	elseif message_id == hash("delete_gold") then
-		for i, gold in ipairs(self.golds) do
-			if gold == message.id then
-				table.remove(self.golds, i)
-				go.delete(gold)
-			end
-  		end
-  	elseif message_id == hash("game_over") then
-		-- local dbg = require "builtins.scripts.mobdebug"  
-    -- dbg.start()
-    
+  elseif message_id == hash("delete_gold") then
+		remove_gold(self, message.id)
+  elseif message_id == hash("game_over") then
     local high_score = save_highest_score()
-    msg.post("main:/loader", "game_over", { high_score = high_score})
-  end  	
+    msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
+  elseif message_id == hash("collect_gold") then
+    gold = gold + gold_value
+    remove_gold(self, message.id)
+  end 	
 end

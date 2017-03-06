@@ -1,16 +1,17 @@
 go.property("size", .4)
 go.property("speed", 6)
 
+
 local function set_current_pos(change)
-  local pos = go.get_position(this)
+  local pos = go.get_position()
   change(pos)
-  go.set_position(pos, this)
+  go.set_position(pos)
 end
 
 local function set_scale(self)
-  local scale = go.get_scale(this)
+  local scale = go.get_scale()
   scale = vmath.vector3(self.size, self.size, 1.0)
-  go.set_scale(scale, this)
+  go.set_scale(scale)
 end
 
 local function construct(self, message)

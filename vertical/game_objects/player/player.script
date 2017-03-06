@@ -66,8 +66,8 @@ function on_message(self, message_id, message, sender)
         --   end
         -- end)
         
-    elseif message.group == hash("geometry") then
-      
+    elseif message.group == hash("gold") then
+      msg.post("controller#script", "collect_gold", { id = message.other_id })
     end
   elseif message_id == hash("set_roads") then
     roads = message.roads
