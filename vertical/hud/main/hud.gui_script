@@ -49,16 +49,22 @@ end
 local function get_highest_score()
   local my_file = sys.get_save_file("freeway68", "my_file")
   local my_table = sys.load(my_file)
+  
   if not next(my_table) then
-    return 0
+    return { score = 0, gold = 0 }
   else 
-    return my_table[1]
+    return { score = my_table[1], gold = my_table[2] } 
   end
 end
 
 function on_message(self, message_id, message, sender)
   if message_id == hash("set_longest_chase") then
-    text = string.format("Longest chase: %.2f miles", get_highest_score())
+    local my_table = get_highest_score()
+    
+    local text = string.format("Longest chase: %.2f miles", my_table.score)
     set_node_text("longest_chase", text)
+    
+    text = string.format("Highest stealing: %i$", my_table.gold)
+    set_node_text("high_score", text)
   end
 end
