@@ -23,6 +23,7 @@ function init(self)
 	print("loader.init")
 	msg.post(".", "acquire_input_focus")
 	load_proxy("main_menu")
+  is_main_menu = true
 end
 
 function final(self)
@@ -31,12 +32,8 @@ function final(self)
 end
 
 function on_message(self, message_id, message, sender)
-	-- print("loader.on_message")
 	print("message_id = " .. message_id)
 	pprint(sender)
-  
-  -- local dbg = require "builtins.scripts.mobdebug"
-  -- dbg.start()
 	
   if message_id == hash("start_game") then
 		load_level()
@@ -61,12 +58,20 @@ function on_message(self, message_id, message, sender)
 		unload_proxy("game_over")
     is_restart = true
 	elseif message_id == hash("proxy_loaded") then
+    -- local dbg = require "builtins.scripts.mobdebug"  
+    -- dbg.start()
+  
 		msg.post(sender, "enable")
 
     if is_game_over then
       msg.post("game_over:/hud#gui", "set_longest_chase", _message)
       is_game_over = false
       _message = nil
+    end
+    
+    if is_main_menu then
+      msg.post("main_menu:/hud#gui", "set_longest_chase")
+      is_main_menu = false
     end
 
 	elseif message_id == hash("proxy_unloaded") then
@@ -78,7 +83,6 @@ function on_message(self, message_id, message, sender)
       is_restart = false
 		elseif is_main_menu then
       load_proxy("main_menu")
-      is_main_menu = false
     elseif is_game_over then
       load_proxy("game_over")
     end
