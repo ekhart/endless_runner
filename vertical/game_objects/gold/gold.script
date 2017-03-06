@@ -1,0 +1,44 @@
+go.property("size", .4)
+go.property("speed", 6)
+
+local function set_current_pos(change)
+  local pos = go.get_position(this)
+  change(pos)
+  go.set_position(pos, this)
+end
+
+local function set_scale(self)
+  local scale = go.get_scale(this)
+  scale = vmath.vector3(self.size, self.size, 1.0)
+  go.set_scale(scale, this)
+end
+
+local function construct(self, message)
+	self.speed = go.get("#", "speed")
+	self.size = go.get("#", "size")
+  
+	set_current_pos(function (pos)
+		pos.x = message.x
+	end)
+
+	set_scale(self)
+
+	self.speed = self.speed +  message.speed_up_size_accumulator
+end
+
+function update(self, dt)
+  set_current_pos(function (pos)
+    if pos.y < -200 then
+      msg.post("level:/controller#script", "delete_gold", { id = go.get_id() })
+    end
+    pos.y = pos.y - self.speed
+	end)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("construct") then
+  		construct(self, message)
+  	elseif message_id == hash("add_speed") then
+    	self.speed = self.speed + message.speed
+	end
+end

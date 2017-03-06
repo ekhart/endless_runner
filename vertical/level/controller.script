@@ -47,6 +47,7 @@ function init(self)
 	
 	self.gridw = 0
 	self.enemies = {}
+	self.golds = {}
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
@@ -105,6 +106,10 @@ local function update_time(self, dt)
 			-- print("enemy " .. i)
 			msg.post(enemy, "add_speed", { speed = speed_up_size })
 		end
+		
+		for i, gold in ipairs(self.golds) do
+			msg.post(gold, "add_speed", { speed = speed_up_size })
+		end
 	end
 end
 
@@ -137,10 +142,27 @@ local function spawn_enemies(self, dt)
 	end
 end
 
+local function spawn_golds(self, dt)
+	self.gridw = self.gridw + self.speed
+
+	if self.gridw >= spawn_density then
+		self.gridw = 0
+		
+		if math.random() > spawn_probability then
+			local x = roads[math.random(#roads)]
+			local pos = vmath.vector3(x, enemy_spawn_y, 1)
+			local gold = factory.create("#gold_factory", pos, nil, {})
+			msg.post(gold, "construct", { x = x, speed_up_size_accumulator = speed_up_size_accumulator })
+			table.insert(self.enemies, gold)
+		end
+	end
+end
+
 function update(self, dt)
 	update_time(self, dt)
-  update_spawn_density()
+  	update_spawn_density()
 	spawn_enemies(self, dt)
+	spawn_golds(self, dt)
 end
 
 local function save_highest_score()
@@ -172,8 +194,15 @@ function on_message(self, message_id, message, sender)
 				table.remove(self.enemies, i)
 				go.delete(enemy)
 			end
-  	end
-  elseif message_id == hash("game_over") then
+  		end
+  	elseif message_id == hash("delete_gold") then
+		for i, gold in ipairs(self.golds) do
+			if gold == message.id then
+				table.remove(self.golds, i)
+				go.delete(gold)
+			end
+  		end
+  	elseif message_id == hash("game_over") then
 		-- local dbg = require "builtins.scripts.mobdebug"  
     -- dbg.start()
     
