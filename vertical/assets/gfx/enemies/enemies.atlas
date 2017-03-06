@@ -1,9 +1,12 @@
 images {
-  image: "/vertical/assets/gfx/enemies/mustang_A.png"
+  image: "/vertical/assets/gfx/enemies/big_truck_solo_A.png"
 }
 images {
-  image: "/vertical/assets/gfx/enemies/mustang_B.png"
+  image: "/vertical/assets/gfx/enemies/ford_100_A.png"
 }
 images {
-  image: "/vertical/assets/gfx/enemies/mustang_C.png"
+  image: "/vertical/assets/gfx/enemies/ford_100_B.png"
 }
+margin: 0
+extrude_borders: 0
+inner_padding: 0
