@@ -16,6 +16,9 @@ images {
 images {
   image: "/vertical/assets/gfx/enemies/impala_shadow_A.png"
 }
+images {
+  image: "/vertical/assets/gfx/enemies/impala_shadow_B.png"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0
