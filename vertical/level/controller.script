@@ -175,8 +175,8 @@ function on_message(self, message_id, message, sender)
 			end
   	end
   elseif message_id == hash("game_over") then
-		local dbg = require "builtins.scripts.mobdebug"  
-    dbg.start()
+		-- local dbg = require "builtins.scripts.mobdebug"  
+    -- dbg.start()
     
     local high_score = save_highest_score()
     msg.post("main:/loader", "game_over", { high_score = high_score})

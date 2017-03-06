@@ -25,7 +25,7 @@ end
 
 local function set_time(message)
 	-- print("hud.set_time = " .. message.time)
-	set_node_text("time", string.format( "%.2f", message.time))
+	set_node_text("time", string.format("%.2f", message.time))
 end
 
 local function set_points(message)
