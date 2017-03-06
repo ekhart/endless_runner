@@ -42,8 +42,6 @@ end
 function on_message(self, message_id, message, sender)
   print("player.on_message " .. message_id)
   if message_id == hash("contact_point_response") then
-    -- check if we received a contact point message
-
     if message.group == hash("enemy") then
       go.delete()
       msg.post("controller#script", "game_over")
@@ -69,7 +67,7 @@ function on_message(self, message_id, message, sender)
         -- end)
         
     elseif message.group == hash("geometry") then
-      -- handle_geometry_contact(self, message.normal, message.distance)
+      
     end
   elseif message_id == hash("set_roads") then
     roads = message.roads
@@ -163,10 +161,11 @@ local function on_touch_input(self, action_id, action)
 end
 
 function on_input(self, action_id, action)
-  if action_id then
-    print("player.on_input " .. hash(action_id))
-	end
-  move_horizontal(self, action_id, action, "right", self.move)
+	if action_id then
+  		print("player.on_input " .. hash(action_id))
+    end
+    
+    move_horizontal(self, action_id, action, "right", self.move)
 	move_horizontal(self, action_id, action, "left", -self.move)
 	on_touch_input(self, action_id, action)
 end

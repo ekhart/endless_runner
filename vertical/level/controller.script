@@ -51,8 +51,8 @@ function init(self)
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
 	spawn_density = get("spawn_density")
-  spawn_density_step = get("spawn_density_step")
-  spawn_density_max = get("spawn_density_max")
+  	spawn_density_step = get("spawn_density_step")
+  	spawn_density_max = get("spawn_density_max")
 	spawn_probability = get("spawn_probability")
 	speed_up_size = get("speed_up_size")
 	speed_up_every_second = get("speed_up_every_second")
@@ -74,7 +74,6 @@ function final(self)
 	print("controller.final")
 	msg.post(".", "release_input_focus")
 end
-
 
 local function print_time(dt)
 	local position = vmath.vector3(100, 100, 0)
@@ -113,7 +112,6 @@ local function update_spawn_density()
   if spawn_density > spawn_density_max then
     spawn_density = spawn_density - spawn_density_step
   end
-  -- print("spawn_density = " .. spawn_density)
 end
 
 local function spawn_enemies(self, dt)
@@ -124,7 +122,8 @@ local function spawn_enemies(self, dt)
 		
 		if math.random() > spawn_probability then
 			local x = roads[math.random(#roads)]
-			local is_left_road = x == get("road4") or x == get("road3")
+			local is_left_road = false
+			-- local is_left_road = x == get("road4") or x == get("road3")
 			local enemy_factory = enemy_factories[is_left_road and 2 or 1]
 			local pos = vmath.vector3(x, enemy_spawn_y, 1)
 			local enemy = factory.create(enemy_factory, pos, nil, {})
@@ -149,11 +148,11 @@ local function save_highest_score()
   local my_table = sys.load(my_file)
 
   if not next(my_table) then
-    table.insert(my_table, points)
+    table.insert(my_table, time_from_start)
   end
   
-  if my_table[1] < points then
-    my_table[1] = points
+  if my_table[1] < time_from_start then
+    my_table[1] = time_from_start
   end
   
   if not sys.save(my_file, my_table) then

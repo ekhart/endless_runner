@@ -1,5 +1,5 @@
 [project]
-title = Freeway '68
+title = Freeway 68
 
 [bootstrap]
 main_collection = /vertical/main/main.collectionc
@@ -34,7 +34,7 @@ include_dirs = def-runner
 app_id = 4CA636526DC6D1D8
 
 [android]
-package = pl.ekhart.desperate
+package = pl.ekhart.freeway68
 app_icon_36x36 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
 app_icon_48x48 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
 app_icon_72x72 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
