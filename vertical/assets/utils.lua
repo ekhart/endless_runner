@@ -88,13 +88,17 @@ function M.construct(self, message, after)
 	after(self, message)
 end
 
-function M.update(self, dt, delete_message_id)
+function M.update_delete_below(self, dt, delete_message_id, posy)
 	M.set_position(function (pos)
-    	if pos.y < -200 then
+    	if pos.y < posy then
       		msg.post("level:/controller#script", delete_message_id, { id = go.get_id() })
     	end
     	pos.y = math.floor(pos.y - self.speed)
 	end)
+end
+
+function M.update(self, dt, delete_message_id)
+	M.update_delete_below(self, dt, delete_message_id, -200)
 end
 
 function M.disable(id)
