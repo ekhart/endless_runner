@@ -16,6 +16,9 @@ go.property("speed", 6)
 go.property("speed_up_size", 1)
 go.property("speed_up_every_second", 1.0)
 
+go.property("shadow_size", 1)
+
+
 local points = 0
 local gold = 0
 local gold_value = 100
@@ -50,6 +53,7 @@ function init(self)
 	self.gridw = 0
 	self.enemies = {}
 	self.golds = {}
+	self.shadows = {}
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
@@ -64,6 +68,7 @@ function init(self)
 	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
 	msg.post("player#script", "set_roads", { roads = roads })
 	enemy_spawn_y = get("enemy_spawn_y")
+	shadow_size = get("shadow_size")
 
 	print("controller.init")
 	msg.post(".", "acquire_input_focus")
@@ -108,12 +113,15 @@ local function update_time(self, dt)
 		msg.post("ground/controller#script", "add_speed", { speed = speed_up_size/4 })
 
 		for i, enemy in ipairs(self.enemies) do
-			-- print("enemy " .. i)
 			msg.post(enemy, "add_speed", { speed = speed_up_size })
 		end
 		
 		for i, gold in ipairs(self.golds) do
 			msg.post(gold, "add_speed", { speed = speed_up_size })
+		end
+		
+		for i, shadow in ipairs(self.shadows) do
+			msg.post(shadow, "add_speed", { speed = speed_up_size })
 		end
 	end
 end
@@ -163,11 +171,27 @@ local function spawn_golds(self, dt)
 	end
 end
 
+local function spawn_shadows(self, dt)
+	self.gridw = self.gridw + self.speed
+
+	if self.gridw >= spawn_density then
+		self.gridw = 0
+		
+		if math.random() > spawn_probability then
+			local pos = vmath.vector3(0, 4000, 0)
+			local properties = { speed = speed, size = shadow_size, speed_up = speed_up_size_accumulator }
+			local shadow = factory.create("#shadow_factory", pos, nil, properties)
+			table.insert(self.shadows, shadow)
+		end
+	end
+end
+
 function update(self, dt)
 	update_time(self, dt)
   	update_spawn_density()
 	spawn_enemies(self, dt)
 	spawn_golds(self, dt)
+	spawn_shadows(self, dt)
 end
 
 local function save_highest_score()
@@ -194,11 +218,11 @@ local function save_highest_score()
   return my_table[1]
 end
 
-local function remove_gold(self, id)
-  for i, gold in ipairs(self.golds) do
-    if gold == id then
-      table.remove(self.golds, i)
-      go.delete(gold)
+local function remove_from_table(_table, id)
+  for i, element in ipairs(_table) do
+    if element == id then
+      table.remove(_table, i)
+      go.delete(element)
     end
   end
 end
@@ -208,19 +232,16 @@ function on_message(self, message_id, message, sender)
 		points = points + 1
 		post_gui("set_points", { points = points })
 	elseif message_id == hash("delete_spawn") then
-		for i, enemy in ipairs(self.enemies) do
-			if enemy == message.id then
-				table.remove(self.enemies, i)
-				go.delete(enemy)
-			end
-  		end
+		remove_from_table(self.enemies, message.id)
   elseif message_id == hash("delete_gold") then
-		remove_gold(self, message.id)
+		remove_from_table(self.golds, message.id)
+	elseif message_id == hash("delete_shadow") then
+		remove_from_table(self.shadows, message.id)
   elseif message_id == hash("game_over") then
-    local high_score = save_highest_score()
-    msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
+    	local high_score = save_highest_score()
+    	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
   elseif message_id == hash("collect_gold") then
-    gold = gold + gold_value
-    remove_gold(self, message.id)
-  end 	
+    	gold = gold + gold_value
+    	remove_from_table(self.golds, message.id)
+  	end 	
 end
