@@ -12,19 +12,11 @@ function M.is_id(id, to_hash)
   return id == hash(to_hash)
 end
 
-function fadeup(node)
-    gui.animate(node, "color.w", 1.0, gui.EASING_LINEAR, 0.3, 0, fadedown, gui.PLAYBACK_ONCE_FORWARD)
-end
-
-function fadedown(node)
-	gui.animate(node, "color.w", 0.0, gui.EASING_LINEAR, 0.3, 0, fadeup, gui.PLAYBACK_ONCE_FORWARD)
-end
-
-function M.click_button(domain, node, action, after)
-	if gui.pick_node(gui.get_node(node), action.x, action.y) then
-		fadeup(gui.get_node(node))
+function M.click_button(domain, name, action, after)
+	local node = gui.get_node(name)
+	if gui.pick_node(node, action.x, action.y) then
 		msg.post(domain .. ":/hud#button", "play_sound")
-		after()
+		gui.animate(node, gui.PROP_COLOR, vmath.vector4(), gui.EASING_INOUTQUAD, 0.5, 0, after, gui.PLAYBACK_ONCE_FORWARD)
 	end
 end
 
