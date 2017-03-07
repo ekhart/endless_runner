@@ -43,10 +43,6 @@ function update(self, dt)
   timer.update(dt)
 end
 
-local function play_animation(animation)
-  msg.post("#sprite", "play_animation", { id = hash(animation) })
-end
-
 function on_message(self, message_id, message, sender)
   print("player.on_message " .. message_id)
   if message_id == hash("contact_point_response") then
@@ -93,10 +89,6 @@ function on_message(self, message_id, message, sender)
   end
 end
 
-local function play_animation_ride(self, url, property)
-  play_animation("ride")
-end
-
 local function return_rotation(self, url, property)
   local playback = go.PLAYBACK_ONCE_FORWARD
   local easing = go.EASING_OUTBACK
@@ -104,7 +96,7 @@ local function return_rotation(self, url, property)
 end
 
 local function move_car(self, move_id, pos_diff)
-  play_animation("turn_" .. move_id)
+  utils.play_sprite_animation("turn_" .. move_id)
 
   local change = self.current_road + pos_diff
   if not (change < 1 or change > 4) then
