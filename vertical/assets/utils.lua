@@ -105,4 +105,18 @@ function M.enable(id)
 	msg.post("#" .. id, "enable")
 end
 
+function M.spawn(self, factory_id, pos, objects, message)
+	self.gridw = self.gridw + self.speed
+
+	if self.gridw >= self.spawn_density then
+		self.gridw = 0
+		
+		if math.random() > self.spawn_probability then
+			local object = factory.create("#" .. factory_id, pos, nil, {})
+			msg.post(object, "construct", message)
+			table.insert(objects, object)
+		end
+	end
+end
+
 return M

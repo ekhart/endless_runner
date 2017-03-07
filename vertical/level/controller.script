@@ -33,7 +33,7 @@ local function get(property)
 	return go.get("#", property)
 end
 
-local enemy_factories = { "#enemy_factory", "#enemy_slow_factory" }
+local enemy_factories = { "enemy_factory", "enemy_slow_factory" }
 
 local webview_id
 
@@ -62,17 +62,17 @@ function init(self)
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
-	spawn_density = get("spawn_density")
-  	spawn_density_step = get("spawn_density_step")
-  	spawn_density_max = get("spawn_density_max")
-	spawn_probability = get("spawn_probability")
+	self.spawn_density = get("spawn_density")
+  	self.spawn_density_step = get("spawn_density_step")
+  	self.spawn_density_max = get("spawn_density_max")
+	self.spawn_probability = get("spawn_probability")
 	speed_up_size = get("speed_up_size")
 	speed_up_every_second = get("speed_up_every_second")
 	
 	speed = get("speed")
-	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
-	msg.post("player#script", "set_roads", { roads = roads })
-	enemy_spawn_y = get("enemy_spawn_y")
+	self.roads = { get("road4"), get("road3"), get("road2"), get("road1") }
+	msg.post("player#script", "set_roads", { roads = self.roads })
+	self.enemy_spawn_y = get("enemy_spawn_y")
 	shadow_size = get("shadow_size")
 	points_value = get("points_value")
 
@@ -138,66 +138,33 @@ local function update_time(self, dt)
 	end
 end
 
-local function update_spawn_density()
-  if spawn_density > spawn_density_max then
-    spawn_density = spawn_density - spawn_density_step
+local function update_spawn_density(self)
+  if self.spawn_density > self.spawn_density_max then
+    self.spawn_density = self.spawn_density - self.spawn_density_step
   end
 end
 
 local function spawn_enemies(self, dt)
-	self.gridw = self.gridw + self.speed
-
-	if self.gridw >= spawn_density then
-		self.gridw = 0
-		
-		if math.random() > spawn_probability then
-			local x = roads[math.random(#roads)]
-			local is_left_road = false
-			-- local is_left_road = x == get("road4") or x == get("road3")
-			local enemy_factory = enemy_factories[is_left_road and 2 or 1]
-			local pos = vmath.vector3(x, enemy_spawn_y, 1)
-			local enemy = factory.create(enemy_factory, pos, nil, {})
-			
-			-- print("construct")
-			-- pprint(enemy)
-			-- todo: refact send { x = x, is_left_road = is_left_road } in factory.create
-			msg.post(enemy, "construct", { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator })
-			table.insert(self.enemies, enemy)
-		end
-	end
+	local is_left_road = false
+	-- local is_left_road = x == get("road4") or x == get("road3")
+	local enemy_factory = enemy_factories[is_left_road and 2 or 1]
+	local x = self.roads[math.random(#self.roads)]
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local message = { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator }
+	u.spawn(self, enemy_factory, pos, self.enemies, message)
 end
 
 local function spawn_golds(self, dt)
-	self.gridw = self.gridw + self.speed
-
-	if self.gridw >= spawn_density then
-		self.gridw = 0
-		
-		if math.random() > spawn_probability then
-			local x = roads[math.random(#roads)]
-			local pos = vmath.vector3(x, enemy_spawn_y, 1)
-			local gold = factory.create("#gold_factory", pos, nil, {})
-			msg.post(gold, "construct", { x = x, speed_up_size_accumulator = speed_up_size_accumulator })
-			table.insert(self.golds, gold)
-		end
-	end
+	local x = self.roads[math.random(#self.roads)]
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local message = { x = x, speed_up_size_accumulator = speed_up_size_accumulator }
+	u.spawn(self, "gold_factory", pos, self.golds, message)
 end
 
 local function spawn_shadows(self, dt)
-	self.gridw = self.gridw + self.speed
-
-	if self.gridw >= spawn_density then
-		self.gridw = 0
-		
-		if math.random() > spawn_probability then
-			local pos = vmath.vector3(0, 4000, 0)
-			-- local properties = { speed = speed, size = shadow_size, speed_up = speed_up_size_accumulator }
-			-- local shadow = factory.create("#shadow_factory", pos, nil, properties)
-			local shadow = factory.create("#shadow_factory", pos, nil, {})
-			msg.post(shadow, "construct", { speed_up_size_accumulator = speed_up_size_accumulator })
-			table.insert(self.shadows, shadow)
-		end
-	end
+	local pos = vmath.vector3(0, 4000, 0)
+	local message = { speed_up_size_accumulator = speed_up_size_accumulator }
+	u.spawn(self, "shadow_factory", pos, self.shadows, message)
 end
 
 function update(self, dt)
@@ -207,7 +174,7 @@ function update(self, dt)
 	end
 
 	update_time(self, dt)
-  	update_spawn_density()
+  	update_spawn_density(self)
 	spawn_enemies(self, dt)
 	spawn_golds(self, dt)
 	spawn_shadows(self, dt)
