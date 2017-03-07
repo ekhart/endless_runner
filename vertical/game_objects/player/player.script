@@ -1,3 +1,5 @@
+local timer = require "vertical.assets.timer"
+
 local beginX
 local beginY
 local endX
@@ -12,6 +14,7 @@ local totalSwipeDistanceDown
 
 local startTime = 0
 local roads
+local is_deleting = false
 
 go.property("minSwipeDistance", 40)
 go.property("minSwipeTime", 0.6)
@@ -29,10 +32,12 @@ end
 function final(self)
   print("player.final")
   msg.post(".", "release_input_focus")
+  timer.cancel_all()
 end
 
 function update(self, dt)
   -- pprint("player position = " .. go.get_position("player"))
+  timer.update(dt)
 end
 
 local function play_animation(animation)
@@ -43,8 +48,18 @@ function on_message(self, message_id, message, sender)
   print("player.on_message " .. message_id)
   if message_id == hash("contact_point_response") then
     if message.group == hash("enemy") then
-      go.delete()
-      msg.post("controller#script", "game_over")
+    	
+      if not is_deleting then
+        is_deleting = true
+        msg.post("#crash", "play_sound")          
+        msg.post("#sprite", "disable")
+    		
+        timer.seconds(2, function()
+          is_deleting = false
+          go.delete()
+      		msg.post("controller#script", "game_over")
+        end)
+      end
 
       -- Die and restart
       -- particlefx.play("#deathfx")
