@@ -39,7 +39,7 @@ function init(self)
 end
  
 function update(self, dt)
-	u.update(self, dt, "delete_spawn")
+	u.update_without_floor(self, dt, "delete_spawn")
 end
 
 function on_message(self, message_id, message, sender)

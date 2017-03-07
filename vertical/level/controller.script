@@ -3,10 +3,10 @@ local u = require "vertical.assets.utils"
 -- todo: 
 -- DRY keys "road4"
 
-go.property("road4", 200)
-go.property("road3", 440)
-go.property("road2", 640)
-go.property("road1", 880)
+go.property("road4", 210)
+go.property("road3", 427)
+go.property("road2", 662)
+go.property("road1", 887)
 
 go.property("spawn_density", 460)
 go.property("spawn_density_step", 0.1)
@@ -14,7 +14,7 @@ go.property("spawn_density_max", 50)
 go.property("spawn_probability", 0.2)
 go.property("enemy_spawn_y", 3000)
 
-go.property("speed", 4)
+go.property("speed", 6)
 go.property("speed_up_size", 0.04)
 go.property("speed_up_every_second", 0.08)
 
@@ -149,20 +149,20 @@ local function spawn_enemies(self, dt)
 	-- local is_left_road = x == get("road4") or x == get("road3")
 	local enemy_factory = enemy_factories[is_left_road and 2 or 1]
 	local x = self.roads[math.random(#self.roads)]
-	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 0.5)
 	local message = { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator }
 	u.spawn(self, enemy_factory, pos, self.enemies, message)
 end
 
 local function spawn_golds(self, dt)
 	local x = self.roads[math.random(#self.roads)]	
-	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 0.5)
 	local message = { x = x, speed_up_size_accumulator = speed_up_size_accumulator }
 	u.spawn(self, "gold_factory", pos, self.golds, message)
 end
 
 local function spawn_shadows(self, dt)
-	local pos = vmath.vector3(0, 4000, 0)
+	local pos = vmath.vector3(0, 4000, 0.2)
 	local message = { speed_up_size_accumulator = speed_up_size_accumulator }
 	u.spawn(self, "shadow_factory", pos, self.shadows, message)
 end
