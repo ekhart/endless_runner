@@ -1,4 +1,6 @@
 local timer = require "vertical.assets.timer"
+local utils = require "vertical.assets.utils"
+
 
 local beginX
 local beginY
@@ -27,7 +29,7 @@ function init(self)
   self.move = 1
   self.current_road = 3
   change_road_duration = go.get("#", "change_road_duration")
-  msg.post("#start_engine", "play_sound")
+  utils.play_sound("start_engine")
 end
 
 function final(self)
@@ -52,7 +54,7 @@ function on_message(self, message_id, message, sender)
     	
       if not is_deleting then
         is_deleting = true
-        msg.post("#crash", "play_sound")          
+        utils.play_sound("crash")          
         msg.post("#sprite", "disable")
     		
         timer.seconds(2, function()
