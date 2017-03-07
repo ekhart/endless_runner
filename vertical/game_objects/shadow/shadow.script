@@ -1,45 +1,24 @@
+local u = require "vertical.assets.utils"
+
 go.property("size", 1)
 go.property("speed", 6)
 go.property("speed_up", 0)
 
 local animations = { "tree_shadow_A", "tree_shadow_B", "tree_shadow_C" }
 
-local function set_scale(self)
-  local scale = go.get_scale()
-  scale = vmath.vector3(self.size, self.size, 1.0)
-  go.set_scale(scale)
-end
-
-local function set_animation()
-	local random_index = math.random(#animations)
-	local animation = animations[random_index] 
-	msg.post("#sprite", "play_animation", {id = hash(animation)})
-end
-
 local function set_opacity()
 	sprite.set_constant("#sprite", "tint", vmath.vector4(1, 0, 0, 0.3))
 end
 
-local function set_current_pos(change)
-  local pos = go.get_position()
-  change(pos)
-  go.set_position(pos)
-end
-
 function init(self)
 	self.speed = self.speed + go.get("#", "speed_up")
-	set_scale(self)
-	set_animation()
+	u.set_scale(self.size)
+	u.set_sprite_random_animation(animations)
   	set_opacity()
 end
 
 function update(self, dt)
-  	set_current_pos(function (pos)
-    	if pos.y < -200 then
-      		msg.post("level:/controller#script", "delete_shadow", { id = go.get_id() })
-    	end
-    	pos.y = pos.y - self.speed
-	end)
+	u.update(self, dt, "delete_shadow")
 end
 
 function on_message(self, message_id, message, sender)
