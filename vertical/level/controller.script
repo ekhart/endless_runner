@@ -155,7 +155,7 @@ local function spawn_enemies(self, dt)
 end
 
 local function spawn_golds(self, dt)
-	local x = self.roads[math.random(#self.roads)]
+	local x = self.roads[math.random(#self.roads)]	
 	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
 	local message = { x = x, speed_up_size_accumulator = speed_up_size_accumulator }
 	u.spawn(self, "gold_factory", pos, self.golds, message)
@@ -168,10 +168,10 @@ local function spawn_shadows(self, dt)
 end
 
 function update(self, dt)
-	if self.shake > 0 then
-		go.set_position(self.pos + vmath.vector3(math.random() * self.shake, math.random() * self.shake, 0))
-		self.shake = self.shake * 0.9 - 0.1 
-	end
+	--if self.shake > 0 then
+	--	go.set_position(self.pos + vmath.vector3(math.random() * self.shake, math.random() * self.shake, 0))
+	--	self.shake = self.shake * 0.9 - 0.1 
+	--end
 
 	update_time(self, dt)
   	update_spawn_density(self)
@@ -219,14 +219,14 @@ function on_message(self, message_id, message, sender)
 		post_gui("set_points", { points = points })
 	elseif message_id == hash("delete_spawn") then
 		remove_from_table(self.enemies, message.id)
-  elseif message_id == hash("delete_gold") then
+  	elseif message_id == hash("delete_gold") then
 		remove_from_table(self.golds, message.id)
 	elseif message_id == hash("delete_shadow") then
 		remove_from_table(self.shadows, message.id)
-  elseif message_id == hash("game_over") then
+  	elseif message_id == hash("game_over") then
     	local high_score = save_highest_score()
     	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
-  elseif message_id == hash("collect_gold") then
+  	elseif message_id == hash("collect_gold") then
     	gold = gold + gold_value
     	remove_from_table(self.golds, message.id)
   	elseif message_id == hash("shake") then
