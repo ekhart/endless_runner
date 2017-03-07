@@ -27,6 +27,7 @@ function init(self)
   self.move = 1
   self.current_road = 3
   change_road_duration = go.get("#", "change_road_duration")
+  msg.post("#start_engine", "play_sound")
 end
 
 function final(self)
