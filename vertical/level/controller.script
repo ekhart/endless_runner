@@ -149,20 +149,20 @@ local function spawn_enemies(self, dt)
 	-- local is_left_road = x == get("road4") or x == get("road3")
 	local enemy_factory = enemy_factories[is_left_road and 2 or 1]
 	local x = self.roads[math.random(#self.roads)]
-	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 0.5)
 	local message = { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator }
 	u.spawn(self, enemy_factory, pos, self.enemies, message)
 end
 
 local function spawn_golds(self, dt)
 	local x = self.roads[math.random(#self.roads)]	
-	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 0.5)
 	local message = { x = x, speed_up_size_accumulator = speed_up_size_accumulator }
 	u.spawn(self, "gold_factory", pos, self.golds, message)
 end
 
 local function spawn_shadows(self, dt)
-	local pos = vmath.vector3(0, 4000, 0)
+	local pos = vmath.vector3(0, 4000, 0.2)
 	local message = { speed_up_size_accumulator = speed_up_size_accumulator }
 	u.spawn(self, "shadow_factory", pos, self.shadows, message)
 end

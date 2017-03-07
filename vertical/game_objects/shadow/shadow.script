@@ -4,11 +4,10 @@ go.property("size", 1)
 go.property("speed", 6)
 go.property("speed_up", 0)
 
-local animations = { "tree_shadow_A", "tree_shadow_B", "tree_shadow_C", "home_shadow_1", "home_shadow_2", "silo_shadow_1"  }
-
+local animations = { "tree_shadow_A", "tree_shadow_B", "tree_shadow_C", "home_shadow_1", "home_shadow_2", "silo_shadow_1" }
 
 local function set_opacity()
-	sprite.set_constant("#sprite", "tint", vmath.vector4(1, 0, 0, 0.4))
+	sprite.set_constant("#sprite", "tint", vmath.vector4(0, 0, 0, 0.4))
 end
 
 local function construct()
