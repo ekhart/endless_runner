@@ -121,7 +121,7 @@ animations {
     image: "/vertical/assets/animations/player/mustang_anim/mustang_anim_0039.png"
   }
   playback: PLAYBACK_ONCE_FORWARD
-  fps: 30
+  fps: 60
   flip_horizontal: 0
   flip_vertical: 0
 }
@@ -252,7 +252,7 @@ animations {
     image: "/vertical/assets/animations/player/mustang_anim/mustang_anim_0078.png"
   }
   playback: PLAYBACK_ONCE_FORWARD
-  fps: 30
+  fps: 60
   flip_horizontal: 0
   flip_vertical: 0
 }
