@@ -22,6 +22,8 @@ go.property("shadow_size", 1)
 go.property("points_value", 0.1)
 
 
+go.property("shake", 0)
+
 local points = 0
 local gold = 0
 local gold_value = 100
@@ -83,6 +85,10 @@ function init(self)
   if webview then
     webview_id = webview.create(webview_callback)
   end
+  
+  	-- msg.post("/camera#camera", "acquire_camera_focus")
+	-- self.pos = go.get_world_position()
+	-- self.look_at = self.pos
 end
 
 function final(self)
@@ -193,6 +199,11 @@ local function spawn_shadows(self, dt)
 end
 
 function update(self, dt)
+	if self.shake > 0 then
+		go.set_position(self.pos + vmath.vector3(math.random() * self.shake, math.random() * self.shake, 0))
+		self.shake = self.shake * 0.9 - 0.1 
+	end
+
 	update_time(self, dt)
   	update_spawn_density()
 	spawn_enemies(self, dt)
@@ -249,5 +260,7 @@ function on_message(self, message_id, message, sender)
   elseif message_id == hash("collect_gold") then
     	gold = gold + gold_value
     	remove_from_table(self.golds, message.id)
-  	end 	
+  	elseif message_id == hash("shake") then
+		self.shake = 8
+	end
 end

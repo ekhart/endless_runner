@@ -54,6 +54,7 @@ function on_message(self, message_id, message, sender)
         utils.play_sound("crash")          
         msg.post("#sprite", "disable")
         utils.enable("crash_text")
+        msg.post("controller#script", "shake")
     		
         timer.seconds(2, function()
           is_deleting = false
