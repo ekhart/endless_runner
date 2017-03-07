@@ -5,7 +5,7 @@ instances {
   position {
     x: 662.0
     y: 200.0
-    z: 1.0
+    z: 0.8
   }
   rotation {
     x: 0.0
@@ -40,6 +40,41 @@ collection_instances {
   }
 }
 scale_along_z: 0
+embedded_instances {
+  id: "camera"
+  data: "components {\n"
+  "  id: \"camera\"\n"
+  "  component: \"/vertical/game_objects/camera.camera\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 810.0
+    y: 4800.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 embedded_instances {
   id: "controller"
   data: "components {\n"
@@ -144,41 +179,6 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "camera"
-  data: "components {\n"
-  "  id: \"camera\"\n"
-  "  component: \"/vertical/game_objects/camera.camera\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: 810.0
-    y: 4800.0
-    z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-embedded_instances {
   id: "hud"
   data: "components {\n"
   "  id: \"gui\"\n"
@@ -245,7 +245,7 @@ embedded_instances {
   "\"\n"
   "  position {\n"
   "    x: 0.0\n"
-  "    y: -96.08346\n"
+  "    y: -120.0\n"
   "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
@@ -271,5 +271,25 @@ embedded_instances {
     x: 2.0
     y: 2.0
     z: 2.0
+  }
+}
+embedded_instances {
+  id: "shadows"
+  data: ""
+  position {
+    x: 156.0
+    y: 1000.0
+    z: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
   }
 }

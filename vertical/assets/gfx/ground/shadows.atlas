@@ -7,6 +7,15 @@ images {
 images {
   image: "/vertical/assets/gfx/ground/shadows/tree_shadow_A.png"
 }
+images {
+  image: "/vertical/assets/gfx/ground/shadows/home_shadow_1.png"
+}
+images {
+  image: "/vertical/assets/gfx/ground/shadows/home_shadow_2.png"
+}
+images {
+  image: "/vertical/assets/gfx/ground/shadows/silo_shadow_1.png"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0
