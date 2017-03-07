@@ -10,10 +10,7 @@ local function set_opacity()
 	sprite.set_constant("#sprite", "tint", vmath.vector4(1, 0, 0, 0.3))
 end
 
-local function construct(self, message)
-	self.speed = self.speed +  message.speed_up_size_accumulator
-	self.size = go.get("#", "size")
-	u.set_scale(self.size)
+local function construct()
 	u.set_sprite_random_animation(animations)
   	set_opacity()
 end
@@ -24,7 +21,7 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("construct") then
-  		construct(self, message)
+  		u.construct(self, message, construct)
 	elseif message_id == hash("add_speed") then
     	self.speed = self.speed + message.speed
 	end

@@ -81,6 +81,13 @@ function M.debug(text, x, y)
 	msg.post("@render:", "draw_text", message)
 end
 
+function M.construct(self, message, after)
+	self.speed = self.speed +  message.speed_up_size_accumulator
+	self.size = go.get("#", "size")  
+	M.set_scale(self.size)
+	after(self, message)
+end
+
 function M.update(self, dt, delete_message_id)
 	M.set_position(function (pos)
     	if pos.y < -200 then

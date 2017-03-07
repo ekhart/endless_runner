@@ -4,16 +4,9 @@ go.property("size", .4)
 go.property("speed", 6)
 
 local function construct(self, message)
-	self.speed = go.get("#", "speed")
-	self.size = go.get("#", "size")
-  
-	u.set_position(function (pos)
+	u.set_position(function(pos)
 		pos.x = message.x
 	end)
-
-	u.set_scale(self.size)
-
-	self.speed = self.speed +  message.speed_up_size_accumulator
 end
 
 function update(self, dt)
@@ -22,7 +15,7 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("construct") then
-  		construct(self, message)
+  		u.construct(self, message, construct)
   	elseif message_id == hash("add_speed") then
     	self.speed = self.speed + message.speed
 	elseif message_id == hash("play_collect_sound") then
