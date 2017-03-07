@@ -3,10 +3,10 @@ local u = require "vertical.assets.utils"
 -- todo: 
 -- DRY keys "road4"
 
-go.property("road4", 200)
-go.property("road3", 440)
-go.property("road2", 640)
-go.property("road1", 880)
+go.property("road4", 210)
+go.property("road3", 427)
+go.property("road2", 662)
+go.property("road1", 887)
 
 go.property("spawn_density", 460)
 go.property("spawn_density_step", 0.1)
