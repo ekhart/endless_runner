@@ -1,4 +1,5 @@
 local u = require "vertical.assets.utils"
+local c = require "vertical.assets.const"
 
 local pieces = { "background", "background1", "background2", "background3", "background4",  "background5" }
 local screen_height
@@ -8,7 +9,7 @@ go.property("speed", 6)
 function init(self)
 	-- self.ground_height != ground_height
 	screen_height = sys.get_config("display.height")	
-	self.speed = go.get("#", "speed")
+	self.speed = u.get(c.prop.speed)
 end
 
 local function print_debug(i, p, pos)
@@ -20,12 +21,11 @@ end
 
 function update(self, dt)
 	-- u.debug("ground.speed = " .. self.speed, 200, 200)
-
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
 		if pos.y <= -screen_height then
 			pos.y = 9600 - self.speed
-			msg.post("level:/controller#script", "add_point")
+			msg.post(c.msg.recv.controller, c.msg.add_point)
 		end
     
 		pos.y = math.floor(pos.y - self.speed)
@@ -35,9 +35,9 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("set_speed") then
+	if u.is_id(message_id, c.msg.set_speed) then
 		self.speed = message.speed
-	elseif message_id == hash("add_speed") then
+	elseif u.is_id(message_id, c.msg.add_speed) then
 		self.speed = self.speed + message.speed
 	end
 end

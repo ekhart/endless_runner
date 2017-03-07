@@ -135,4 +135,8 @@ function M.spawn(self, factory_id, pos, objects, message)
 	end
 end
 
+function M.get(prop)
+	return go.get("#", prop)
+end
+
 return M
