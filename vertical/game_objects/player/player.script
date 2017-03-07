@@ -59,7 +59,7 @@ function on_message(self, message_id, message, sender)
         timer.seconds(2, function()
           is_deleting = false
           go.delete()
-      		msg.post("controller#script", "game_over")
+      	  msg.post("controller#script", "game_over")
         end)
       end
 
@@ -85,7 +85,7 @@ function on_message(self, message_id, message, sender)
         
     elseif message.group == hash("gold") then
     	msg.post(message.other_id, "play_collect_sound")
-      msg.post("controller#script", "collect_gold", { id = message.other_id })
+      	msg.post("controller#script", "collect_gold", { id = message.other_id })
     end
   elseif message_id == hash("set_roads") then
     roads = message.roads

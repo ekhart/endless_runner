@@ -8,6 +8,11 @@ function M.play_sprite_animation(animation)
   msg.post("#sprite", "play_animation", { id = hash(animation) })
 end
 
+function M.set_sprite_random_animation(animations)
+	local random_index = math.random(#animations)
+	M.play_sprite_animation(animations[random_index]) 
+end
+
 function M.is_id(id, to_hash)
   return id == hash(to_hash)
 end
@@ -76,18 +81,12 @@ function M.debug(text, x, y)
 	msg.post("@render:", "draw_text", message)
 end
 
-function M.set_sprite_random_animation(animations)
-	local random_index = math.random(#animations)
-	local animation = animations[random_index] 
-	msg.post("#sprite", "play_animation", {id = hash(animation)})
-end
-
 function M.update(self, dt, delete_message_id)
 	M.set_position(function (pos)
     	if pos.y < -200 then
       		msg.post("level:/controller#script", delete_message_id, { id = go.get_id() })
     	end
-    	pos.y = pos.y - self.speed
+    	pos.y = math.floor(pos.y - self.speed)
 	end)
 end
 

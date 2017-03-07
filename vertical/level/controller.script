@@ -108,6 +108,16 @@ local function post_gui(message_id, message)
 	msg.post("level:/hud#gui", message_id, message)
 end
 
+local function object_add_speed(object, speed_up)
+	msg.post(object, "add_speed", { speed = speed_up })
+end
+
+local function add_speed(objects, speed_up)
+	for i, object in ipairs(objects) do
+		object_add_speed(object, speed_up)
+	end
+end
+
 local function update_time(self, dt)
 	time_from_start = time_from_start + dt
 	speed_up_accumulator = speed_up_accumulator + dt
@@ -121,20 +131,10 @@ local function update_time(self, dt)
 		speed_up_size_accumulator = speed_up_size_accumulator + speed_up_size
 		
 		local groud_speed_up = speed_up_size
-		msg.post("ground/controller#script", "add_speed", { speed = groud_speed_up })
-
-		for i, enemy in ipairs(self.enemies) do
-			-- u.debug("enemy" .. i .. ".speed = " ..  , 200, 1000 - i * 100)
-			msg.post(enemy, "add_speed", { speed = speed_up_size*2 })
-		end
-		
-		for i, gold in ipairs(self.golds) do
-			msg.post(gold, "add_speed", { speed = groud_speed_up })
-		end
-		
-		for i, shadow in ipairs(self.shadows) do
-			msg.post(shadow, "add_speed", { speed = groud_speed_up })
-		end
+		object_add_speed("ground/controller#script", groud_speed_up)
+		add_speed(self.enemies, speed_up_size*2)
+		add_speed(self.golds, groud_speed_up)
+		add_speed(self.shadows, groud_speed_up)
 	end
 end
 
@@ -191,8 +191,10 @@ local function spawn_shadows(self, dt)
 		
 		if math.random() > spawn_probability then
 			local pos = vmath.vector3(0, 4000, 0)
-			local properties = { speed = speed, size = shadow_size, speed_up = speed_up_size_accumulator }
-			local shadow = factory.create("#shadow_factory", pos, nil, properties)
+			-- local properties = { speed = speed, size = shadow_size, speed_up = speed_up_size_accumulator }
+			-- local shadow = factory.create("#shadow_factory", pos, nil, properties)
+			local shadow = factory.create("#shadow_factory", pos, nil, {})
+			msg.post(shadow, "construct", { speed_up_size_accumulator = speed_up_size_accumulator })
 			table.insert(self.shadows, shadow)
 		end
 	end
