@@ -1,5 +1,5 @@
 go.property("left_roads_speed", 32)
-go.property("right_roads_speed", 15)
+go.property("right_roads_speed", 2)
 go.property("size", 1)
 
 local this = "."
@@ -64,11 +64,10 @@ function update(self, dt)
       msg.post("level:/controller#script", "delete_spawn", { id = go.get_id() })
     end
     pos.y = pos.y - self.speed
-	end)
+  end)
 end
 
 function on_message(self, message_id, message, sender)
-  print("enemy.on_message: " .. message_id)
   if message_id == hash("construct") then
   	construct(self, message)
   elseif message_id == hash("add_speed") then
