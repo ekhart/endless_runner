@@ -72,8 +72,6 @@ function on_message(self, message_id, message, sender)
   if message_id == hash("construct") then
   	construct(self, message)
   elseif message_id == hash("add_speed") then
-    -- print("self.speed before = " .. self.speed)
     self.speed = self.speed + message.speed
-    -- print("self.speed after = " .. self.speed)
   end
 end

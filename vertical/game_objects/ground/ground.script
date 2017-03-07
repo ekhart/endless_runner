@@ -1,3 +1,5 @@
+local u = require "vertical.assets.utils"
+
 local pieces = { "background", "background1", "background2", "background3", "background4",  "background5" }
 local screen_height
 
@@ -10,7 +12,6 @@ function init(self)
 end
 
 local function print_debug(i, p, pos)
-	-- degub print example
 	-- http://www.defold.com/manuals/debugging/#_visual_profiler
 	local position = vmath.vector3(200, 200 + i*15, 0)
 	local message = {text = p .. ".pos.y: " .. pos.y, position = position}
@@ -18,8 +19,7 @@ local function print_debug(i, p, pos)
 end
 
 function update(self, dt)
-  -- local dbg = require "builtins.scripts.mobdebug"
-  -- dbg.start()
+	u.debug("ground.speed = " .. self.speed, 200, 200)
 
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
@@ -38,6 +38,6 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("set_speed") then
 		self.speed = message.speed
 	elseif message_id == hash("add_speed") then
-		self.speed = self.speed + speed_up_size
+		self.speed = self.speed + message.speed
 	end
 end

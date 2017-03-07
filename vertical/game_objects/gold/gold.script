@@ -1,38 +1,27 @@
+local u = require "vertical.assets.utils"
+
 go.property("size", .4)
 go.property("speed", 6)
-
-
-local function set_current_pos(change)
-  local pos = go.get_position()
-  change(pos)
-  go.set_position(pos)
-end
-
-local function set_scale(self)
-  local scale = go.get_scale()
-  scale = vmath.vector3(self.size, self.size, 1.0)
-  go.set_scale(scale)
-end
 
 local function construct(self, message)
 	self.speed = go.get("#", "speed")
 	self.size = go.get("#", "size")
   
-	set_current_pos(function (pos)
+	u.set_position(function (pos)
 		pos.x = message.x
 	end)
 
-	set_scale(self)
+	u.set_scale(self.size)
 
 	self.speed = self.speed +  message.speed_up_size_accumulator
 end
 
 function update(self, dt)
-  set_current_pos(function (pos)
-    if pos.y < -200 then
-      msg.post("level:/controller#script", "delete_gold", { id = go.get_id() })
-    end
-    pos.y = pos.y - self.speed
+	u.set_position(function (pos)
+    	if pos.y < -200 then
+      		msg.post("level:/controller#script", "delete_gold", { id = go.get_id() })
+    	end
+    	pos.y = pos.y - self.speed
 	end)
 end
 

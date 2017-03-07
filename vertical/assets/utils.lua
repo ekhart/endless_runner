@@ -53,5 +53,27 @@ function M.on_input(self, action_id, action, handle_input)
   end
 end
 
+function M.set_position(change)
+  local pos = go.get_position()
+  change(pos)
+  go.set_position(pos)
+end
+
+-- function M.set_position(id, change)
+--   local pos = go.get_position(id)
+--   change(pos)
+--   go.set_position(pos, id)
+-- end
+
+function M.set_scale(size)
+  local scale = go.get_scale()
+  scale = vmath.vector3(size, size, 1.0)
+  go.set_scale(scale)
+end
+
+function M.debug(text, x, y)
+	local message = {text = text, position = vmath.vector3(x, y, 0)}
+	msg.post("@render:", "draw_text", message)
+end
 
 return M
