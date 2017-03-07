@@ -17,12 +17,7 @@ local function construct(self, message)
 end
 
 function update(self, dt)
-	u.set_position(function (pos)
-    	if pos.y < -200 then
-      		msg.post("level:/controller#script", "delete_gold", { id = go.get_id() })
-    	end
-    	pos.y = pos.y - self.speed
-	end)
+	u.update(self, dt, "delete_gold")
 end
 
 function on_message(self, message_id, message, sender)
