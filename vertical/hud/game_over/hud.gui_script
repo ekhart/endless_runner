@@ -1,57 +1,34 @@
+local utils = require "vertical.assets.utils"
+
 function init(self)
   print("game_over.hud.init")
-  msg.post(".", "acquire_input_focus")
+  utils.acquire_input_focus()
 end
 
 function final(self)
   print("game_over.hud.final")
-  msg.post(".", "release_input_focus")
-end
-
-local function is_id(id, to_hash)
-  return id == hash(to_hash)
+  utils.release_input_focus()
 end
 
 local function handle_input(action)
-  local x = action.x
-  local y = action.y
-
-  local retry = gui.get_node("retry")
-  local main_menu = gui.get_node("main_menu")
-  local exit_game = gui.get_node("exit_game")
-  
-  if gui.pick_node(exit_game, x, y) then
-    msg.post("@system:", "exit", {code = 0})
-  elseif gui.pick_node(retry, x, y) then
+  utils.click_button("game_over", "retry", action, function() 
     msg.post("main:/loader", "restart")
-  elseif gui.pick_node(main_menu, x, y) then
+  end)
+  utils.click_button("game_over", "main_menu", action, function() 
     msg.post("main:/loader", "main_menu")
-  end
+  end)
+  utils.click_button("game_over", "exit_game", action, function() 
+    msg.post("@system:", "exit", {code = 0})
+  end)
 end
 
 function on_input(self, action_id, action)
-  local is_mouse_pressed = is_id(action_id, "left_button") and action.pressed 
-  local is_touched = is_id(action_id, "touch") and #action.touch > 1
-
-  if is_mouse_pressed then
-    handle_input(action)
-  elseif is_touched then
-    for i, point in ipairs(action.touch) do
-      handle_input(action)
-    end
-  end
-end
-
-local function set_node_text(node, text)
-	gui.set_text(gui.get_node(node), text)
+	utils.on_input(self, action_id, action, handle_input)
 end
 
 function on_message(self, message_id, message, sender)
   if message_id == hash("set_longest_chase") then
-    local text = string.format("Longest chase: %.2f miles", message.high_score)
-    set_node_text("running", text)
-    
-    text = string.format("You have stolen %i$", message.gold)
-    set_node_text("stolen", text)
+	utils.set_node_text("running", "Longest chase: %.2f miles", message.high_score)
+    utils.set_node_text("stolen", "You have stolen %i$", message.gold)
   end
 end
