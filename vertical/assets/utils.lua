@@ -19,4 +19,38 @@ function M.click_button(domain, node, action, after)
 	end
 end
 
+function M.post_current(message_id)
+	msg.post(".", message_id)
+end
+
+function M.acquire_input_focus()
+	M.post_current("acquire_input_focus")
+end
+
+function M.release_input_focus()
+	M.post_current("release_input_focus")
+end
+
+function M.set_node_text(node, text)
+	gui.set_text(gui.get_node(node), text)
+end
+
+function M.set_node_text(node, format_text, parameter)
+	gui.set_text(gui.get_node(node), string.format(format_text, parameter))
+end
+
+function M.on_input(self, action_id, action, handle_input)
+  local is_mouse_pressed = M.is_id(action_id, "left_button") and action.pressed 
+  local is_touched = M.is_id(action_id, "touch") and #action.touch > 1
+
+  if is_mouse_pressed then
+    handle_input(action)
+  elseif is_touched then
+    for i, point in ipairs(action.touch) do
+      handle_input(action)
+    end
+  end
+end
+
+
 return M
