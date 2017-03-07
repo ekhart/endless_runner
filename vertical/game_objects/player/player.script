@@ -1,3 +1,7 @@
+local timer = require "vertical.assets.timer"
+local utils = require "vertical.assets.utils"
+
+
 local beginX
 local beginY
 local endX
@@ -12,6 +16,7 @@ local totalSwipeDistanceDown
 
 local startTime = 0
 local roads
+local is_deleting = false
 
 go.property("minSwipeDistance", 40)
 go.property("minSwipeTime", 0.6)
@@ -24,29 +29,39 @@ function init(self)
   self.move = 1
   self.current_road = 3
   change_road_duration = go.get("#", "change_road_duration")
+  utils.play_sound("start_engine")
+  utils.disable("crash_text")
 end
 
 function final(self)
   print("player.final")
   msg.post(".", "release_input_focus")
+  timer.cancel_all()
 end
 
 function update(self, dt)
   -- pprint("player position = " .. go.get_position("player"))
-end
-
-local function play_animation(animation)
-  msg.post("#sprite", "play_animation", { id = hash(animation) })
+  timer.update(dt)
 end
 
 function on_message(self, message_id, message, sender)
   print("player.on_message " .. message_id)
   if message_id == hash("contact_point_response") then
-    -- check if we received a contact point message
-
     if message.group == hash("enemy") then
-      go.delete()
-      msg.post("controller#script", "game_over")
+    	
+      if not is_deleting then
+        is_deleting = true
+        utils.play_sound("crash")          
+        msg.post("#sprite", "disable")
+        utils.enable("crash_text")
+        msg.post("controller#script", "shake")
+    		
+        timer.seconds(2, function()
+          is_deleting = false
+          go.delete()
+      	  msg.post("controller#script", "game_over")
+        end)
+      end
 
       -- Die and restart
       -- particlefx.play("#deathfx")
@@ -68,16 +83,13 @@ function on_message(self, message_id, message, sender)
         --   end
         -- end)
         
-    elseif message.group == hash("geometry") then
-      -- handle_geometry_contact(self, message.normal, message.distance)
+    elseif message.group == hash("gold") then
+    	msg.post(message.other_id, "play_collect_sound")
+      	msg.post("controller#script", "collect_gold", { id = message.other_id })
     end
   elseif message_id == hash("set_roads") then
     roads = message.roads
   end
-end
-
-local function play_animation_ride(self, url, property)
-  play_animation("ride")
 end
 
 local function return_rotation(self, url, property)
@@ -87,7 +99,7 @@ local function return_rotation(self, url, property)
 end
 
 local function move_car(self, move_id, pos_diff)
-  play_animation("turn_" .. move_id)
+  utils.play_sprite_animation("turn_" .. move_id)
 
   local change = self.current_road + pos_diff
   if not (change < 1 or change > 4) then
@@ -163,10 +175,11 @@ local function on_touch_input(self, action_id, action)
 end
 
 function on_input(self, action_id, action)
-  if action_id then
-    print("player.on_input " .. hash(action_id))
-	end
-  move_horizontal(self, action_id, action, "right", self.move)
+	if action_id then
+  		print("player.on_input " .. hash(action_id))
+    end
+    
+    move_horizontal(self, action_id, action, "right", self.move)
 	move_horizontal(self, action_id, action, "left", -self.move)
 	on_touch_input(self, action_id, action)
 end

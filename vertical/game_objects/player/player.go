@@ -23,6 +23,7 @@ embedded_components {
   "restitution: 0.5\n"
   "group: \"hero\"\n"
   "mask: \"enemy\"\n"
+  "mask: \"gold\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
@@ -61,12 +62,72 @@ embedded_components {
   }
 }
 embedded_components {
+  id: "crash"
+  type: "sound"
+  data: "sound: \"/vertical/assets/sfx/car_crash_windows440.wav\"\n"
+  "looping: 0\n"
+  "group: \"master\"\n"
+  "gain: 1.0\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "crash_text"
+  type: "sprite"
+  data: "tile_set: \"/vertical/assets/animations/crash_text/crash_text.atlas\"\n"
+  "default_animation: \"crash_text\"\n"
+  "material: \"/builtins/materials/sprite.material\"\n"
+  "blend_mode: BLEND_MODE_ALPHA\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
   id: "sprite"
   type: "sprite"
   data: "tile_set: \"/vertical/assets/animations/player/player.atlas\"\n"
   "default_animation: \"ride\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "start_engine"
+  type: "sound"
+  data: "sound: \"/vertical/assets/sfx/start game2_windows440.wav\"\n"
+  "looping: 0\n"
+  "group: \"master\"\n"
+  "gain: 1.0\n"
   ""
   position {
     x: 0.0

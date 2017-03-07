@@ -58,10 +58,7 @@ function on_message(self, message_id, message, sender)
 		unload_proxy("game_over")
     is_restart = true
 	elseif message_id == hash("proxy_loaded") then
-    -- local dbg = require "builtins.scripts.mobdebug"  
-    -- dbg.start()
-  
-		msg.post(sender, "enable")
+ 		msg.post(sender, "enable")
 
     if is_game_over then
       msg.post("game_over:/hud#gui", "set_longest_chase", _message)

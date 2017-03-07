@@ -1,3 +1,5 @@
+local u = require "vertical.assets.utils"
+
 -- todo: 
 -- DRY keys "road4"
 
@@ -10,20 +12,28 @@ go.property("spawn_density", 460)
 go.property("spawn_density_step", 0.1)
 go.property("spawn_density_max", 50)
 go.property("spawn_probability", 0.2)
-go.property("enemy_spawn_y", 2000)
+go.property("enemy_spawn_y", 3000)
 
-go.property("speed", 6)
-go.property("speed_up_size", 1)
-go.property("speed_up_every_second", 1.0)
+go.property("speed", 4)
+go.property("speed_up_size", 0.04)
+go.property("speed_up_every_second", 0.08)
+
+go.property("shadow_size", 1)
+go.property("points_value", 0.1)
+
+
+go.property("shake", 0)
 
 local points = 0
+local gold = 0
+local gold_value = 100
 local speed_up_size_accumulator = 0
 
 local function get(property)
 	return go.get("#", property)
 end
 
-local enemy_factories = { "#enemy_factory", "#enemy_slow_factory" }
+local enemy_factories = { "enemy_factory", "enemy_slow_factory" }
 
 local webview_id
 
@@ -47,34 +57,44 @@ function init(self)
 	
 	self.gridw = 0
 	self.enemies = {}
+	self.golds = {}
+	self.shadows = {}
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
-	spawn_density = get("spawn_density")
-  spawn_density_step = get("spawn_density_step")
-  spawn_density_max = get("spawn_density_max")
-	spawn_probability = get("spawn_probability")
+	self.spawn_density = get("spawn_density")
+  	self.spawn_density_step = get("spawn_density_step")
+  	self.spawn_density_max = get("spawn_density_max")
+	self.spawn_probability = get("spawn_probability")
 	speed_up_size = get("speed_up_size")
 	speed_up_every_second = get("speed_up_every_second")
 	
 	speed = get("speed")
-	roads = { get("road4"), get("road3"), get("road2"), get("road1") }
-	msg.post("player#script", "set_roads", { roads = roads })
-	enemy_spawn_y = get("enemy_spawn_y")
+	self.roads = { get("road4"), get("road3"), get("road2"), get("road1") }
+	msg.post("player#script", "set_roads", { roads = self.roads })
+	self.enemy_spawn_y = get("enemy_spawn_y")
+	shadow_size = get("shadow_size")
+	points_value = get("points_value")
 
 	print("controller.init")
 	msg.post(".", "acquire_input_focus")
   
-  if not webview then
+  local dbg = require "builtins.scripts.mobdebug"  
+  dbg.start()
+  
+  if webview then
     webview_id = webview.create(webview_callback)
   end
+  
+  	-- msg.post("/camera#camera", "acquire_camera_focus")
+	-- self.pos = go.get_world_position()
+	-- self.look_at = self.pos
 end
 
 function final(self)
 	print("controller.final")
 	msg.post(".", "release_input_focus")
 end
-
 
 local function print_time(dt)
 	local position = vmath.vector3(100, 100, 0)
@@ -86,6 +106,16 @@ end
 
 local function post_gui(message_id, message)
 	msg.post("level:/hud#gui", message_id, message)
+end
+
+local function object_add_speed(object, speed_up)
+	msg.post(object, "add_speed", { speed = speed_up })
+end
+
+local function add_speed(objects, speed_up)
+	for i, object in ipairs(objects) do
+		object_add_speed(object, speed_up)
+	end
 end
 
 local function update_time(self, dt)
@@ -100,48 +130,54 @@ local function update_time(self, dt)
 		speed_up_accumulator = 0
 		speed_up_size_accumulator = speed_up_size_accumulator + speed_up_size
 		
-		msg.post("ground/controller#script", "add_speed", { speed = speed_up_size/4 })
-
-		for i, enemy in ipairs(self.enemies) do
-			-- print("enemy " .. i)
-			msg.post(enemy, "add_speed", { speed = speed_up_size })
-		end
+		local groud_speed_up = speed_up_size
+		object_add_speed("ground/controller#script", groud_speed_up)
+		add_speed(self.enemies, speed_up_size*2)
+		add_speed(self.golds, groud_speed_up)
+		add_speed(self.shadows, groud_speed_up)
 	end
 end
 
-local function update_spawn_density()
-  if spawn_density > spawn_density_max then
-    spawn_density = spawn_density - spawn_density_step
+local function update_spawn_density(self)
+  if self.spawn_density > self.spawn_density_max then
+    self.spawn_density = self.spawn_density - self.spawn_density_step
   end
-  -- print("spawn_density = " .. spawn_density)
 end
 
 local function spawn_enemies(self, dt)
-	self.gridw = self.gridw + self.speed
+	local is_left_road = false
+	-- local is_left_road = x == get("road4") or x == get("road3")
+	local enemy_factory = enemy_factories[is_left_road and 2 or 1]
+	local x = self.roads[math.random(#self.roads)]
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local message = { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator }
+	u.spawn(self, enemy_factory, pos, self.enemies, message)
+end
 
-	if self.gridw >= spawn_density then
-		self.gridw = 0
-		
-		if math.random() > spawn_probability then
-			local x = roads[math.random(#roads)]
-			local is_left_road = x == get("road4") or x == get("road3")
-			local enemy_factory = enemy_factories[is_left_road and 2 or 1]
-			local pos = vmath.vector3(x, enemy_spawn_y, 1)
-			local enemy = factory.create(enemy_factory, pos, nil, {})
-			
-			-- print("construct")
-			-- pprint(enemy)
-			-- todo: refact send { x = x, is_left_road = is_left_road } in factory.create
-			msg.post(enemy, "construct", { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator })
-			table.insert(self.enemies, enemy)
-		end
-	end
+local function spawn_golds(self, dt)
+	local x = self.roads[math.random(#self.roads)]
+	local pos = vmath.vector3(x, self.enemy_spawn_y, 1)
+	local message = { x = x, speed_up_size_accumulator = speed_up_size_accumulator }
+	u.spawn(self, "gold_factory", pos, self.golds, message)
+end
+
+local function spawn_shadows(self, dt)
+	local pos = vmath.vector3(0, 4000, 0)
+	local message = { speed_up_size_accumulator = speed_up_size_accumulator }
+	u.spawn(self, "shadow_factory", pos, self.shadows, message)
 end
 
 function update(self, dt)
+	if self.shake > 0 then
+		go.set_position(self.pos + vmath.vector3(math.random() * self.shake, math.random() * self.shake, 0))
+		self.shake = self.shake * 0.9 - 0.1 
+	end
+
 	update_time(self, dt)
-  update_spawn_density()
+  	update_spawn_density(self)
 	spawn_enemies(self, dt)
+	spawn_golds(self, dt)
+	spawn_shadows(self, dt)
 end
 
 local function save_highest_score()
@@ -150,10 +186,15 @@ local function save_highest_score()
 
   if not next(my_table) then
     table.insert(my_table, points)
+    table.insert(my_table, gold)
   end
   
   if my_table[1] < points then
     my_table[1] = points
+  end
+  
+  if my_table[2] < gold then
+    my_table[2] = gold
   end
   
   if not sys.save(my_file, my_table) then
@@ -163,22 +204,32 @@ local function save_highest_score()
   return my_table[1]
 end
 
+local function remove_from_table(_table, id)
+  for i, element in ipairs(_table) do
+    if element == id then
+      table.remove(_table, i)
+      go.delete(element)
+    end
+  end
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == hash("add_point") then
-		points = points + 1
+		points = points + points_value
 		post_gui("set_points", { points = points })
 	elseif message_id == hash("delete_spawn") then
-		for i, enemy in ipairs(self.enemies) do
-			if enemy == message.id then
-				table.remove(self.enemies, i)
-				go.delete(enemy)
-			end
-  	end
+		remove_from_table(self.enemies, message.id)
+  elseif message_id == hash("delete_gold") then
+		remove_from_table(self.golds, message.id)
+	elseif message_id == hash("delete_shadow") then
+		remove_from_table(self.shadows, message.id)
   elseif message_id == hash("game_over") then
-		-- local dbg = require "builtins.scripts.mobdebug"  
-    -- dbg.start()
-    
-    local high_score = save_highest_score()
-    msg.post("main:/loader", "game_over", { high_score = high_score})
-  end  	
+    	local high_score = save_highest_score()
+    	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
+  elseif message_id == hash("collect_gold") then
+    	gold = gold + gold_value
+    	remove_from_table(self.golds, message.id)
+  	elseif message_id == hash("shake") then
+		self.shake = 8
+	end
 end

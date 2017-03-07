@@ -7,6 +7,18 @@ images {
 images {
   image: "/vertical/assets/gfx/enemies/ford_100_B.png"
 }
+images {
+  image: "/vertical/assets/gfx/enemies/big_truck_trailer_A.png"
+}
+images {
+  image: "/vertical/assets/gfx/enemies/impala_C.png"
+}
+images {
+  image: "/vertical/assets/gfx/enemies/impala_shadow_A.png"
+}
+images {
+  image: "/vertical/assets/gfx/enemies/impala_shadow_B.png"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0

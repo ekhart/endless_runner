@@ -1,47 +1,28 @@
+local u = require "vertical.assets.utils"
+
 go.property("left_roads_speed", 32)
-go.property("right_roads_speed", 15)
-go.property("size", 0.3)
+go.property("right_roads_speed", 2)
+go.property("size", 1)
 
-local this = "."
-local animations = { "mustang_B", "mustang_C" }
-
-local function set_animation()
-	local random_index = math.random(#animations)
-	local animation = animations[random_index] 
-	msg.post("#sprite", "play_animation", {id = hash(animation)})
-end
-
-local function set_current_pos(change)
-  local pos = go.get_position(this)
-  change(pos)
-  go.set_position(pos, this)
-end
-
-local function set_scale(self)
-  local scale = go.get_scale(this)
-  scale = vmath.vector3(self.size, self.size, 1.0)
-  go.set_scale(scale, this)
-end
+local animations = { "big_truck_solo_A", "ford_100_A", "ford_100_B", "impala_shadow_B" }
 
 local function construct_base(self)
-  -- print("construct(self)")
   self.left_roads_speed = go.get("#", "left_roads_speed")
   self.right_roads_speed = go.get("#", "right_roads_speed")
   self.is_left_road = true
   self.speed = self.left_roads_speed
   self.size = go.get("#", "size")
-  set_animation()
+  u.set_sprite_random_animation(animations)
 end
 
 local function construct(self, message)
-  -- print("construct(self, message)")
   construct_base(self)
 
-  set_current_pos(function (pos)
+  u.set_position(function (pos)
     pos.x = message.x
   end)
 
-  set_scale(self)
+  u.set_scale(self.size)
 
   self.left_roads_speed = self.left_roads_speed + message.speed_up_size_accumulator
   self.right_roads_speed = self.right_roads_speed + message.speed_up_size_accumulator
@@ -54,26 +35,17 @@ local function construct(self, message)
 end
 
 function init(self)
-  -- print("init(self)")
   construct_base(self)
 end
  
 function update(self, dt)
-  set_current_pos(function (pos)
-    if pos.y < -200 then
-      msg.post("level:/controller#script", "delete_spawn", { id = go.get_id() })
-    end
-    pos.y = pos.y - self.speed
-	end)
+	u.update(self, dt, "delete_spawn")
 end
 
 function on_message(self, message_id, message, sender)
-  print("enemy.on_message: " .. message_id)
   if message_id == hash("construct") then
   	construct(self, message)
   elseif message_id == hash("add_speed") then
-    -- print("self.speed before = " .. self.speed)
     self.speed = self.speed + message.speed
-    -- print("self.speed after = " .. self.speed)
   end
 end

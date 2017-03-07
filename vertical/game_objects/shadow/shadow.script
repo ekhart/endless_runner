@@ -1,0 +1,28 @@
+local u = require "vertical.assets.utils"
+
+go.property("size", 1)
+go.property("speed", 6)
+go.property("speed_up", 0)
+
+local animations = { "tree_shadow_A", "tree_shadow_B", "tree_shadow_C" }
+
+local function set_opacity()
+	sprite.set_constant("#sprite", "tint", vmath.vector4(1, 0, 0, 0.3))
+end
+
+local function construct()
+	u.set_sprite_random_animation(animations)
+  	set_opacity()
+end
+
+function update(self, dt)
+	u.update(self, dt, "delete_shadow")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("construct") then
+  		u.construct(self, message, construct)
+	elseif message_id == hash("add_speed") then
+    	self.speed = self.speed + message.speed
+	end
+end

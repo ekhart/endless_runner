@@ -1,0 +1,24 @@
+local u = require "vertical.assets.utils"
+
+go.property("size", .4)
+go.property("speed", 6)
+
+local function construct(self, message)
+	u.set_position(function(pos)
+		pos.x = message.x
+	end)
+end
+
+function update(self, dt)
+	u.update(self, dt, "delete_gold")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("construct") then
+  		u.construct(self, message, construct)
+  	elseif message_id == hash("add_speed") then
+    	self.speed = self.speed + message.speed
+	elseif message_id == hash("play_collect_sound") then
+    	msg.post("#sound", "play_sound")
+	end
+end
