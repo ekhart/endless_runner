@@ -76,11 +76,11 @@ function M.set_position(change)
   go.set_position(pos)
 end
 
--- function M.set_position(id, change)
---   local pos = go.get_position(id)
---   change(pos)
---   go.set_position(pos, id)
--- end
+function M.set_id_position(id, change)
+   local pos = go.get_position(id)
+   change(pos)
+   go.set_position(pos, id)
+end
 
 function M.set_scale(size)
   local scale = go.get_scale()

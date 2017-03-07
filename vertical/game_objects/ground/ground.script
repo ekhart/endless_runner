@@ -22,17 +22,16 @@ end
 
 function update(self, dt)
 	-- u.debug("ground.speed = " .. self.speed, 200, 200)
-	for i, p in ipairs(pieces) do 
-		local pos = go.get_position(p)
-		if pos.y <= -screen_height then
-			pos.y = math.floor(9600 + screen_height + pos.y)
-			u.set_random_animation(p, animations)
-			msg.post(c.msg.recv.controller, c.msg.add_point)
-		end
-    
-		pos.y = math.floor(pos.y - self.speed)
-		go.set_position(pos, p)
-		-- print_debug(i, p, pos)
+	for i, piece in ipairs(pieces) do 
+		u.set_id_position(piece, function(pos)
+			if pos.y <= -screen_height then
+				pos.y = math.floor(9600 + screen_height + pos.y)
+				u.set_random_animation(piece, animations)
+				msg.post(c.msg.recv.controller, c.msg.add_point)
+			end
+			pos.y = math.floor(pos.y - self.speed)
+			-- print_debug(i, p, pos)
+		end)
 	end
 end
 
