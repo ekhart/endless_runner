@@ -30,6 +30,7 @@ function init(self)
   self.current_road = 3
   change_road_duration = go.get("#", "change_road_duration")
   utils.play_sound("start_engine")
+  utils.disable("crash_text")
 end
 
 function final(self)
@@ -52,6 +53,7 @@ function on_message(self, message_id, message, sender)
         is_deleting = true
         utils.play_sound("crash")          
         msg.post("#sprite", "disable")
+        utils.enable("crash_text")
     		
         timer.seconds(2, function()
           is_deleting = false

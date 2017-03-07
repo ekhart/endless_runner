@@ -1,0 +1,88 @@
+animations {
+  id: "crash_text"
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0000.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0001.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0002.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0003.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0004.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0005.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0006.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0007.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0008.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0009.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0010.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0011.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0012.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0013.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0014.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0015.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0016.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0017.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0018.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0019.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0020.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0021.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0022.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0023.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0024.png"
+  }
+  images {
+    image: "/vertical/assets/animations/crash_text/crash_text_0025.png"
+  }
+  playback: PLAYBACK_ONCE_FORWARD
+  fps: 30
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

@@ -82,6 +82,26 @@ embedded_components {
   }
 }
 embedded_components {
+  id: "crash_text"
+  type: "sprite"
+  data: "tile_set: \"/vertical/assets/animations/crash_text/crash_text.atlas\"\n"
+  "default_animation: \"crash_text\"\n"
+  "material: \"/builtins/materials/sprite.material\"\n"
+  "blend_mode: BLEND_MODE_ALPHA\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
   id: "sprite"
   type: "sprite"
   data: "tile_set: \"/vertical/assets/animations/player/player.atlas\"\n"

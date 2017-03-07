@@ -91,4 +91,12 @@ function M.update(self, dt, delete_message_id)
 	end)
 end
 
+function M.disable(id)
+	msg.post("#" .. id, "disable")
+end
+
+function M.enable(id)
+	msg.post("#" .. id, "enable")
+end
+
 return M
