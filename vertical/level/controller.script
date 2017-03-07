@@ -12,7 +12,7 @@ go.property("spawn_density", 460)
 go.property("spawn_density_step", 0.1)
 go.property("spawn_density_max", 50)
 go.property("spawn_probability", 0.2)
-go.property("enemy_spawn_y", 2000)
+go.property("enemy_spawn_y", 3000)
 
 go.property("speed", 4)
 go.property("speed_up_size", 0.04)

@@ -19,7 +19,7 @@ local function print_debug(i, p, pos)
 end
 
 function update(self, dt)
-	u.debug("ground.speed = " .. self.speed, 200, 200)
+	-- u.debug("ground.speed = " .. self.speed, 200, 200)
 
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
