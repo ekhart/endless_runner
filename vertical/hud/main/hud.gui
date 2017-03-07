@@ -32,7 +32,61 @@ background_color {
 nodes {
   position {
     x: 540.0
-    y: 1670.0
+    y: 960.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 1080.0
+    y: 1920.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: "background/menu_start_back_B"
+  id: "box"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  layer: "back"
+  inherit_alpha: true
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 540.0
+    y: 1450.4198
     z: 1.0
     w: 1.0
   }
@@ -82,7 +136,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  layer: ""
+  layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
@@ -98,7 +152,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 1312.0
+    y: 611.0742
     z: 0.0
     w: 1.0
   }
@@ -148,7 +202,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  layer: ""
+  layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
@@ -164,7 +218,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 1040.0
+    y: 417.46725
     z: 0.0
     w: 1.0
   }
@@ -214,7 +268,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  layer: ""
+  layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
@@ -230,7 +284,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 736.0
+    y: 145.74672
     z: 0.0
     w: 1.0
   }
@@ -280,7 +334,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  layer: ""
+  layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
@@ -296,7 +350,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 890.0
+    y: 281.3013
     z: 0.0
     w: 1.0
   }
@@ -346,7 +400,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  layer: ""
+  layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
@@ -362,7 +416,7 @@ nodes {
 nodes {
   position {
     x: 540.0
-    y: 1400.0
+    y: 722.131
     z: 0.0
     w: 1.0
   }
@@ -412,7 +466,7 @@ nodes {
   }
   adjust_mode: ADJUST_MODE_FIT
   line_break: false
-  layer: ""
+  layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
   clipping_visible: true
@@ -424,6 +478,12 @@ nodes {
   text_leading: 1.0
   text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
+}
+layers {
+  name: "back"
+}
+layers {
+  name: "front"
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

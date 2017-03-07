@@ -1,6 +1,9 @@
 images {
   image: "/vertical/assets/gfx/hud/poster_I.jpg"
 }
+images {
+  image: "/vertical/assets/gfx/hud/menu_start_back_B.jpg"
+}
 margin: 0
 extrude_borders: 0
 inner_padding: 0
