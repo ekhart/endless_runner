@@ -24,7 +24,7 @@ function update(self, dt)
 	for i, p in ipairs(pieces) do 
 		local pos = go.get_position(p)
 		if pos.y <= -screen_height then
-			pos.y = 9600 - self.speed
+			pos.y = math.floor(9600 + screen_height + pos.y)
 			msg.post(c.msg.recv.controller, c.msg.add_point)
 		end
     
