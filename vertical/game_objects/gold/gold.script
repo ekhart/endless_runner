@@ -41,5 +41,7 @@ function on_message(self, message_id, message, sender)
   		construct(self, message)
   	elseif message_id == hash("add_speed") then
     	self.speed = self.speed + message.speed
+	elseif message_id == hash("play_collect_sound") then
+    	msg.post("#sound", "play_sound")
 	end
 end
