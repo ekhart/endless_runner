@@ -14,7 +14,7 @@ function on_message(self, message_id, message, sender)
 	if u.is_id(message_id, "set_time") then
 		u.set_node_text("time", "%.2f", message.time)
 	elseif u.is_id(message_id, "set_points") then
-		u.set_node_text("points", message.points)
+		u.set_node_text("points", "%.1f", message.points)
 	end
 end
 

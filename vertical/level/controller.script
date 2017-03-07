@@ -17,6 +17,7 @@ go.property("speed_up_size", 1)
 go.property("speed_up_every_second", 1.0)
 
 go.property("shadow_size", 1)
+go.property("points_value", 0.1)
 
 
 local points = 0
@@ -69,6 +70,7 @@ function init(self)
 	msg.post("player#script", "set_roads", { roads = roads })
 	enemy_spawn_y = get("enemy_spawn_y")
 	shadow_size = get("shadow_size")
+	points_value = get("points_value")
 
 	print("controller.init")
 	msg.post(".", "acquire_input_focus")
@@ -199,12 +201,12 @@ local function save_highest_score()
   local my_table = sys.load(my_file)
 
   if not next(my_table) then
-    table.insert(my_table, time_from_start)
+    table.insert(my_table, points)
     table.insert(my_table, gold)
   end
   
-  if my_table[1] < time_from_start then
-    my_table[1] = time_from_start
+  if my_table[1] < points then
+    my_table[1] = points
   end
   
   if my_table[2] < gold then
@@ -229,7 +231,7 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("add_point") then
-		points = points + 1
+		points = points + points_value
 		post_gui("set_points", { points = points })
 	elseif message_id == hash("delete_spawn") then
 		remove_from_table(self.enemies, message.id)
