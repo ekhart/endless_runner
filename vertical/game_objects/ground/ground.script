@@ -2,6 +2,7 @@ local u = require "vertical.assets.utils"
 local c = require "vertical.assets.const"
 
 local pieces = { "background", "background1", "background2", "background3", "background4",  "background5" }
+local animations = { "road_desert_clean_A", "road_desert_clean_B", "road_desert_clean_C", "road_desert_clean_D", "road_desert_cracs_A", "road_desert_cracs_B" }
 local screen_height
 
 go.property("speed", 6)
@@ -25,6 +26,7 @@ function update(self, dt)
 		local pos = go.get_position(p)
 		if pos.y <= -screen_height then
 			pos.y = math.floor(9600 + screen_height + pos.y)
+			u.set_random_animation(p, animations)
 			msg.post(c.msg.recv.controller, c.msg.add_point)
 		end
     
