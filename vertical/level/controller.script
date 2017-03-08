@@ -59,6 +59,7 @@ function init(self)
 	self.enemies = {}
 	self.golds = {}
 	self.shadows = {}
+	
 
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
@@ -75,6 +76,7 @@ function init(self)
 	self.enemy_spawn_y = get("enemy_spawn_y")
 	shadow_size = get("shadow_size")
 	points_value = get("points_value")
+
 
 	print("controller.init")
 	msg.post(".", "acquire_input_focus")
