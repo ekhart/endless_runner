@@ -63,8 +63,8 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/vertical/assets/gfx/enemies/enemies.atlas\"\n"
-  "default_animation: \"impala_shadow_A\"\n"
+  data: "tile_set: \"/vertical/game_objects/enemy/enemies_2.atlas\"\n"
+  "default_animation: \"big_truck_solo_A\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""
@@ -74,9 +74,9 @@ embedded_components {
     z: 0.0
   }
   rotation {
-    x: 6.123234E-17
-    y: 6.123234E-17
-    z: -1.0
-    w: -6.123234E-17
+    x: 0.0
+    y: 0.0
+    z: 6.123234E-17
+    w: 1.0
   }
 }

@@ -2,22 +2,28 @@ images {
   image: "/vertical/assets/gfx/enemies/big_truck_solo_A.png"
 }
 images {
+  image: "/vertical/assets/gfx/enemies/big_truck_solo_B.png"
+}
+images {
   image: "/vertical/assets/gfx/enemies/ford_100_A.png"
 }
 images {
   image: "/vertical/assets/gfx/enemies/ford_100_B.png"
 }
 images {
-  image: "/vertical/assets/gfx/enemies/big_truck_trailer_A.png"
+  image: "/vertical/assets/gfx/enemies/ford_100_C.png"
 }
 images {
-  image: "/vertical/assets/gfx/enemies/impala_C.png"
+  image: "/vertical/assets/gfx/enemies/impala_blue_A.png"
 }
 images {
-  image: "/vertical/assets/gfx/enemies/impala_shadow_A.png"
+  image: "/vertical/assets/gfx/enemies/impala_green_A.png"
 }
 images {
   image: "/vertical/assets/gfx/enemies/impala_shadow_B.png"
+}
+images {
+  image: "/vertical/assets/gfx/enemies/school_bus_A.png"
 }
 margin: 0
 extrude_borders: 0
