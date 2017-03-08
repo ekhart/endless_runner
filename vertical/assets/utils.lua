@@ -22,7 +22,7 @@ function M.set_sprite_random_animation(animations)
 end
 
 function M.set_random_animation(id, animations)
-	M.play_sprite_animation(id, M.get_random_animation(animations)) 
+	M.play_animation(id, M.get_random_animation(animations)) 
 end
 
 function M.is_id(id, to_hash)

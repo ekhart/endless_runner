@@ -63,8 +63,8 @@ function init(self)
 	time_from_start = 0.0
 	speed_up_accumulator = 0.0
 	self.spawn_density = get("spawn_density")
-  	self.spawn_density_step = get("spawn_density_step")
-  	self.spawn_density_max = get("spawn_density_max")
+  self.spawn_density_step = get("spawn_density_step")
+  self.spawn_density_max = get("spawn_density_max")
 	self.spawn_probability = get("spawn_probability")
 	speed_up_size = get("speed_up_size")
 	speed_up_every_second = get("speed_up_every_second")
@@ -77,8 +77,7 @@ function init(self)
 	points_value = get("points_value")
 
 	print("controller.init")
-	msg.post(".", "acquire_input_focus")
-  
+	
   local dbg = require "builtins.scripts.mobdebug"  
   dbg.start()
   
@@ -90,12 +89,14 @@ function init(self)
 	-- self.pos = go.get_world_position()
 	-- self.look_at = self.pos
 
-	u.play_sound("background_music")
+	u.acquire_input_focus()
+  u.play_sound("background_music")
 end
 
 function final(self)
 	print("controller.final")
-	msg.post(".", "release_input_focus")
+	msg.post("#background_music", "stop_sound")
+	u.release_input_focus()
 end
 
 local function print_time(dt)
