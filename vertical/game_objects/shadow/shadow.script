@@ -1,7 +1,7 @@
 local u = require "vertical.assets.utils"
 
 go.property("size", 1)
-go.property("speed", 6)
+go.property("speed", 12)
 go.property("speed_up", 0)
 
 local animations = { "tree_shadow_A", "tree_shadow_B", "tree_shadow_C", "home_shadow_1", "home_shadow_2", "silo_shadow_1" }

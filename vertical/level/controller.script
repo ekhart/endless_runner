@@ -8,14 +8,14 @@ go.property("road3", 427)
 go.property("road2", 662)
 go.property("road1", 887)
 
-go.property("spawn_density", 460)
+go.property("spawn_density", 740)
 go.property("spawn_density_step", 0.1)
 go.property("spawn_density_max", 50)
 go.property("spawn_probability", 0.2)
 go.property("enemy_spawn_y", 3000)
 
 go.property("speed", 6)
-go.property("speed_up_size", 0.04)
+go.property("speed_up_size", 0.02)
 go.property("speed_up_every_second", 0.08)
 
 go.property("shadow_size", 1)

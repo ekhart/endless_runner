@@ -5,7 +5,7 @@ local pieces = { "background", "background1", "background2", "background3", "bac
 local animations = { "road_desert_clean_A", "road_desert_clean_B", "road_desert_clean_C", "road_desert_clean_D", "road_desert_cracs_A", "road_desert_cracs_B" }
 local screen_height
 
-go.property("speed", 6)
+go.property("speed", 12)
 
 function init(self)
 	-- self.ground_height != ground_height
