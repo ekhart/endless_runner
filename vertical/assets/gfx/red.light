@@ -1,0 +1,8 @@
+id: "unnamed"
+type: SPOT
+intensity: 10.0
+color {
+  x: 1.0
+}
+range: 50.0
+decay: 0.9
