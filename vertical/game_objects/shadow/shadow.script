@@ -1,7 +1,7 @@
 local u = require "vertical.assets.utils"
 
 go.property("size", 1)
-go.property("speed", 6)
+go.property("speed", 12)
 go.property("speed_up", 0)
 
 local animations = { "tree_shadow_A", "tree_shadow_B", "tree_shadow_C", "home_shadow_1", "home_shadow_2", "silo_shadow_1" }
@@ -20,9 +20,9 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("construct") then
+	if u.is_id(message_id, "construct") then
   		u.construct(self, message, construct)
-	elseif message_id == hash("add_speed") then
+	elseif u.is_id(message_id, "add_speed") then
     	self.speed = self.speed + message.speed
 	end
 end

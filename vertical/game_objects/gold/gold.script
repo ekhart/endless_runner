@@ -1,7 +1,7 @@
 local u = require "vertical.assets.utils"
 
 go.property("size", .4)
-go.property("speed", 6)
+go.property("speed", 12)
 
 local function construct(self, message)
 	u.set_position(function(pos)

@@ -4,13 +4,25 @@ function M.play_sound(id)
 	msg.post("#" .. id, "play_sound")
 end
 
+function M.get_random_animation(animations)
+	local random_index = math.random(#animations)
+	return animations[random_index]
+end
+
+function M.play_animation(id, animation)
+  	msg.post(id .. "#sprite", "play_animation", { id = hash(animation) })
+end
+
 function M.play_sprite_animation(animation)
-  msg.post("#sprite", "play_animation", { id = hash(animation) })
+	M.play_animation("", animation)
 end
 
 function M.set_sprite_random_animation(animations)
-	local random_index = math.random(#animations)
-	M.play_sprite_animation(animations[random_index]) 
+	M.play_animation("", M.get_random_animation(animations)) 
+end
+
+function M.set_random_animation(id, animations)
+	M.play_sprite_animation(id, M.get_random_animation(animations)) 
 end
 
 function M.is_id(id, to_hash)
@@ -64,11 +76,11 @@ function M.set_position(change)
   go.set_position(pos)
 end
 
--- function M.set_position(id, change)
---   local pos = go.get_position(id)
---   change(pos)
---   go.set_position(pos, id)
--- end
+function M.set_id_position(id, change)
+   local pos = go.get_position(id)
+   change(pos)
+   go.set_position(pos, id)
+end
 
 function M.set_scale(size)
   local scale = go.get_scale()
@@ -133,6 +145,10 @@ function M.spawn(self, factory_id, pos, objects, message)
 			table.insert(objects, object)
 		end
 	end
+end
+
+function M.get(prop)
+	return go.get("#", prop)
 end
 
 return M
