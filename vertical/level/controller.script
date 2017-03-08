@@ -89,6 +89,8 @@ function init(self)
   	-- msg.post("/camera#camera", "acquire_camera_focus")
 	-- self.pos = go.get_world_position()
 	-- self.look_at = self.pos
+
+	u.play_sound("background_music")
 end
 
 function final(self)

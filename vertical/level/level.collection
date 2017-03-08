@@ -93,6 +93,26 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
+  "  id: \"background_music\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/vertical/assets/sfx/freeway3.ogg\\\"\\n"
+  "looping: 1\\n"
+  "group: \\\"master\\\"\\n"
+  "gain: 1.0\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
   "  id: \"enemy_factory\"\n"
   "  type: \"factory\"\n"
   "  data: \"prototype: \\\"/vertical/game_objects/enemy/enemy.go\\\"\\n"
@@ -271,25 +291,5 @@ embedded_instances {
     x: 4.0
     y: 4.0
     z: 4.0
-  }
-}
-embedded_instances {
-  id: "shadows"
-  data: ""
-  position {
-    x: 156.0
-    y: 1000.0
-    z: 0.7
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
   }
 }
