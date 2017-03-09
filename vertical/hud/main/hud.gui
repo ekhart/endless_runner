@@ -235,8 +235,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 400.0
-    y: 100.0
+    x: 300.0
+    y: 80.0
     z: 0.0
     w: 1.0
   }
@@ -248,8 +248,8 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "START GAME"
-  font: "good_times_button"
+  text: "START "
+  font: "good_times_smaller"
   id: "start_game"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -301,8 +301,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 500.0
-    y: 100.0
+    x: 300.0
+    y: 80.0
     z: 0.0
     w: 1.0
   }
@@ -315,7 +315,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "EXIT GAME"
-  font: "good_times_button"
+  font: "good_times_smaller"
   id: "exit_game"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -367,8 +367,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 350.0
-    y: 100.0
+    x: 300.0
+    y: 80.0
     z: 0.0
     w: 1.0
   }
@@ -381,7 +381,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "CREDITS"
-  font: "good_times_button"
+  font: "good_times_smaller"
   id: "credits"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
