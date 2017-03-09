@@ -11,6 +11,10 @@ textures {
   name: "post_atlas"
   texture: "/vertical/game_objects/postproduction/post_atlas.atlas"
 }
+textures {
+  name: "money"
+  texture: "/vertical/assets/gfx/money_anim/money.atlas"
+}
 background_color {
   x: 0.0
   y: 0.0
@@ -248,7 +252,7 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "0$"
+  text: "0 "
   font: "good_times"
   id: "gold"
   xanchor: XANCHOR_NONE
@@ -316,6 +320,60 @@ nodes {
   blend_mode: BLEND_MODE_ALPHA
   texture: "post_atlas/post_texture_01_"
   id: "box"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_CENTER
+  adjust_mode: ADJUST_MODE_FIT
+  layer: ""
+  inherit_alpha: true
+  slice9 {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 0.0
+  }
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 200.0
+    y: 1630.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 210.0
+    y: 228.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_BOX
+  blend_mode: BLEND_MODE_ALPHA
+  texture: "money/money_anim"
+  id: "money"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
   pivot: PIVOT_CENTER
