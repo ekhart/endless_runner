@@ -1,4 +1,5 @@
--- todo: move acquire_input_focus, release_input_focus to module
+local u = require "vertical.assets.utils"
+
 
 local function load_proxy(name)
   msg.post("#" .. name, "load")
@@ -18,26 +19,45 @@ end
 local is_game_over = false
 local is_restart = false
 local _message
+local is_sound_playing = false
+
+local function play_music()
+  if not is_sound_playing then
+    u.play_sound("menu_music")
+    is_sound_playing = true
+  end
+end
+
+local function stop_music()
+  u.stop_sound("menu_music")
+  is_sound_playing = false
+end
+
 
 function init(self)
 	print("loader.init")
-	msg.post(".", "acquire_input_focus")
+	u.acquire_input_focus()
 	load_proxy("main_menu")
   is_main_menu = true
+  	
+  local dbg = require "builtins.scripts.mobdebug"  
+  dbg.start()
 end
 
 function final(self)
 	print("loader.final")
-	msg.post(".", "release_input_focus")
+  stop_music()
+	u.release_input_focus()
 end
 
-function on_message(self, message_id, message, sender)
+function on_message(self, message_id, message, sender)	
 	print("message_id = " .. message_id)
 	pprint(sender)
 	
   if message_id == hash("start_game") then
 		load_level()
 		unload_proxy("main_menu")
+    stop_music()
   elseif message_id == hash("credits") then
     load_proxy("credits")
     unload_proxy("main_menu")
@@ -55,29 +75,28 @@ function on_message(self, message_id, message, sender)
 		unload_proxy("level")
     is_restart = true
   elseif message_id == hash("restart") then
-		unload_proxy("game_over")
-    is_restart = true
+    unload_proxy("game_over")
+    is_restart = true	
 	elseif message_id == hash("proxy_loaded") then
  		msg.post(sender, "enable")
 
     if is_game_over then
+      play_music()
       msg.post("game_over:/hud#gui", "set_longest_chase", _message)
       is_game_over = false
       _message = nil
     end
-    
+  
     if is_main_menu then
+      play_music()
       msg.post("main_menu:/hud#gui", "set_longest_chase")
       is_main_menu = false
     end
-
 	elseif message_id == hash("proxy_unloaded") then
-		-- print(sender.socket) --> 786443 (internal numeric value)
-		-- print(sender.path) --> hash: [/hearttree/tree]
-		-- print(sender.fragment) --> hash: [script]
     if is_restart then
-			load_level()
+      load_level()
       is_restart = false
+      stop_music()
 		elseif is_main_menu then
       load_proxy("main_menu")
     elseif is_game_over then
