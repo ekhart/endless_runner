@@ -4,7 +4,7 @@ go.property("left_roads_speed", 32)
 go.property("right_roads_speed", 2)
 go.property("size", 1)
 
-local animations = { "big_truck_solo_A", "big_truck_solo_B", "ford_100_A", "ford_100_B", "ford_100_C", "ford_100_D", "ford_100_E", "ford_100_F", "impala_shadow_B", "impala_blue_A", "impala_green_A", "impala_shadow_D", "school_bus_A" }
+local animations = { "big_truck_solo_A", "big_truck_solo_B", "ford_100_A", "ford_100_B", "ford_100_C", "impala_shadow_B", "impala_blue_A", "impala_green_A", "school_bus_A" }
 
 local function construct_base(self)
   self.left_roads_speed = go.get("#", "left_roads_speed")

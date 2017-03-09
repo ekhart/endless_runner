@@ -80,8 +80,8 @@ function init(self)
 
 	print("controller.init")
 	
-  local dbg = require "builtins.scripts.mobdebug"  
-  dbg.start()
+  -- local dbg = require "builtins.scripts.mobdebug"  
+  -- dbg.start()
   
   if webview then
     webview_id = webview.create(webview_callback)
@@ -97,7 +97,7 @@ end
 
 function final(self)
 	print("controller.final")
-	msg.post("#background_music", "stop_sound")
+  u.stop_sound("background_music")
 	u.release_input_focus()
 end
 
