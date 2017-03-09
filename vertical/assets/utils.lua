@@ -8,7 +8,6 @@ function M.stop_sound(id)
   msg.post("#" .. id, "stop_sound")
 end
 
-
 function M.get_random_animation(animations)
 	local random_index = math.random(#animations)
 	return animations[random_index]

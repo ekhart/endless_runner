@@ -231,6 +231,7 @@ function on_message(self, message_id, message, sender)
     	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
   	elseif message_id == hash("collect_gold") then
     	gold = gold + gold_value
+    	post_gui("set_gold", { gold = gold })
     	remove_from_table(self.golds, message.id)
   	elseif message_id == hash("shake") then
 		self.shake = 8

@@ -12,9 +12,11 @@ end
 
 function on_message(self, message_id, message, sender)
 	if u.is_id(message_id, "set_time") then
-		u.set_node_text("time", "%.2f", message.time)
+		u.set_node_text("time", "%.2fs", message.time)
 	elseif u.is_id(message_id, "set_points") then
-		u.set_node_text("points", "%.1f", message.points)
+		u.set_node_text("points", "%.1fmi", message.points)
+	elseif u.is_id(message_id, "set_gold") then
+		u.set_node_text("gold", "%i$", message.gold)
 	end
 end
 
