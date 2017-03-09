@@ -83,8 +83,8 @@ embedded_components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/vertical/assets/gfx/gold/gold.atlas\"\n"
-  "default_animation: \"PNGPIX-COM-Money-Bag-PNG-Transparent-Image-500x575\"\n"
+  data: "tile_set: \"/vertical/assets/gfx/money_anim/money.atlas\"\n"
+  "default_animation: \"money_anim\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""
