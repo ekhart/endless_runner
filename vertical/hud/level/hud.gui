@@ -7,6 +7,10 @@ fonts {
   name: "good_times"
   font: "/vertical/assets/font/good_times.font"
 }
+fonts {
+  name: "good_times_smaller"
+  font: "/vertical/assets/font/good_times_smaller.font"
+}
 textures {
   name: "post_atlas"
   texture: "/vertical/game_objects/postproduction/post_atlas.atlas"
@@ -24,7 +28,7 @@ background_color {
 nodes {
   position {
     x: 740.0
-    y: 1800.0
+    y: 2200.0
     z: 0.0
     w: 1.0
   }
@@ -89,8 +93,8 @@ nodes {
 }
 nodes {
   position {
-    x: 140.0
-    y: 1800.0
+    x: 900.0
+    y: 1850.0
     z: 0.0
     w: 1.0
   }
@@ -113,9 +117,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.9960785
+    y: 0.854902
+    z: 0.5529412
     w: 1.0
   }
   type: TYPE_TEXT
@@ -125,7 +129,7 @@ nodes {
   id: "time"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_N
+  pivot: PIVOT_NW
   outline {
     x: 1.0
     y: 1.0
@@ -155,8 +159,8 @@ nodes {
 }
 nodes {
   position {
-    x: 140.0
-    y: 1700.0
+    x: 100.0
+    y: 1850.0
     z: 0.0
     w: 1.0
   }
@@ -179,9 +183,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.9960785
+    y: 0.854902
+    z: 0.5529412
     w: 1.0
   }
   type: TYPE_TEXT
@@ -191,7 +195,7 @@ nodes {
   id: "points"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_NW
   outline {
     x: 1.0
     y: 1.0
@@ -221,8 +225,8 @@ nodes {
 }
 nodes {
   position {
-    x: 168.0
-    y: 1630.0
+    x: 600.0
+    y: 1850.0
     z: 0.0
     w: 1.0
   }
@@ -245,9 +249,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.9960785
+    y: 0.854902
+    z: 0.5529412
     w: 1.0
   }
   type: TYPE_TEXT
@@ -257,7 +261,7 @@ nodes {
   id: "gold"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_E
+  pivot: PIVOT_NE
   outline {
     x: 1.0
     y: 1.0
@@ -341,8 +345,8 @@ nodes {
 }
 nodes {
   position {
-    x: 200.0
-    y: 1630.0
+    x: 680.0
+    y: 1850.0
     z: 0.0
     w: 1.0
   }
@@ -376,7 +380,7 @@ nodes {
   id: "money"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_NE
   adjust_mode: ADJUST_MODE_FIT
   layer: ""
   inherit_alpha: true
@@ -391,6 +395,204 @@ nodes {
   clipping_inverted: false
   alpha: 1.0
   template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 900.0
+    y: 1900.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 300.0
+    y: 60.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.5019608
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "time"
+  font: "good_times_smaller"
+  id: "time_1"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_NW
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
+  inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 100.0
+    y: 1900.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 300.0
+    y: 60.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.5019608
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "distance"
+  font: "good_times_smaller"
+  id: "dist"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_NW
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
+  inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 490.0
+    y: 1900.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 300.0
+    y: 60.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.5019608
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "money"
+  font: "good_times_smaller"
+  id: "gold_txt"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_NW
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: ""
+  inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 material: "/builtins/materials/gui.material"
