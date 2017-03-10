@@ -9,9 +9,15 @@ go.property("road2", 662)
 go.property("road1", 887)
 
 go.property("spawn_density", 740)
+
+go.property("spawn_enemy_density", 460)
+go.property("spawn_gold_density", 460)
+go.property("spawn_shadow_density", 460)
+
 go.property("spawn_density_step", 0.1)
 go.property("spawn_density_max", 50)
 go.property("spawn_probability", 0.2)
+
 go.property("enemy_spawn_y", 3000)
 
 go.property("speed", 6)
@@ -56,17 +62,28 @@ function init(self)
 	-- msg.post("@system:", "toggle_profile")
 	
 	self.gridw = 0
+	
+	time_from_start = 0.0
+	speed_up_accumulator = 0.0
+
+	self.spawn_enemy_density_acc = 0
+	self.spawn_gold_density_acc = 0
+	self.spawn_shadow_density_acc = 0
+	
 	self.enemies = {}
 	self.golds = {}
 	self.shadows = {}
 	
-
-	time_from_start = 0.0
-	speed_up_accumulator = 0.0
 	self.spawn_density = get("spawn_density")
-  self.spawn_density_step = get("spawn_density_step")
-  self.spawn_density_max = get("spawn_density_max")
+	
+	self.spawn_enemy_density = get("spawn_enemy_density")
+	self.spawn_gold_density = get("spawn_gold_density")
+	self.spawn_shadow_density = get("spawn_shadow_density")
+	
+	self.spawn_density_step = get("spawn_density_step")
+	self.spawn_density_max = get("spawn_density_max")
 	self.spawn_probability = get("spawn_probability")
+	
 	speed_up_size = get("speed_up_size")
 	speed_up_every_second = get("speed_up_every_second")
 	
@@ -77,22 +94,21 @@ function init(self)
 	shadow_size = get("shadow_size")
 	points_value = get("points_value")
 
-
 	print("controller.init")
 	
   -- local dbg = require "builtins.scripts.mobdebug"  
   -- dbg.start()
   
-  if webview then
-    webview_id = webview.create(webview_callback)
-  end
+	if webview then
+		webview_id = webview.create(webview_callback)
+	end
   
   	-- msg.post("/camera#camera", "acquire_camera_focus")
 	-- self.pos = go.get_world_position()
 	-- self.look_at = self.pos
 
 	u.acquire_input_focus()
-  u.play_sound("background_music")
+	u.play_sound("background_music")
 end
 
 function final(self)
@@ -154,20 +170,20 @@ local function spawn_enemies(self, dt)
 	local x = self.roads[math.random(#self.roads)]
 	local pos = vmath.vector3(x, self.enemy_spawn_y, 0.5)
 	local message = { x = x, is_left_road = is_left_road, speed_up_size_accumulator = speed_up_size_accumulator }
-	u.spawn(self, enemy_factory, pos, self.enemies, message)
+	self.spawn_enemy_density_acc = u.spawn(self, self.spawn_enemy_density_acc, self.spawn_enemy_density, enemy_factory, pos, self.enemies, message)
 end
 
 local function spawn_golds(self, dt)
 	local x = self.roads[math.random(#self.roads)]	
 	local pos = vmath.vector3(x, self.enemy_spawn_y, 0.5)
 	local message = { x = x, speed_up_size_accumulator = speed_up_size_accumulator }
-	u.spawn(self, "gold_factory", pos, self.golds, message)
+	self.spawn_gold_density_acc = u.spawn(self, self.spawn_gold_density_acc, self.spawn_gold_density, "gold_factory", pos, self.golds, message)
 end
 
 local function spawn_shadows(self, dt)
 	local pos = vmath.vector3(0, 4000, 0.2)
 	local message = { speed_up_size_accumulator = speed_up_size_accumulator }
-	u.spawn(self, "shadow_factory", pos, self.shadows, message)
+	self.spawn_shadow_density_acc = u.spawn(self, self.spawn_shadow_density_acc, self.spawn_shadow_density, "shadow_factory", pos, self.shadows, message)
 end
 
 function update(self, dt)
@@ -217,22 +233,25 @@ local function remove_from_table(_table, id)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("add_point") then
-		points = points + points_value
-		post_gui("set_points", { points = points })
-	elseif message_id == hash("delete_spawn") then
+	if message_id == hash("delete_spawn") then
 		remove_from_table(self.enemies, message.id)
   	elseif message_id == hash("delete_gold") then
 		remove_from_table(self.golds, message.id)
 	elseif message_id == hash("delete_shadow") then
 		remove_from_table(self.shadows, message.id)
-  	elseif message_id == hash("game_over") then
-    	local high_score = save_highest_score()
-    	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
-  	elseif message_id == hash("collect_gold") then
+		
+	elseif message_id == hash("collect_gold") then
     	gold = gold + gold_value
     	post_gui("set_gold", { gold = gold })
     	remove_from_table(self.golds, message.id)
+	elseif message_id == hash("add_point") then
+		points = points + points_value
+		post_gui("set_points", { points = points })
+  	
+  	elseif message_id == hash("game_over") then
+    	local high_score = save_highest_score()
+    	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
+  	
   	elseif message_id == hash("shake") then
 		self.shake = 8
 	end
