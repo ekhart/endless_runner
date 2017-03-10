@@ -16,7 +16,7 @@ function on_message(self, message_id, message, sender)
 	elseif u.is_id(message_id, "set_points") then
 		u.set_node_text("points", "%.1fmi", message.points)
 	elseif u.is_id(message_id, "set_gold") then
-		u.set_node_text("gold", "%i$", message.gold)
+		u.set_node_text("gold", "%i", message.gold)
 	end
 end
 
