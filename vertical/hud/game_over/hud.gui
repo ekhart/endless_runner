@@ -93,7 +93,7 @@ nodes {
 }
 nodes {
   position {
-    x: 300.0
+    x: 80.0
     y: 800.0
     z: 0.0
     w: 1.0
@@ -117,15 +117,15 @@ nodes {
     w: 1.0
   }
   color {
-    x: 0.95294124
-    y: 0.93725497
-    z: 0.7058824
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "distance 68.0 miles"
-  font: "good_times_smaller"
+  font: "good_times"
   id: "distance"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -159,7 +159,7 @@ nodes {
 }
 nodes {
   position {
-    x: 300.0
+    x: 80.0
     y: 700.0
     z: 0.0
     w: 1.0
@@ -177,21 +177,21 @@ nodes {
     w: 1.0
   }
   size {
-    x: 200.0
+    x: 80.0
     y: 100.0
     z: 0.0
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "money 2200$"
-  font: "good_times_smaller"
+  font: "good_times"
   id: "stolen"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -225,8 +225,8 @@ nodes {
 }
 nodes {
   position {
-    x: 80.0
-    y: 400.0
+    x: 1000.0
+    y: 280.0
     z: 0.0
     w: 1.0
   }
@@ -249,9 +249,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.32156864
+    y: 0.8431373
+    z: 0.95294124
     w: 1.0
   }
   type: TYPE_TEXT
@@ -261,7 +261,7 @@ nodes {
   id: "retry"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_SW
+  pivot: PIVOT_SE
   outline {
     x: 1.0
     y: 1.0
@@ -315,9 +315,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
@@ -381,9 +381,9 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
