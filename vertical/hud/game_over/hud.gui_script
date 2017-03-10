@@ -28,7 +28,7 @@ end
 
 function on_message(self, message_id, message, sender)
   if message_id == hash("set_longest_chase") then
-	utils.set_node_text("running", "Longest chase: %.2f miles", message.high_score)
+	utils.set_node_text("distance", "Longest chase: %.2f miles", message.high_score)
     utils.set_node_text("stolen", "You have stolen %i$", message.gold)
   end
 end
