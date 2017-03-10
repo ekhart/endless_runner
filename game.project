@@ -21,6 +21,8 @@ debug = 0
 [graphics]
 default_texture_min_filter = linear
 default_texture_mag_filter = linear
+max_characters = 16384
+max_draw_calls = 2048
 
 [script]
 shared_state = 1
@@ -43,4 +45,15 @@ app_icon_72x72 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-undercl
 app_icon_96x96 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
 app_icon_144x144 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
 app_icon_192x192 = /vertical/assets/gfx/google_play/Unicon-Icon-Themer-pro-underclassblog.com.png
+
+[sprite]
+
+[factory]
+max_count = 256
+
+[collectionfactory]
+max_count = 256
+
+[collection]
+max_instances = 2048
 
