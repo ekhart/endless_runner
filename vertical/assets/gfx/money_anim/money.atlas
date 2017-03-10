@@ -1,0 +1,100 @@
+animations {
+  id: "money_anim"
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0000.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0001.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0002.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0003.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0004.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0005.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0006.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0007.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0008.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0009.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0010.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0011.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0012.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0013.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0014.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0015.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0016.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0017.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0018.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0019.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0020.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0021.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0022.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0023.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0024.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0025.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0026.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0027.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0028.png"
+  }
+  images {
+    image: "/vertical/assets/gfx/money_anim/money_Final_0029.png"
+  }
+  playback: PLAYBACK_LOOP_FORWARD
+  fps: 30
+  flip_horizontal: 0
+  flip_vertical: 0
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

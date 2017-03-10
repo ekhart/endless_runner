@@ -1,0 +1,9 @@
+images {
+  image: "/vertical/assets/gfx/hud/game_over_A.jpg"
+}
+images {
+  image: "/vertical/assets/gfx/hud/game_over_B.jpg"
+}
+margin: 0
+extrude_borders: 0
+inner_padding: 0

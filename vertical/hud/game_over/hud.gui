@@ -16,8 +16,8 @@ fonts {
   font: "/vertical/assets/font/good_times_smaller.font"
 }
 textures {
-  name: "background"
-  texture: "/vertical/assets/gfx/hud/background.atlas"
+  name: "background_game_over"
+  texture: "/vertical/assets/gfx/hud/background_game_over.atlas"
 }
 background_color {
   x: 0.0
@@ -28,14 +28,14 @@ background_color {
 nodes {
   position {
     x: 540.0
-    y: 1670.0
+    y: 1550.0
     z: 0.0
     w: 1.0
   }
   rotation {
     x: 0.0
     y: 0.0
-    z: 0.0
+    z: 15.0
     w: 1.0
   }
   scale {
@@ -52,14 +52,14 @@ nodes {
   }
   color {
     x: 1.0
-    y: 1.0
-    z: 1.0
+    y: 0.5019608
+    z: 0.2509804
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "The chase is over"
-  font: "good_times_button"
+  text: "chase over"
+  font: "good_times_bigger"
   id: "chase_over"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -67,7 +67,7 @@ nodes {
   outline {
     x: 1.0
     y: 1.0
-    z: 1.0
+    z: 0.0
     w: 1.0
   }
   shadow {
@@ -77,7 +77,7 @@ nodes {
     w: 1.0
   }
   adjust_mode: ADJUST_MODE_FIT
-  line_break: false
+  line_break: true
   layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
@@ -93,8 +93,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 1400.0
+    x: 300.0
+    y: 800.0
     z: 0.0
     w: 1.0
   }
@@ -117,29 +117,29 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.95294124
+    y: 0.93725497
+    z: 0.7058824
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "You were running for 68.0 miles"
+  text: "distance 68.0 miles"
   font: "good_times_smaller"
-  id: "running"
+  id: "distance"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SW
   outline {
     x: 1.0
-    y: 1.0
-    z: 1.0
+    y: 0.5019608
+    z: 0.5019608
     w: 1.0
   }
   shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.5019608
+    y: 0.2509804
+    z: 0.2509804
     w: 1.0
   }
   adjust_mode: ADJUST_MODE_FIT
@@ -151,7 +151,7 @@ nodes {
   clipping_inverted: false
   alpha: 1.0
   outline_alpha: 1.0
-  shadow_alpha: 1.0
+  shadow_alpha: 0.3
   template_node_child: false
   text_leading: 1.0
   text_tracking: 0.0
@@ -159,8 +159,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 1312.0
+    x: 300.0
+    y: 700.0
     z: 0.0
     w: 1.0
   }
@@ -190,22 +190,22 @@ nodes {
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "You have stolen 2200$"
+  text: "money 2200$"
   font: "good_times_smaller"
   id: "stolen"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SW
   outline {
     x: 1.0
-    y: 1.0
-    z: 1.0
+    y: 0.5019608
+    z: 0.5019608
     w: 1.0
   }
   shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.5019608
+    y: 0.2509804
+    z: 0.2509804
     w: 1.0
   }
   adjust_mode: ADJUST_MODE_FIT
@@ -217,7 +217,7 @@ nodes {
   clipping_inverted: false
   alpha: 1.0
   outline_alpha: 1.0
-  shadow_alpha: 1.0
+  shadow_alpha: 0.3
   template_node_child: false
   text_leading: 1.0
   text_tracking: 0.0
@@ -225,8 +225,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 1040.0
+    x: 80.0
+    y: 400.0
     z: 0.0
     w: 1.0
   }
@@ -243,8 +243,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 350.0
-    y: 100.0
+    x: 300.0
+    y: 60.0
     z: 0.0
     w: 1.0
   }
@@ -257,11 +257,11 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "RETRY"
-  font: "good_times_button"
+  font: "good_times"
   id: "retry"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SW
   outline {
     x: 1.0
     y: 1.0
@@ -291,8 +291,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 890.0
+    x: 80.0
+    y: 280.0
     z: 0.0
     w: 1.0
   }
@@ -309,8 +309,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 500.0
-    y: 100.0
+    x: 300.0
+    y: 60.0
     z: 0.0
     w: 1.0
   }
@@ -323,11 +323,11 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "MAIN MENU"
-  font: "good_times_button"
+  font: "good_times_smaller"
   id: "main_menu"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SW
   outline {
     x: 1.0
     y: 1.0
@@ -357,8 +357,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 736.0
+    x: 80.0
+    y: 200.0
     z: 0.0
     w: 1.0
   }
@@ -375,8 +375,8 @@ nodes {
     w: 1.0
   }
   size {
-    x: 500.0
-    y: 100.0
+    x: 300.0
+    y: 60.0
     z: 0.0
     w: 1.0
   }
@@ -389,11 +389,11 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "EXIT GAME"
-  font: "good_times_button"
+  font: "good_times_smaller"
   id: "exit_game"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SW
   outline {
     x: 1.0
     y: 1.0
@@ -454,7 +454,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "background/menu_prop_A"
+  texture: "background_game_over/game_over_B"
   id: "box"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE

@@ -199,46 +199,6 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "music"
-  data: "embedded_components {\n"
-  "  id: \"music\"\n"
-  "  type: \"sound\"\n"
-  "  data: \"sound: \\\"/vertical/assets/sfx/freeway3.ogg\\\"\\n"
-  "looping: 1\\n"
-  "group: \\\"music\\\"\\n"
-  "gain: 1.0\\n"
-  "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-embedded_instances {
   id: "hud"
   data: "components {\n"
   "  id: \"gui\"\n"
@@ -294,6 +254,46 @@ embedded_instances {
   }
 }
 embedded_instances {
+  id: "music"
+  data: "embedded_components {\n"
+  "  id: \"music\"\n"
+  "  type: \"sound\"\n"
+  "  data: \"sound: \\\"/vertical/assets/sfx/freeway3.ogg\\\"\\n"
+  "looping: 1\\n"
+  "group: \\\"music\\\"\\n"
+  "gain: 1.0\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
   id: "police_lights"
   data: "embedded_components {\n"
   "  id: \"sprite\"\n"
@@ -304,8 +304,8 @@ embedded_instances {
   "blend_mode: BLEND_MODE_ADD\\n"
   "\"\n"
   "  position {\n"
-  "    x: 0.0\n"
-  "    y: -140.0\n"
+  "    x: -80.0\n"
+  "    y: -160.0\n"
   "    z: 0.0\n"
   "  }\n"
   "  rotation {\n"
@@ -313,6 +313,26 @@ embedded_instances {
   "    y: 0.0\n"
   "    z: 0.0\n"
   "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"sprite1\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"tile_set: \\\"/vertical/assets/animations/police lights/police_lights.atlas\\\"\\n"
+  "default_animation: \\\"police_lights\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "blend_mode: BLEND_MODE_ADD\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 80.0\n"
+  "    y: -160.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.6087614\n"
+  "    w: 0.7933533\n"
   "  }\n"
   "}\n"
   ""
