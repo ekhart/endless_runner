@@ -107,6 +107,7 @@ function init(self)
 	-- self.pos = go.get_world_position()
 	-- self.look_at = self.pos
 
+	msg.post("crash_text#sprite", "disable")
 	u.acquire_input_focus()
 	u.play_sound("background_music")
 end
@@ -248,11 +249,13 @@ function on_message(self, message_id, message, sender)
 		points = points + points_value
 		post_gui("set_points", { points = points })
   	
-  	elseif message_id == hash("game_over") then
-    	local high_score = save_highest_score()
-    	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
-  	
-  	elseif message_id == hash("shake") then
+	elseif message_id == hash("game_over") then
+  	local high_score = save_highest_score()
+  	msg.post("main:/loader", "game_over", { high_score = high_score, gold = gold })
+	
+	elseif message_id == hash("crash") then
+		msg.post("crash_text#sprite", "enable")
+	elseif message_id == hash("shake") then
 		self.shake = 8
 	end
 end

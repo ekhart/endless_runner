@@ -1,5 +1,6 @@
 [project]
 title = Freeway 68
+version = 1.1
 
 [bootstrap]
 main_collection = /vertical/main/main.collectionc
@@ -45,6 +46,7 @@ app_icon_72x72 = /vertical/assets/gfx/google_play/freeway_icon.png
 app_icon_96x96 = /vertical/assets/gfx/google_play/freeway_icon.png
 app_icon_144x144 = /vertical/assets/gfx/google_play/freeway_icon.png
 app_icon_192x192 = /vertical/assets/gfx/google_play/freeway_icon.png
+version_code = 2
 
 [sprite]
 

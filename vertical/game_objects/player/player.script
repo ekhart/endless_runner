@@ -35,7 +35,6 @@ function init(self)
   -- print("is_swipe " .. is_swipe)
   change_road_duration = utils.get("change_road_duration")
   utils.play_sound("start_engine")
-  utils.disable("crash_text")
 end
 
 function final(self)
@@ -58,8 +57,7 @@ function on_message(self, message_id, message, sender)
         is_deleting = true
         utils.play_sound("crash")          
         msg.post("#sprite", "disable")
-        utils.enable("crash_text")
-        msg.post("controller#script", "shake")
+        msg.post("controller#script", "crash")
     		
         timer.seconds(2, function()
           is_deleting = false
