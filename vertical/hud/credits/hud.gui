@@ -12,8 +12,8 @@ fonts {
   font: "/vertical/assets/font/good_times_smaller.font"
 }
 textures {
-  name: "background"
-  texture: "/vertical/assets/gfx/hud/background.atlas"
+  name: "background_game_over"
+  texture: "/vertical/assets/gfx/hud/background_game_over.atlas"
 }
 background_color {
   x: 0.0
@@ -89,74 +89,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 1455.3864
-    z: 0.0
-    w: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  size {
-    x: 200.0
-    y: 100.0
-    z: 0.0
-    w: 1.0
-  }
-  color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  type: TYPE_TEXT
-  blend_mode: BLEND_MODE_ALPHA
-  text: "CREDITS"
-  font: "good_times_button"
-  id: "credits"
-  xanchor: XANCHOR_NONE
-  yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
-  outline {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-    w: 1.0
-  }
-  adjust_mode: ADJUST_MODE_FIT
-  line_break: false
-  layer: "front"
-  inherit_alpha: true
-  clipping_mode: CLIPPING_MODE_NONE
-  clipping_visible: true
-  clipping_inverted: false
-  alpha: 1.0
-  outline_alpha: 1.0
-  shadow_alpha: 1.0
-  template_node_child: false
-  text_leading: 1.0
-  text_tracking: 0.0
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  position {
-    x: 540.0
-    y: 1158.6938
+    x: 1000.0
+    y: 975.0
     z: 0.0
     w: 1.0
   }
@@ -179,19 +113,19 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Artur Debkowski"
+  text: "code :::  Artur Debkowski"
   font: "good_times_smaller"
   id: "ekhart"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SE
   outline {
     x: 1.0
     y: 1.0
@@ -205,7 +139,7 @@ nodes {
     w: 1.0
   }
   adjust_mode: ADJUST_MODE_FIT
-  line_break: true
+  line_break: false
   layer: "front"
   inherit_alpha: true
   clipping_mode: CLIPPING_MODE_NONE
@@ -221,8 +155,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 1036.0138
+    x: 1000.0
+    y: 900.0
     z: 0.0
     w: 1.0
   }
@@ -245,19 +179,19 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Bartlomiej Borawski"
+  text: "art ::: Bartlomiej Borawski"
   font: "good_times_smaller"
   id: "bartborawski"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SE
   outline {
     x: 1.0
     y: 1.0
@@ -287,8 +221,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 913.3336
+    x: 1000.0
+    y: 825.0
     z: 0.0
     w: 1.0
   }
@@ -311,19 +245,19 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Henryk Przybyl"
+  text: "art ::: Henryk Przybyl"
   font: "good_times_smaller"
   id: "hajnrich"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SE
   outline {
     x: 1.0
     y: 1.0
@@ -353,8 +287,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 794.26166
+    x: 1000.0
+    y: 750.0
     z: 0.0
     w: 1.0
   }
@@ -377,19 +311,19 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Tomasz Gorny"
+  text: "design ::: Tomasz Gorny"
   font: "good_times_smaller"
   id: "tomek"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SE
   outline {
     x: 1.0
     y: 1.0
@@ -419,8 +353,8 @@ nodes {
 }
 nodes {
   position {
-    x: 540.0
-    y: 675.1897
+    x: 1000.0
+    y: 675.0
     z: 0.0
     w: 1.0
   }
@@ -443,19 +377,19 @@ nodes {
     w: 1.0
   }
   color {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
     w: 1.0
   }
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
-  text: "Ryszard Kieltyka"
+  text: "prod ::: Ryszard Kieltyka"
   font: "good_times_smaller"
   id: "ryszard"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
-  pivot: PIVOT_CENTER
+  pivot: PIVOT_SE
   outline {
     x: 1.0
     y: 1.0
@@ -648,7 +582,7 @@ nodes {
   }
   type: TYPE_BOX
   blend_mode: BLEND_MODE_ALPHA
-  texture: "background/menu_prop_A"
+  texture: "background_game_over/game_over_A"
   id: "box"
   xanchor: XANCHOR_NONE
   yanchor: YANCHOR_NONE
@@ -667,6 +601,72 @@ nodes {
   clipping_inverted: false
   alpha: 1.0
   template_node_child: false
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 1000.0
+    y: 600.0
+    z: 0.0
+    w: 1.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+    z: 0.0
+    w: 1.0
+  }
+  color {
+    x: 0.94117653
+    y: 0.7843138
+    z: 0.23529413
+    w: 1.0
+  }
+  type: TYPE_TEXT
+  blend_mode: BLEND_MODE_ALPHA
+  text: "music ::: tomasz twardowski"
+  font: "good_times_smaller"
+  id: "music"
+  xanchor: XANCHOR_NONE
+  yanchor: YANCHOR_NONE
+  pivot: PIVOT_SE
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+  adjust_mode: ADJUST_MODE_FIT
+  line_break: false
+  layer: "front"
+  inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_NONE
+  clipping_visible: true
+  clipping_inverted: false
+  alpha: 1.0
+  outline_alpha: 1.0
+  shadow_alpha: 1.0
+  template_node_child: false
+  text_leading: 1.0
+  text_tracking: 0.0
   size_mode: SIZE_MODE_AUTO
 }
 layers {
